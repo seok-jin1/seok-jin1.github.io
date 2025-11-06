@@ -1,97 +1,132 @@
-- title: General Information
+- title: Overview
   type: map
   contents:
-    - name: Full Name
+    - name: Name
       value: Seok-Jin Kang
-    - name: Date of Birth
-      value: 14th March 1879
-    - name: Languages
-      value: English, German
+    - name: Title
+      value: "Postdoctoral Fellow, Immune Modulation Laboratory (PI: Taehoon Chun)"
+    - name: Affiliation
+      value: Korea University, Seoul, Republic of Korea
+    - name: Email
+      value: <a href="mailto:laughingkang@korea.ac.kr">laughingkang@korea.ac.kr</a>
+    - name: Phone
+      value: <a href="tel:+821082581318">+82-10-8258-1318</a>
+    - name: GitHub
+      value: <a href="https://github.com/seok-jin1">seok-jin1</a>
+    - name: Google Scholar
+      value: <a href="https://scholar.google.com/citations?hl=ko&user=iexY3PEAAAAJ&view_op=list_works&sortby=pubdate">Scholar profile</a>
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: M.S. & Ph.D. in Biotechnology
+      institution: Korea University, Seoul, Republic of Korea
+      year: Mar 2018 - Feb 2025
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+        - Immune Modulation Laboratory (PI: Taehoon Chun).
+        - Dissertation research on multi-omics driven immunotherapy design.
+    - title: B.S. in Biotechnology
+      institution: Korea University, Seoul, Republic of Korea
+      year: Mar 2014 - Feb 2018
       description:
-        - Description 1.
-        - Description 2.
+        - Undergraduate researcher supporting the Immune Modulation Laboratory.
+        - Focus on molecular biology, immunology, and biotechnology.
 
-- title: Experience
+- title: Professional Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Postdoctoral Fellow
+      institution: Immune Modulation Laboratory, Korea University
+      year: Mar 2025 - Present
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - Lead computational and experimental programs integrating multi-omics with machine learning and quantum-inspired modeling.
+        - Design immune-specific biosensors and next-generation CAR-T receptors using AlphaFold, ProteinMPNN, and Rosetta.
+        - Build AI pipelines for CRISPR editing analysis and single-cell profiling of iPSC-derived T cells.
+    - title: Laboratory Intern
+      institution: Immune Modulation Laboratory, Korea University
+      year: Jan 2016 - Feb 2018
       description:
-        - Description 1.
-        - Description 2.
+        - Conducted molecular cloning, PCR/qPCR, and gene expression analyses to study host-virus interactions in porcine circovirus.
+        - Assisted ELISA and flow cytometry assays evaluating probiotic and viral vector candidates.
+        - Supported in vivo mouse challenge studies, including tissue collection and cytokine quantification.
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
-      description:
-
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
-
-- title: Open Source Projects
-  type: time_table
-  contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
-
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 1921
-      items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
-      items:
-        - Max Planck Medal
-
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
-
-- title: Other Interests
+- title: Publications
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - SJ Kang, H Shin. <em>Biophysical mechanisms of spider-silk constituting element-induced stick-slip behavior and hydrogen bond regeneration for high toughness in silk fibers.</em> <strong>International Journal of Biological Macromolecules</strong>, 2025.
+    - SJ Kang, H Shin. <em>Amino acid sequence-based IDR classification using ensemble machine learning and quantum neural networks.</em> <strong>Computational Biology and Chemistry</strong>, 2025.
+    - JH Yoon, GB Yeon, H Lee, H An, J Oh, SJ Kang, et al. <em>Tumor-targeted delivery of CXCL10 by mesenchymal stromal cells potentiates adoptive T cell therapy to treat solid tumors.</em> <strong>Biomedicine &amp; Pharmacotherapy</strong>, 192:118579, 2025.
+    - Additional co-authored works on xenotransplantation, porcine circovirus host interactions, and probiotic-driven immune modulation (Biotechnology Letters 2024; Journal of Animal Science and Technology 2023; Food Science of Animal Resources 2023).
+
+- title: Research Projects
+  type: time_table
+  contents:
+    - title: Development of universal SARS-CoV-2 and sarbecovirus vaccine candidates using an NDV vector platform
+      institution: Korea Health Industry Development Institute
+      year: Apr 2022 - Dec 2023
+      description:
+        - Research Assistant (PI: Taehoon Chun).
+        - Evaluated broad-spectrum vaccine efficacy with NDV-based delivery.
+    - title: Development of mandatory vaccine evaluation methods using a new platform
+      institution: Ministry of Food and Drug Safety
+      year: Feb 2022 - Dec 2023
+      description:
+        - Research Assistant (PI: Taehoon Chun).
+        - Built data-driven evaluation workflows for regulatory assessments.
+    - title: Genetic markers associated with resistance to post-weaning multisystemic wasting syndrome
+      institution: Rural Development Administration
+      year: Mar 2018 - Dec 2020
+      description:
+        - Research Assistant (PI: Taehoon Chun).
+        - Dissected viral host interaction mechanisms to identify resistance markers.
+
+- title: Conference Presentations
+  type: list
+  contents:
+    - <em>Immune regulation of mammalian polycomb repressor and the relationship between its structural heterogeneity.</em> Korean Association of Immunologists (KAI), Seoul, 2020.
+    - <em>Administration of Lactobacillus plantarum CJLP133 and CJLP243 ameliorates the symptoms of allergic rhinitis in BP-inhaled mouse models.</em> Korean Association of Immunologists (KAI), Seoul, 2019.
+    - <em>Microorganisms from kimchi, GK3 and Baechu10, change the cytokine production pattern of host peritoneal macrophages.</em> Korean Association of Immunologists (KAI), Seoul, 2018.
+
+- title: Books
+  type: list
+  contents:
+    - <em>2026 Science Trends: Multi-omics.</em> Kindle, ISBN 9798266588004, 2025.
+    - <em>2026 Life Science Trends: Multi-omics (Korean edition).</em> Purple, ISBN 9788924169034, 2025.
+    - <em>2026 Science Trends: Personalized Medicine (Korean edition).</em> Purple, ISBN 9788924169041, 2025.
+    - <em>2025 Science Trends: Artificial Intelligence.</em> Kindle, ISBN 979-8307079270, 2025.
+    - <em>2025 Science Trends: Artificial Intelligence (Korean edition).</em> Purple, ISBN 9788924143621, 2024.
+
+- title: Certifications
+  type: list
+  contents:
+    - Big Data Analysis Engineer - Korea Data Agency (BAE-010002862), 2025.
+    - Advanced Data Analytics Semi-Professional (ADsP) - Korea Data Agency (ADsP-040004911), 2024.
+
+- title: Technical Skills
+  type: nested_list
+  contents:
+    - title: Programming & Analytics
+      items:
+        - Python, R
+        - Machine learning, deep learning, quantum neural networks
+        - Multi-omics integration, statistical modeling, sequence & structural bioinformatics
+    - title: Bioinformatics & Automation
+      items:
+        - PyTorch, TensorFlow, scikit-learn, Biopython, RStudio, pandas, NumPy
+    - title: Molecular & Cellular Biology
+      items:
+        - CRISPR/Cas9 gene editing, CAR-T engineering, protein design
+        - Protein expression & purification, molecular cloning, cell culture
+    - title: Laboratory Techniques
+      items:
+        - Western blotting, PCR/qPCR, flow cytometry, ELISA
+        - Chromatography, electrophoresis, surface plasmon resonance
+        - Protein-protein interaction analysis, affinity measurements, mouse & pig models
+
+- title: Research Interests
+  type: list
+  contents:
+    - Computational immunology and AI-assisted drug discovery
+    - Protein engineering and CAR-T cell therapy
+    - Multi-omics data integration
+    - Quantum computing applications in biology
