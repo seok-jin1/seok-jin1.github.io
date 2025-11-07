@@ -1,5 +1,5 @@
 ---
 layout: page
-title: submenus
+title: Submenus
 nav: false
 ---
