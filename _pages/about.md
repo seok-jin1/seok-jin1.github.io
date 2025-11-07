@@ -31,7 +31,11 @@ latest_posts:
 
 <p><a href="/assets/pdf/SeokJin_Kang_CV_251107.pdf" target="_blank" rel="noopener">Curriculum Vitae: the course of my life</a></p>
 
-I am a postdoctoral fellow in the Immune Modulation Laboratory at Korea University, where I work with Taehoon Chun on data-driven immunology and therapeutic design. My research integrates multi-omics datasets, machine learning, and quantum-inspired modeling to predict immunogenicity, guide biosensor design, and engineer next-generation CAR-T receptors. I build AI pipelines that couple CRISPR screening data, protein design frameworks, and single-cell analytics to accelerate immune engineering programs from concept to preclinical validation.
+Seok-Jin Kang, Ph.D. is a self-motivated immunologist and computational biologist whose academic and research trajectory bridges traditional immunology and modern data-driven biology. During his M.S. and Ph.D. training in the Immune Modulation Laboratory (PI: Taehoon Chun) at Korea University, he focused on understanding immune regulation, macrophage polarization, and the molecular mechanisms of host–pathogen interactions using both in vitro and in vivo models.
+
+Recognizing that future scientific breakthroughs would emerge from integrating experimental and computational disciplines, Dr. Kang made a deliberate pivot from wet-lab immunology to data-driven research. Driven by curiosity and a strong ability to learn new concepts quickly, he has expanded his expertise beyond experimental immunology to computational biology, integrating machine learning, deep learning, and quantum-inspired approaches with multi-omics datasets. His recent publications explore the use of AI-driven frameworks for protein design, TCR–peptide–MHC interaction prediction, and the modeling of intrinsically disordered regions (IDRs) using quantum neural networks.
+
+His long-term research goal is to advance the field of precision medicine by developing multi-omics-based computational models that can predict immune responses, guide therapeutic design, and enable personalized intervention strategies. As a fast learner who thrives in interdisciplinary environments, Dr. Kang seeks to bridge the gap between experimental immunology and computational systems biology to drive innovation in next-generation immunotherapies and biomedical engineering.
 
 ## Research Focus
 
@@ -44,46 +48,3 @@ I am a postdoctoral fellow in the Immune Modulation Laboratory at Korea Universi
 
 - Ph.D. and M.S. in Biotechnology, Korea University (Mar 2018 - Feb 2025)
 - B.S. in Biotechnology, Korea University (Mar 2014 - Feb 2018)
-
-## Recent Publications
-
-- SJ Kang, H Shin. _Biophysical mechanisms of spider-silk constituting element-induced stick-slip behavior and hydrogen bond regeneration for high toughness in silk fibers_. International Journal of Biological Macromolecules, 2025.
-- SJ Kang, H Shin. _Amino acid sequence-based IDR classification using ensemble machine learning and quantum neural networks_. Computational Biology and Chemistry, 2025.
-- JH Yoon, GB Yeon, H Lee, et al. _Tumor-targeted delivery of CXCL10 by mesenchymal stromal cells potentiates adoptive T cell therapy to treat solid tumors_. Biomedicine & Pharmacotherapy, 2025.
-
-I am additionally co-author on publications addressing xenotransplantation, porcine circovirus host interactions, and probiotic-driven immune modulation (Journal of Animal Science and Technology 2023; Food Science of Animal Resources 2023; Biotechnology Letters 2024).
-
-## Research Projects
-
-- Development of universal SARS-CoV-2 and sarbecovirus vaccine candidates using an NDV vector platform; Research Assistant, Korea Health Industry Development Institute grant (Apr 2022 - Dec 2023).
-- Platform-driven evaluation methods for mandatory vaccines; Research Assistant, Ministry of Food and Drug Safety (Feb 2022 - Dec 2023).
-- Molecular dissection of resistance markers to post-weaning multisystemic wasting syndrome; Research Assistant, Rural Development Administration (Mar 2018 - Dec 2020).
-
-## Conference Presentations
-
-- _Immune regulation of mammalian polycomb repressor and the relationship between its structural heterogeneity_. Korean Association of Immunologists, Seoul, 2020.
-- _Administration of Lactobacillus plantarum CJLP133 and CJLP243 ameliorates the symptoms of allergic rhinitis in a BP-inhaled mouse model_. Korean Association of Immunologists, Seoul, 2019.
-- _Microorganisms from kimchi, GK3 and Baechu10, change the cytokine production pattern of host peritoneal macrophages_. Korean Association of Immunologists, Seoul, 2018.
-
-## Books
-
-- _2026 Science Trends: Multi-omics_. Kindle, ISBN 9798266588004, 2025.
-- _2026 Life Science Trends: Multi-omics (Korean edition)_. Purple, ISBN 9788924169034, 2025.
-- _2026 Science Trends: Personalized Medicine (Korean edition)_. Purple, ISBN 9788924169041, 2025.
-- _2025 Science Trends: Artificial Intelligence_. Kindle, ISBN 979-8307079270, 2025.
-- _2025 Science Trends: Artificial Intelligence (Korean edition)_. Purple, ISBN 9788924143621, 2024.
-
-## Certifications
-
-- Big Data Analysis Engineer, Korea Data Agency (BAE-010002862, 2025).
-- Advanced Data Analytics Semi-Professional (ADsP), Korea Data Agency (ADsP-040004911, 2024).
-
-## Technical Skills
-
-- **Programming languages**: Python, R.
-- **Data science & bioinformatics**: Machine learning, deep learning, quantum neural networks, multi-omics analysis (genomics, transcriptomics, proteomics), statistical modeling, sequence and structural bioinformatics.
-- **Bioinformatics tools**: PyTorch, TensorFlow, scikit-learn, Biopython, RStudio, pandas, NumPy.
-- **Molecular biology techniques**: CRISPR/Cas9 gene editing, CAR-T cell engineering, protein expression and purification, protein design, molecular cloning, cell culture, virology, immunology assays, xenotransplantation studies.
-- **Laboratory skills**: Western blotting, PCR/qPCR, flow cytometry, ELISA, chromatography, electrophoresis, surface plasmon resonance, protein-protein interaction analysis, affinity measurements, cell-based assays, mouse and pig models.
-
-I am also a co-inventor on multiple Korean patent filings that cover CAR-T targeting strategies, engineered antigen-presenting cells, and recombinant proteins for immunotherapy (filed 2021-2022).
