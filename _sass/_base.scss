@@ -740,6 +740,13 @@ footer.sticky-bottom {
           width: 100%;
           display: block;
           margin-bottom: 0.5rem;
+
+          &.placeholder {
+            aspect-ratio: 4 / 3;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px dashed var(--global-divider-color);
+            box-shadow: none;
+          }
         }
 
         .abbr {

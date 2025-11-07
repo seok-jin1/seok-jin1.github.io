@@ -15,6 +15,13 @@ nav_order: 2
 
 <div class="publications">
 
-{% bibliography %}
+<h2>Featured Publications</h2>
+{% bibliography --query @*[pub_category=featured] %}
+
+<h2>Under Review</h2>
+{% bibliography --query @*[pub_category=under_review] %}
+
+<h2>Published Articles</h2>
+{% bibliography --query @*[pub_category=published] %}
 
 </div>
