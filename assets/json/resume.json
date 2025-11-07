@@ -3,10 +3,9 @@
     "name": "Seok-Jin Kang",
     "label": "Scientist",
     "image": "",
-    "email": "albert@einstein.de",
-    "phone": "(912) 123-4567",
+    "email": "laughingkang@korea.ac.kr",
     "url": "https://seok-jin1.github.io",
-    "summary": "A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time",
+    "summary": "Postdoctoral fellow at Korea University, working on data-driven immunology and therapeutic design using AI, multi-omics, and quantum-inspired modeling",
     "location": {
       "address": "2712 Broadway St",
       "postalCode": "CA 94115",
@@ -22,179 +21,233 @@
       }
     ]
   },
-  "work": [
-    {
-      "name": "Institute for Advanced Study, Princeton University",
-      "position": "Professor of Theoretical Physics",
-      "url": "https://example.com",
-      "startDate": "1933-01-01",
-      "endDate": "1955-01-01",
-      "summary": "Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.",
-      "highlights": ["Relativity"]
-    }
-  ],
-  "volunteer": [
-    {
-      "organization": "People's Climate March",
-      "location": "Zurich, Switzerland",
-      "position": "Lead Organizer",
-      "url": "https://example.com",
-      "startDate": "2014-04-01",
-      "endDate": "2015-07-01",
-      "summary": "Lead organizer for the New York City branch of the People's Climate March, the largest climate march in history.",
-      "highlights": ["Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march.", "Men of the year 2014 by Time magazine"]
-    }
-  ],
-  "education": [
-    {
-      "institution": "University of Zurich, Zurich, Switzerland",
-      "location": "Zurich, Switzerland",
-      "url": "https://www.uzh.ch/",
-      "area": "Software Development",
-      "studyType": "PhD",
-      "startDate": "1905-01-01",
-      "endDate": "1905-01-01",
-      "score": "10",
-      "courses": ["Theory of Relativity"]
-    }
-  ],
-  "awards": [
-    {
-      "title": "Nobel Prize in Physics",
-      "date": "1921-11-01",
-      "awarder": "Royal Swedish Academy of Sciences",
-      "url": "https://www.nobelprize.org/prizes/physics/1921/einstein/biographical/",
-      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
-    }
-  ],
   "certificates": [
     {
-      "name": "Machine Learning",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-location-dot"
+      "name": "Big Data Analysis Engineer",
+      "date": "2025-01-01",
+      "issuer": "Korea Data Agency",
+      "icon": "fa-solid fa-chart-line"
     },
     {
-      "name": "Quantum Computing",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-tag"
-    },
-    {
-      "name": "Quantum Information",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-envelope"
-    },
-    {
-      "name": "Quantum Cryptography",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-hashtag"
-    },
-    {
-      "name": "Quantum Communication",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-calendar"
-    },
-    {
-      "name": "Quantum Teleportation",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-clipboard-check"
-    }
-  ],
-  "publications": [
-    {
-      "name": "Zur Elektrody/namik bewegter Körper",
-      "publisher": "Annalen der Physik",
-      "releaseDate": "1905-06-30",
-      "url": "https://en.wikisource.org/wiki/Translation:On_the_Electrodynamics_of_Moving_Bodies",
-      "summary": "It concerned an interpretation of the Michelson–Morley experiment and the properties of light and time. Special relativity incorporates the principle that the speed of light is the same for all inertial observers regardless of the state of motion of the source."
-    },
-    {
-      "name": "Über einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt",
-      "publisher": "Annalen der Physik",
-      "releaseDate": "1905-03-18",
-      "url": "https://de.wikisource.org/wiki/Über_einen_die_Erzeugung_und_Verwandlung_des_Lichtes_betreffenden_heuristischen_Gesichtspunkt",
-      "summary": "In the second paper, he applied the quantum theory to light to explain the photoelectric effect. In particular, he used the idea of light quanta (photons) to explain experimental results, but stressed the importance of the experimental results. The importance of his work on the photoelectric effect earned him the Nobel Prize in Physics in 1921."
-    },
-    {
-      "name": "Die Grundlage der allgemeinen Relativitätstheorie",
-      "publisher": "Annalen der Physik",
-      "releaseDate": "1916-03-20",
-      "url": "https://de.wikisource.org/wiki/Die_Grundlage_der_allgemeinen_Relativitätstheorie",
-      "summary": "The publication of the theory of general relativity made him internationally famous. He was professor of physics at the universities of Zurich (1909–1911) and Prague (1911–1912), before he returned to ETH Zurich (1912–1914)."
+      "name": "Advanced Data Analytics Semi-Professional (ADsP)",
+      "date": "2024-01-01",
+      "issuer": "Korea Data Agency",
+      "icon": "fa-solid fa-database"
     }
   ],
   "skills": [
     {
-      "name": "Physics",
-      "level": "Master",
-      "icon": "fa-solid fa-hashtag",
+      "name": "Computational Biology & AI",
+      "level": "Expert",
+      "icon": "fa-solid fa-brain",
       "keywords": [
-        "Quantum Mechanics",
-        "Quantum Computing",
-        "Quantum Information",
-        "Quantum Cryptography",
-        "Quantum Communication",
-        "Quantum Teleportation"
+        "Machine Learning",
+        "Deep Learning",
+        "Quantum Neural Networks",
+        "Multi-omics Integration",
+        "Single-cell Transcriptomics",
+        "Structural Bioinformatics"
       ]
-    }
-  ],
-  "languages": [
-    {
-      "language": "German",
-      "fluency": "Native speaker",
-      "icon": ""
     },
     {
-      "language": "English",
-      "fluency": "Fluent",
-      "icon": ""
-    }
-  ],
-  "interests": [
-    {
-      "name": "Physics",
-      "icon": "fa-solid fa-tag",
+      "name": "Programming & Tools",
+      "level": "Expert",
+      "icon": "fa-solid fa-code",
       "keywords": [
-        "Quantum Mechanics",
-        "Quantum Computing",
-        "Quantum Information",
-        "Quantum Cryptography",
-        "Quantum Communication",
-        "Quantum Teleportation"
+        "Python",
+        "R",
+        "PyTorch",
+        "TensorFlow",
+        "scikit-learn",
+        "Biopython",
+        "pandas",
+        "NumPy"
       ]
-    }
-  ],
-  "references": [
-    {
-      "name": "Professor John Doe",
-      "icon": "fa-solid fa-laptop",
-      "reference": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit. D"
     },
     {
-      "name": "Professor John Doe",
-      "icon": "fa-solid fa-thumbtack",
-      "reference": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit. D"
+      "name": "Protein Engineering",
+      "level": "Advanced",
+      "icon": "fa-solid fa-dna",
+      "keywords": [
+        "AlphaFold",
+        "ProteinMPNN",
+        "Rosetta",
+        "TCR-peptide-MHC Prediction",
+        "CAR-T Design",
+        "Protein Purification"
+      ]
+    },
+    {
+      "name": "Immunology & Molecular Biology",
+      "level": "Expert",
+      "icon": "fa-solid fa-microscope",
+      "keywords": [
+        "CRISPR/Cas9 Gene Editing",
+        "Flow Cytometry",
+        "ELISA",
+        "qPCR",
+        "Western Blotting",
+        "Cell Culture",
+        "Mouse Models"
+      ]
     }
   ],
   "projects": [
     {
-      "name": "Quantum Computing",
-      "summary": "Quantum computing is the use of quantum-mechanical phenomena such as superposition and entanglement to perform computation. Computers that perform quantum computations are known as quantum computers.",
-      "highlights": ["Quantum Teleportation", "Quantum Cryptography"],
+      "name": "Safety Evaluation of Viral Vector-Based Gene Therapy",
+      "entity": "Ministry of Food and Drug Safety",
+      "summary": "Research Assistant (PI: Taehoon Chun). Conducted wet-lab and computational analyses to evaluate vector integration safety. Prepared and optimized whole-genome sequencing (WGS) libraries, followed by NGS data acquisition. Performed multi-omics integration and genomic correlation analyses to identify off-target insertion events.",
+      "highlights": [
+        "Multi-omics integration and genomic correlation analysis",
+        "Next-generation sequencing (NGS) data analysis",
+        "Safety profiling examining dose, administration route, and vector type"
+      ],
+      "startDate": "2025-02-01",
+      "endDate": "2025-12-01"
+    },
+    {
+      "name": "HLA Gene Editing for Allogeneic Stem Cell Therapy",
+      "entity": "Korea National Institute of Health",
+      "summary": "Research Assistant (PI: Dongho Geum). Designed and established HLA-edited induced pluripotent stem cells (iPSCs) for generating hypoimmunogenic cell lines. Conducted differentiation experiments and performed in vivo validation using mouse models.",
+      "highlights": [
+        "CRISPR-based HLA editing in iPSCs",
+        "iPSC differentiation experiments",
+        "In vivo immune compatibility and engraftment efficiency assessment"
+      ],
+      "startDate": "2025-05-01",
+      "endDate": "2025-12-01"
+    },
+    {
+      "name": "Regulation of Immune Cell Differentiation by Chromatin 3D Structural Changes",
+      "entity": "National Research Foundation of Korea",
+      "summary": "Research Assistant (PI: Taehoon Chun). Investigated chromatin 3D structural reorganization mediated by the chromatin looper LDB1 regulating transcriptional programs across immune cell types. Conducted multi-omics integration and applied deep learning-based structural bioinformatics.",
+      "highlights": [
+        "Multi-omics integration (RNA-seq, ATAC-seq, ChIP-seq)",
+        "Deep learning for chromatin loop prediction",
+        "Enhancer-promoter interaction mapping"
+      ],
+      "startDate": "2022-09-01",
+      "endDate": "2025-02-01"
+    },
+    {
+      "name": "Development of Universal SARS-CoV-2 and Sarbecovirus Vaccine Using NDV Vector Platform",
+      "entity": "Korea Health Industry Development Institute",
+      "summary": "Research Assistant (PI: Kisoon Kim). Modeled viral antigen epitopes using computational structural biology (AlphaFold) to enhance cross-neutralizing immune responses. Conducted in vitro and in vivo immunogenicity evaluations using animal models.",
+      "highlights": [
+        "Computational structural biology with AlphaFold",
+        "In vitro and in vivo immunogenicity evaluation",
+        "Vaccine-induced response analysis via ELISA and flow cytometry"
+      ],
+      "startDate": "2022-04-01",
+      "endDate": "2023-12-01"
+    },
+    {
+      "name": "Development of Cellular Immune Evaluation Technology for Viral Vector-Based Genetic Vaccines",
+      "entity": "Ministry of Food and Drug Safety",
+      "summary": "Research Assistant (PI: Taehoon Chun). Designed AI-assisted pipelines for predicting TCR-peptide-MHC interactions and validated cellular responses experimentally using ELISPOT and flow cytometry.",
+      "highlights": [
+        "AI-assisted TCR-peptide-MHC interaction prediction",
+        "ELISPOT and flow cytometry validation",
+        "Cellular immune response evaluation"
+      ],
+      "startDate": "2022-02-01",
+      "endDate": "2025-12-01"
+    },
+    {
+      "name": "Mechanistic Study of Macrophage Polarization Regulated by Chromatin Remodeling Factor Phc2",
+      "entity": "National Research Foundation of Korea",
+      "summary": "Research Assistant (PI: Taehoon Chun). Performed transcriptomic profiling of macrophages under distinct polarization states. Applied machine learning-based differential expression and pathway analysis to identify Phc2-dependent networks.",
+      "highlights": [
+        "Transcriptomic profiling of macrophage polarization",
+        "Machine learning-based differential expression analysis",
+        "Pathway analysis for Phc2-dependent networks"
+      ],
+      "startDate": "2019-09-01",
+      "endDate": "2022-02-01"
+    },
+    {
+      "name": "Development of DNA Markers to Enhance Resistance Against Chronic Wasting Diseases",
+      "entity": "Rural Development Administration",
+      "summary": "Research Assistant (PI: Taehoon Chun). Conducted sequence analysis and SNP genotyping to identify host resistance markers. Developed computational pipelines using R and Python for comparative genomics.",
+      "highlights": [
+        "Sequence analysis and SNP genotyping",
+        "Computational pipelines in R and Python",
+        "Comparative genomics for resistance markers"
+      ],
       "startDate": "2018-01-01",
-      "endDate": "2018-01-01",
-      "url": "https://example.com"
+      "endDate": "2020-12-01"
+    },
+    {
+      "name": "Development of Novel Immune Cell Therapy Targeting Multiple Myeloma",
+      "entity": "National Research Foundation of Korea",
+      "summary": "Research Assistant (PI: Taehoon Chun). Designed and optimized chimeric antigen receptor (CAR) constructs through protein engineering and molecular cloning. Selected target-binding proteins based on affinity and specificity, and measured binding kinetics (Kd) using surface plasmon resonance (SPR).",
+      "highlights": [
+        "CAR construct design and optimization",
+        "Protein engineering and molecular cloning",
+        "Binding kinetics measurement via SPR"
+      ],
+      "startDate": "2018-03-01",
+      "endDate": "2022-06-01"
+    },
+    {
+      "name": "Production and Efficacy Evaluation of Novel Recombinant Immunotherapeutics",
+      "entity": "Immunological Designing Lab Co., Ltd.",
+      "summary": "Research Assistant (PI: Taehoon Chun). Produced recombinant therapeutic proteins via molecular cloning and protein purification. Evaluated binding affinity using SPR and ELISA assays.",
+      "highlights": [
+        "Recombinant protein production and purification",
+        "SPR and ELISA for binding affinity evaluation",
+        "Therapeutic protein characterization"
+      ],
+      "startDate": "2021-01-01",
+      "endDate": "2023-06-01"
+    },
+    {
+      "name": "Screening of Immune-Enhancing Probiotics Using Immunodeficient Mouse Models",
+      "entity": "CJ CheilJedang & BLOSSOM PARK",
+      "summary": "Research Assistant (PI: Taehoon Chun). Conducted animal experiments and analyzed cytokine profiles via flow cytometry and qPCR. Applied statistical analysis in R to evaluate immune enhancement.",
+      "highlights": [
+        "Animal experiments with immunodeficient models",
+        "Cytokine profiling via flow cytometry and qPCR",
+        "Statistical analysis for immune enhancement evaluation"
+      ],
+      "startDate": "2020-06-01",
+      "endDate": "2021-02-01"
+    },
+    {
+      "name": "Determination of Dosing Period and Amount of Probiotics for Alleviating Allergic Rhinitis",
+      "entity": "CJ CheilJedang",
+      "summary": "Research Assistant (PI: Taehoon Chun). Evaluated probiotic-induced modulation of Th1/Th2 cytokine ratios using ELISA and gene expression profiling. Applied statistical modeling to identify optimal dosing.",
+      "highlights": [
+        "Th1/Th2 cytokine ratio modulation analysis",
+        "ELISA and gene expression profiling",
+        "Statistical modeling for optimal dosing"
+      ],
+      "startDate": "2018-06-01",
+      "endDate": "2018-11-01"
+    },
+    {
+      "name": "Development of Genetic Markers Associated to the Resistance to PMWS",
+      "entity": "Rural Development Administration",
+      "summary": "Research Assistant (PI: Taehoon Chun). Performed comparative genomics and sequence-based variant analysis. Utilized bioinformatics tools (Biopython, BLAST) to detect resistance-associated mutations.",
+      "highlights": [
+        "Comparative genomics and variant analysis",
+        "Bioinformatics tools (Biopython, BLAST)",
+        "Resistance-associated mutation detection"
+      ],
+      "startDate": "2018-03-01",
+      "endDate": "2020-12-01"
+    },
+    {
+      "name": "Selection and In Vivo Efficacy Verification of Probiotics with Enhanced IgA Secretion",
+      "entity": "CJ CheilJedang",
+      "summary": "Research Assistant (PI: Taehoon Chun). Measured mucosal IgA levels in mouse models and identified strains with strong immunostimulatory potential. Applied bioinformatics analysis of gene expression and immune pathway mapping.",
+      "highlights": [
+        "Mucosal IgA measurement in mouse models",
+        "Immunostimulatory strain identification",
+        "Gene expression and immune pathway analysis"
+      ],
+      "startDate": "2016-07-01",
+      "endDate": "2017-04-01"
     }
   ]
 }
