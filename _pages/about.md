@@ -47,9 +47,9 @@ I am a postdoctoral fellow in the Immune Modulation Laboratory at Korea Universi
 
 ## Recent Publications
 
-- SJ Kang, H Shin. *Biophysical mechanisms of spider-silk constituting element-induced stick-slip behavior and hydrogen bond regeneration for high toughness in silk fibers*. International Journal of Biological Macromolecules, 2025.
-- SJ Kang, H Shin. *Amino acid sequence-based IDR classification using ensemble machine learning and quantum neural networks*. Computational Biology and Chemistry, 2025.
-- JH Yoon, GB Yeon, H Lee, et al. *Tumor-targeted delivery of CXCL10 by mesenchymal stromal cells potentiates adoptive T cell therapy to treat solid tumors*. Biomedicine & Pharmacotherapy, 2025.
+- SJ Kang, H Shin. _Biophysical mechanisms of spider-silk constituting element-induced stick-slip behavior and hydrogen bond regeneration for high toughness in silk fibers_. International Journal of Biological Macromolecules, 2025.
+- SJ Kang, H Shin. _Amino acid sequence-based IDR classification using ensemble machine learning and quantum neural networks_. Computational Biology and Chemistry, 2025.
+- JH Yoon, GB Yeon, H Lee, et al. _Tumor-targeted delivery of CXCL10 by mesenchymal stromal cells potentiates adoptive T cell therapy to treat solid tumors_. Biomedicine & Pharmacotherapy, 2025.
 
 I am additionally co-author on publications addressing xenotransplantation, porcine circovirus host interactions, and probiotic-driven immune modulation (Journal of Animal Science and Technology 2023; Food Science of Animal Resources 2023; Biotechnology Letters 2024).
 
@@ -61,17 +61,17 @@ I am additionally co-author on publications addressing xenotransplantation, porc
 
 ## Conference Presentations
 
-- *Immune regulation of mammalian polycomb repressor and the relationship between its structural heterogeneity*. Korean Association of Immunologists, Seoul, 2020.
-- *Administration of Lactobacillus plantarum CJLP133 and CJLP243 ameliorates the symptoms of allergic rhinitis in a BP-inhaled mouse model*. Korean Association of Immunologists, Seoul, 2019.
-- *Microorganisms from kimchi, GK3 and Baechu10, change the cytokine production pattern of host peritoneal macrophages*. Korean Association of Immunologists, Seoul, 2018.
+- _Immune regulation of mammalian polycomb repressor and the relationship between its structural heterogeneity_. Korean Association of Immunologists, Seoul, 2020.
+- _Administration of Lactobacillus plantarum CJLP133 and CJLP243 ameliorates the symptoms of allergic rhinitis in a BP-inhaled mouse model_. Korean Association of Immunologists, Seoul, 2019.
+- _Microorganisms from kimchi, GK3 and Baechu10, change the cytokine production pattern of host peritoneal macrophages_. Korean Association of Immunologists, Seoul, 2018.
 
 ## Books
 
-- *2026 Science Trends: Multi-omics*. Kindle, ISBN 9798266588004, 2025.
-- *2026 Life Science Trends: Multi-omics (Korean edition)*. Purple, ISBN 9788924169034, 2025.
-- *2026 Science Trends: Personalized Medicine (Korean edition)*. Purple, ISBN 9788924169041, 2025.
-- *2025 Science Trends: Artificial Intelligence*. Kindle, ISBN 979-8307079270, 2025.
-- *2025 Science Trends: Artificial Intelligence (Korean edition)*. Purple, ISBN 9788924143621, 2024.
+- _2026 Science Trends: Multi-omics_. Kindle, ISBN 9798266588004, 2025.
+- _2026 Life Science Trends: Multi-omics (Korean edition)_. Purple, ISBN 9788924169034, 2025.
+- _2026 Science Trends: Personalized Medicine (Korean edition)_. Purple, ISBN 9788924169041, 2025.
+- _2025 Science Trends: Artificial Intelligence_. Kindle, ISBN 979-8307079270, 2025.
+- _2025 Science Trends: Artificial Intelligence (Korean edition)_. Purple, ISBN 9788924143621, 2024.
 
 ## Certifications
 
