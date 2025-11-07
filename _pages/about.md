@@ -29,6 +29,8 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
+<p><a href="/assets/pdf/SeokJin_Kang_CV_251106.pdf" target="_blank" rel="noopener">Curriculum Vitae: the course of my life</a></p>
+
 I am a postdoctoral fellow in the Immune Modulation Laboratory at Korea University, where I work with Taehoon Chun on data-driven immunology and therapeutic design. My research integrates multi-omics datasets, machine learning, and quantum-inspired modeling to predict immunogenicity, guide biosensor design, and engineer next-generation CAR-T receptors. I build AI pipelines that couple CRISPR screening data, protein design frameworks, and single-cell analytics to accelerate immune engineering programs from concept to preclinical validation.
 
 ## Research Focus
