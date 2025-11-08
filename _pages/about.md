@@ -47,4 +47,4 @@ His long-term research goal is to advance the field of precision medicine by dev
 ## Education
 
 - Ph.D. and M.S. in Biotechnology, Korea University (Mar 2018 - Feb 2025)
-- B.S. in Biotechnology, Korea University (Mar 2014 - Feb 2018)
+- B.S. in Biotechnology, Korea University (Mar 2014 - Feb 2018) (QS ranking : 61st)
