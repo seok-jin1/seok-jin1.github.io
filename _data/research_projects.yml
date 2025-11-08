@@ -1,0 +1,103 @@
+- title: Safety Evaluation of Viral Vector-Based Gene Therapy
+  institution: Ministry of Food and Drug Safety
+  year: Feb 2025 - Dec 2025
+  description:
+    - Research Assistant (PI: Taehoon Chun).
+    - Conducted wet-lab and computational analyses to evaluate vector integration safety.
+    - Prepared and optimized whole-genome sequencing (WGS) libraries, followed by NGS data acquisition.
+    - Performed multi-omics integration and genomic correlation analyses to identify off-target insertion events.
+
+- title: HLA Gene Editing for Allogeneic Stem Cell Therapy
+  institution: Korea National Institute of Health
+  year: May 2025 - Dec 2025
+  description:
+    - Research Assistant (PI: Dongho Geum).
+    - Designed and established HLA-edited induced pluripotent stem cells (iPSCs) for generating hypoimmunogenic cell lines.
+    - Conducted differentiation experiments and performed in vivo validation using mouse models.
+
+- title: Regulation of Immune Cell Differentiation by Chromatin 3D Structural Changes
+  institution: National Research Foundation of Korea
+  year: Sep 2022 - Feb 2025
+  description:
+    - Research Assistant (PI: Taehoon Chun).
+    - Investigated chromatin 3D structural reorganization mediated by the chromatin looper LDB1 regulating transcriptional programs across immune cell types.
+    - Conducted multi-omics integration and applied deep learning-based structural bioinformatics.
+
+- title: Development of Universal SARS-CoV-2 and Sarbecovirus Vaccine Using NDV Vector Platform
+  institution: Korea Health Industry Development Institute
+  year: Apr 2022 - Dec 2023
+  description:
+    - Research Assistant (PI: Kisoon Kim).
+    - Modeled viral antigen epitopes using computational structural biology (AlphaFold) to enhance cross-neutralizing immune responses.
+    - Conducted in vitro and in vivo immunogenicity evaluations using animal models.
+
+- title: Development of Cellular Immune Evaluation Technology for Viral Vector-Based Genetic Vaccines
+  institution: Ministry of Food and Drug Safety
+  year: Feb 2022 - Dec 2025
+  description:
+    - Research Assistant (PI: Taehoon Chun).
+    - Designed AI-assisted pipelines for predicting TCR-peptide-MHC interactions and validated cellular responses experimentally using ELISPOT and flow cytometry.
+
+- title: Mechanistic Study of Macrophage Polarization Regulated by Chromatin Remodeling Factor Phc2
+  institution: National Research Foundation of Korea
+  year: Sep 2019 - Feb 2022
+  description:
+    - Research Assistant (PI: Taehoon Chun).
+    - Performed transcriptomic profiling of macrophages under distinct polarization states.
+    - Applied machine learning-based differential expression and pathway analysis to identify Phc2-dependent networks.
+
+- title: Development of DNA Markers to Enhance Resistance Against Chronic Wasting Diseases
+  institution: Rural Development Administration
+  year: Jan 2018 - Dec 2020
+  description:
+    - Research Assistant (PI: Taehoon Chun).
+    - Conducted sequence analysis and SNP genotyping to identify host resistance markers.
+    - Developed computational pipelines using R and Python for comparative genomics.
+
+- title: Development of Novel Immune Cell Therapy Targeting Multiple Myeloma
+  institution: National Research Foundation of Korea
+  year: Mar 2018 - Jun 2022
+  description:
+    - Research Assistant (PI: Taehoon Chun).
+    - Designed and optimized chimeric antigen receptor (CAR) constructs through protein engineering and molecular cloning.
+    - Selected target-binding proteins based on affinity and specificity, and measured binding kinetics (Kd) using surface plasmon resonance (SPR).
+
+- title: Production and Efficacy Evaluation of Novel Recombinant Immunotherapeutics
+  institution: Immunological Designing Lab Co., Ltd.
+  year: Jan 2021 - Jun 2023
+  description:
+    - Research Assistant (PI: Taehoon Chun).
+    - Produced recombinant therapeutic proteins via molecular cloning and protein purification.
+    - Evaluated binding affinity using SPR and ELISA assays.
+
+- title: Screening of Immune-Enhancing Probiotics Using Immunodeficient Mouse Models
+  institution: CJ CheilJedang & BLOSSOM PARK
+  year: Jun 2020 - Feb 2021
+  description:
+    - Research Assistant (PI: Taehoon Chun).
+    - Conducted animal experiments and analyzed cytokine profiles via flow cytometry and qPCR.
+    - Applied statistical analysis in R to evaluate immune enhancement.
+
+- title: Determination of Dosing Period and Amount of Probiotics for Alleviating Allergic Rhinitis
+  institution: CJ CheilJedang
+  year: Jun 2018 - Nov 2018
+  description:
+    - Research Assistant (PI: Taehoon Chun).
+    - Evaluated probiotic-induced modulation of Th1/Th2 cytokine ratios using ELISA and gene expression profiling.
+    - Applied statistical modeling to identify optimal dosing.
+
+- title: Development of Genetic Markers Associated to the Resistance to PMWS
+  institution: Rural Development Administration
+  year: Mar 2018 - Dec 2020
+  description:
+    - Research Assistant (PI: Taehoon Chun).
+    - Performed comparative genomics and sequence-based variant analysis.
+    - Utilized bioinformatics tools (Biopython, BLAST) to detect resistance-associated mutations.
+
+- title: Selection and In Vivo Efficacy Verification of Probiotics with Enhanced IgA Secretion
+  institution: CJ CheilJedang
+  year: Jul 2016 - Apr 2017
+  description:
+    - Research Assistant (PI: Taehoon Chun).
+    - Measured mucosal IgA levels in mouse models and identified strains with strong immunostimulatory potential.
+    - Applied bioinformatics analysis of gene expression and immune pathway mapping.
