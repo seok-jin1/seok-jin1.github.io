@@ -16,7 +16,10 @@ nav_order: 2
 <div class="publications">
 
 <h2>Featured Publications</h2>
-{% bibliography --query @*[pub_category=featured] %}
+<hr>
+{% bibliography --query @*[pub_category=featured] --group_by none %}
+
+
 
 <h2>Under Review</h2>
 {% bibliography --query @*[pub_category=under_review] %}
