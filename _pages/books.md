@@ -18,7 +18,13 @@ nav_order: 3
           <li class="book-card z-depth-1">
             {% if book.cover %}
               <div class="book-cover">
-                <img src="{{ book.cover | relative_url }}" alt="Cover of {{ book.title }}">
+                {% if book.url %}
+                  <a href="{{ book.url }}" target="_blank" rel="noopener">
+                    <img src="{{ book.cover | relative_url }}" alt="Cover of {{ book.title }}">
+                  </a>
+                {% else %}
+                  <img src="{{ book.cover | relative_url }}" alt="Cover of {{ book.title }}">
+                {% endif %}
               </div>
             {% endif %}
             <div class="book-details">
@@ -98,7 +104,13 @@ nav_order: 3
 <li class="book-card z-depth-1">
 {% if book.cover %}
 <div class="book-cover">
+{% if book.url %}
+<a href="{{ book.url }}" target="_blank" rel="noopener">
 <img src="{{ book.cover | relative_url }}" alt="{{ book.title }} 표지">
+</a>
+{% else %}
+<img src="{{ book.cover | relative_url }}" alt="{{ book.title }} 표지">
+{% endif %}
 </div>
 {% endif %}
 <div class="book-details">
