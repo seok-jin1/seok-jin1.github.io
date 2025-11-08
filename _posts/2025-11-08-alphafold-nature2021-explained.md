@@ -30,6 +30,14 @@ The authors outline seven novel contributions that distinguish the AlphaFold2 mo
 
 ---
 
+## How Is AlphaFold2 Different?
+
+**_Feature representation level._** Classic AlphaFold ingests an L x L x c tensor (sequence length L, feature channels c) by tiling sequence-length features—such as MSAs—across both axes so they match the pairwise feature grid, then feeding that stack into the network. The pair features (covariation, contact priors, etc.) are naturally L x L x c, but the sequence-length features are duplicated to fit that same shape. AlphaFold2 instead embeds the MSA track and the pair track separately, then lets the **Evoformer** exchange information between them so that each representation stays specialized yet jointly conditioned. As far as the literature shows, no prior deep-learning protein-folding system independently embedded the MSA and pair representations while allowing structured cross-talk the way Evoformer does.
+
+**_End-to-end modeling._** AlphaFold, trRosetta (Yang et al., PNAS 2019), and related models first train a network to predict residue-residue distance distributions (distograms) and then solve a downstream optimization problem to find a structure that fits those constraints—essentially a two-step pipeline of distogram prediction followed by energy minimization. AlphaFold2 represents each residue as a rigid backbone frame (an R^{3x3}, R^3 tuple) and assumes residue internals depend only on torsion angles once that frame is set. By directly predicting the frame transforms and the torsion angles, AlphaFold2 computes every atom’s 3-D position, compares it with experimental structures, and backpropagates the loss in one sweep. That makes the whole system an **_end-to-end model_** rather than a cascade.
+
+---
+
 ## From Guessing to Knowing
 
 Proteins aren’t random; their shape is written in their sequence. But the rules connecting one to the other are dizzyingly complex — a single protein can adopt billions of possible folds. Earlier computer models crawled through this search space painfully slowly.
