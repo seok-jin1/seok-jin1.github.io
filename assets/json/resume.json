@@ -23,13 +23,13 @@
   },
   "certificates": [
     {
-      "name": "Big Data Analysis Engineer (빅데이터 분석 기사)",
+      "name": "Big Data Analysis Engineer<br>(빅데이터 분석 기사)",
       "date": "2025-07-11",
       "issuer": "Korea Data Agency",
       "icon": "fa-solid fa-chart-line"
     },
     {
-      "name": "Advanced Data Analytics Semi-Professional (ADsP) (데이터 분석 준전문가)",
+      "name": "Advanced Data Analytics Semi-Professional (ADsP)<br>(데이터 분석 준전문가)",
       "date": "2024-03-22",
       "issuer": "Korea Data Agency",
       "icon": "fa-solid fa-database"
