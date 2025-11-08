@@ -15,7 +15,7 @@ profile:
     <p><a href="tel:+821082581318">+82-10-8258-1318</a></p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
-selected_papers_title: recent publications
+selected_papers_title: Featured publications
 social: true # includes social icons at the bottom of the page
 
 announcements:
