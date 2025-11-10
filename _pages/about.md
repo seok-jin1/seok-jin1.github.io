@@ -47,6 +47,6 @@ In the short term, his research aims to advance precision medicine through the d
 - Translational immunotherapy applications spanning computational biology, quantum neural networks, and wet-lab validation.
 
 ## Education
-
+- Postdoctoral Fellow in Immune Modulation Laboratory, Korea University (Mar 2025 - Present)
 - Ph.D. and M.S. in Biotechnology, Korea University (Mar 2018 - Feb 2025)
 - B.S. in Biotechnology, Korea University (Mar 2014 - Feb 2018) *(QS ranking : 61<sup>st</sup>)*
