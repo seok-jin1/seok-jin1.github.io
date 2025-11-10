@@ -4,7 +4,7 @@ title: Projects
 permalink: /projects/
 description: Research projects and funded work.
 nav: true
-nav_order: 4
+nav_order: 5
 ---
 
 {% assign projects = site.data.research_projects %}

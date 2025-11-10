@@ -4,7 +4,7 @@ permalink: /books/
 title: Books
 description: curated book publications organized by international and domestic releases.
 nav: true
-nav_order: 3
+nav_order: 4
 ---
 
 {% assign books = site.data.books %}
