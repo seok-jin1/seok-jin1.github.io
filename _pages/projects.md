@@ -7,6 +7,8 @@ nav: true
 nav_order: 5
 ---
 
+I was fortunate to help draft and revise the research proposals for many of the projects listed here, then follow through on their execution in the lab and in silico. I am still learning with every submission, but I stand ready to support new assignments by preparing research proposals that faithfully translate a PI’s priorities into clear aims, realistic milestones, and data-driven plans.
+
 ## 13. Q2431261 | 02/2025 – 12/2025
 <img src="/assets/img/logos/mfds.png" alt="MFDS" style="height: 40px; display: inline-block; vertical-align: middle; margin-right: 10px;">
 
