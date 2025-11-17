@@ -18,7 +18,7 @@ $$
 x = (x_1, x_2, \dots, x_L), \quad x_i \in \{1,\dots,20\},
 $$
 
-where $x$ is the amino-acid sequence, each $x_i$ indexes one residue in the 20-letter alphabet, and $L$ is the total sequence length.
+where $$x$$ is the amino-acid sequence, each $$x_i$$ indexes one residue in the 20-letter alphabet, and $$L$$ is the total sequence length.
 
 and asked to predict the 3D coordinates of all atoms
 
