@@ -3,6 +3,7 @@ layout: post
 title: "AlphaFold: The AI That Learned How Proteins Fold"
 date: 2025-11-08
 permalink: /blog/alphafold-nature2021-explained/
+published: false
 tags:
   - AI
   - biology
@@ -10,9 +11,13 @@ tags:
   - science
 ---
 
-Imagine you’re given a long string of beads — each bead representing one of the 20 amino acids that make up life’s proteins. Now, without touching it, you must predict exactly how that string twists and folds into a 3-D shape that decides whether it becomes silk, muscle, or an enzyme. For decades, this challenge — the **protein-folding problem** — baffled scientists.
+Imagine you’re given a long string of beads, each bead representing one of the twenty amino acids that make up life’s proteins. Now, without touching it, you must predict exactly how that string twists and folds into a three dimensional shape that decides whether it becomes silk, muscle, or an enzyme. For decades this challenge, known as the **protein folding problem**, baffled scientists.
 
 In 2021, Google DeepMind’s **AlphaFold** shocked the world by *solving* much of it. Published in *Nature*, the model predicted protein shapes with almost experimental accuracy, earning headlines like “the greatest breakthrough in biology since the human genome.”
+
+This review series now digs into the paper section by section, highlighting what AlphaFold changed in representation learning, training, and evaluation. Each follow-up post will focus on one subsystem so researchers can adopt or extend the ideas without rereading the entire Nature article.
+
+Explore the full [Nature article](https://www.nature.com/articles/s41586-021-03819-2) and its [supplementary material (PDF)](https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-021-03819-2/MediaObjects/41586_2021_3819_MOESM1_ESM.pdf) for deeper technical details.
 
 ---
 
@@ -32,19 +37,19 @@ The authors outline seven novel contributions that distinguish the AlphaFold2 mo
 
 ## How Is AlphaFold2 Different?
 
-**_Feature representation level._** Classic AlphaFold ingests an L x L x c tensor (sequence length L, feature channels c) by tiling sequence-length features—such as MSAs—across both axes so they match the pairwise feature grid, then feeding that stack into the network. The pair features (covariation, contact priors, etc.) are naturally L x L x c, but the sequence-length features are duplicated to fit that same shape. AlphaFold2 instead embeds the MSA track and the pair track separately, then lets the **Evoformer** exchange information between them so that each representation stays specialized yet jointly conditioned. As far as the literature shows, no prior deep-learning protein-folding system independently embedded the MSA and pair representations while allowing structured cross-talk the way Evoformer does.
+**_Feature representation level._** Classic AlphaFold ingests an `L × L × c` tensor (sequence length L, feature channels c) by tiling sequence-length features, such as MSAs, across both axes so they match the pairwise feature grid, then feeding that stack into the network. The pair features (covariation, contact priors, etc.) are naturally `L × L × c`, but the sequence-length features are duplicated to fit that same shape. AlphaFold2 instead embeds the MSA track and the pair track separately, then lets the **Evoformer** exchange information between them so that each representation stays specialized yet jointly conditioned. As far as the literature shows, no prior deep-learning protein-folding system independently embedded the MSA and pair representations while allowing structured cross-talk the way Evoformer does.
 
-**_End-to-end modeling._** AlphaFold, trRosetta (Yang et al., PNAS 2019), and related models first train a network to predict residue-residue distance distributions (distograms) and then solve a downstream optimization problem to find a structure that fits those constraints—essentially a two-step pipeline of distogram prediction followed by energy minimization. AlphaFold2 represents each residue as a rigid backbone frame (an R^{3x3}, R^3 tuple) and assumes residue internals depend only on torsion angles once that frame is set. By directly predicting the frame transforms and the torsion angles, AlphaFold2 computes every atom’s 3-D position, compares it with experimental structures, and backpropagates the loss in one sweep. That makes the whole system an **_end-to-end model_** rather than a cascade.
+**_End-to-end modeling._** AlphaFold, trRosetta (Yang et al., PNAS 2019), and related models first train a network to predict residue-residue distance distributions (distograms) and then solve a downstream optimization problem to find a structure that fits those constraints, essentially a two-step pipeline of distogram prediction followed by energy minimization. AlphaFold2 represents each residue as a rigid backbone frame (an R^{3x3}, R^3 tuple) and assumes residue internals depend only on torsion angles once that frame is set. By directly predicting the frame transforms and the torsion angles, AlphaFold2 computes every atom’s 3-D position, compares it with experimental structures, and backpropagates the loss in one sweep. That makes the whole system an **_end-to-end model_** rather than a cascade.
 
 ---
 
 ## From Guessing to Knowing
 
-Proteins aren’t random; their shape is written in their sequence. But the rules connecting one to the other are dizzyingly complex — a single protein can adopt billions of possible folds. Earlier computer models crawled through this search space painfully slowly.
+Proteins aren’t random; their shape is written in their sequence. But the rules connecting one to the other are dizzyingly complex. A single protein can adopt billions of possible folds. Earlier computer models crawled through this search space painfully slowly.
 
 AlphaFold approached it differently: it *learned* the language of proteins by reading hundreds of thousands of known structures. Then, given a new amino-acid sequence, it reasoned how parts of that chain likely interact, twist, and lock together.
 
-🧩 **Analogy:** Think of it like predicting how a piece of origami will look from its crease pattern — AlphaFold learned the physics of folding from examples, not equations.
+🧩 **Analogy:** Think of it like predicting how a piece of origami will look from its crease pattern. AlphaFold learned the physics of folding from examples, not equations.
 
 ---
 
@@ -52,36 +57,36 @@ AlphaFold approached it differently: it *learned* the language of proteins by re
 
 AlphaFold has two main “brains,” shown below in the classic diagram of colored blocks flowing from left to right:
 
-1. **Evoformer – The Relationship Builder**
-   - Reads a *multiple sequence alignment* (MSA) — thousands of related sequences that reveal which amino acids evolve together.
+1. **Evoformer: The Relationship Builder**
+   - Reads a *multiple sequence alignment* (MSA), thousands of related sequences that reveal which amino acids evolve together.
    - Uses a Transformer-style neural network (the same idea powering ChatGPT) to learn which parts of a protein likely touch or move together.
-2. **Structure Module – The Sculptor**
+2. **Structure Module: The Sculptor**
    - Takes those relationships and builds a 3-D model atom by atom.
-   - Uses **Invariant Point Attention**, which “looks” at the structure in 3-D space while staying unaffected by rotations — as if holding the molecule and spinning it in your hand.
+   - Uses **Invariant Point Attention**, which “looks” at the structure in 3-D space while staying unaffected by rotations, as if holding the molecule and spinning it in your hand.
 
-The two modules talk back and forth several times, polishing the prediction each round — much like an artist refining a sculpture layer by layer.
+The two modules talk back and forth several times, polishing the prediction each round, much like an artist refining a sculpture layer by layer.
 
 ---
 
 ## How Accurate Is It?
 
-In the international **CASP14** competition, AlphaFold stunned everyone: for most test proteins, the average error was **less than 1 Ångström** — roughly the width of a single atom. That’s the level where even crystallography experiments start to disagree with each other.
+In the international **CASP14** competition, AlphaFold stunned everyone: for most test proteins, the average error was **less than 1 Ångström**, roughly the width of a single atom. That’s the level where even crystallography experiments start to disagree with each other.
 
 To help users judge trust in each prediction, AlphaFold reports:
 
 | Score | What It Means | Typical Use |
 |:------|:--------------|:------------|
 | **pLDDT > 90** | Nearly atomic accuracy | safe for detailed modeling |
-| **70–90** | Domain-level reliable | good for backbone tracing |
+| **70 to 90** | Domain-level reliable | good for backbone tracing |
 | **< 70** | Uncertain or flexible | may indicate loops or motion |
 
-🖼️ *Visual idea:* imagine a rainbow-colored protein model — bright blue regions are rock-solid, while orange and red show where the AI isn’t sure.
+🖼️ *Visual idea:* imagine a rainbow-colored protein model, where bright blue regions are rock-solid while orange and red show where the AI isn’t sure.
 
 ---
 
 ## Why It Matters
 
-AlphaFold changed biology overnight. Within months, millions of protein structures from bacteria to humans were predicted and released in the **AlphaFold Protein Structure Database** — a free, searchable atlas for researchers everywhere.
+AlphaFold changed biology overnight. Within months, millions of protein structures from bacteria to humans were predicted and released in the **AlphaFold Protein Structure Database**, a free, searchable atlas for researchers everywhere.
 
 Scientists now use these models to:
 
@@ -96,7 +101,7 @@ Scientists now use these models to:
 Like any expert, AlphaFold still has blind spots:
 
 - It struggles when few related sequences exist (a “shallow MSA”).
-- It models single proteins best — complexes of multiple chains remain trickier.
+- It models single proteins best, while complexes of multiple chains remain trickier.
 - It doesn’t explicitly handle small molecules, metals, or dynamic motions.
 
 DeepMind and others have since expanded it: **AlphaFold-Multimer** for complexes, **ESMFold** for faster predictions, and new hybrids that blend AI with physics.
@@ -111,4 +116,4 @@ DeepMind and others have since expanded it: **AlphaFold-Multimer** for complexes
 
 ---
 
-*Reference: Jumper et al.,* **Nature 596**, 583–589 (2021). DOI: [10.1038/s41586-021-03819-2](https://doi.org/10.1038/s41586-021-03819-2)
+*Reference: Jumper et al.,* **Nature 596**, 583 to 589 (2021). DOI: [10.1038/s41586-021-03819-2](https://doi.org/10.1038/s41586-021-03819-2)
