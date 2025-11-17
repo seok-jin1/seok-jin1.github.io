@@ -66,7 +66,7 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/alphafold-nature2021-explained/";
+            window.location.href = "/blog/alphafold-technical-notes/";
           
         },
       },{id: "books-the-godfather",
