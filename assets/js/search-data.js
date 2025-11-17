@@ -58,7 +58,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-alphafold-the-ai-that-learned-how-proteins-fold",
+        },{id: "post-alphagenome-the-ai-that-reads-dna-39-s-regulatory-code",
+        
+          title: "AlphaGenome: The AI That Reads DNA&#39;s Regulatory Code",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/alphagenome-technical-notes/";
+          
+        },
+      },{id: "post-alphafold-the-ai-that-learned-how-proteins-fold",
         
           title: "AlphaFold: The AI That Learned How Proteins Fold",
         
