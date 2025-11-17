@@ -4,7 +4,7 @@
   {% assign show_preview = false %}
   {% assign has_media_column = false %}
   {% if site.enable_publication_thumbnails %}
-    {% if entry.preview and entry.pub_category != 'under_review' %}
+    {% if entry.preview %}
       {% assign show_preview = true %}
       {% assign has_media_column = true %}
     {% elsif entry.pub_category == 'under_review' %}
