@@ -3,6 +3,7 @@ layout: post
 title: "AlphaGenome: The AI That Reads DNA's Regulatory Code"
 date: 2025-11-17
 permalink: /blog/alphagenome-technical-notes/
+published: true
 tags:
   - AI
   - genomics
