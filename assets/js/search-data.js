@@ -58,7 +58,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-alphagenome-the-ai-that-reads-dna-39-s-regulatory-code",
+        },{id: "post-alphamissense-ai-powered-prediction-of-genetic-variant-pathogenicity",
+        
+          title: "AlphaMissense: AI-Powered Prediction of Genetic Variant Pathogenicity",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/alphamissense-science2023-explained/";
+          
+        },
+      },{id: "post-alphagenome-the-ai-that-reads-dna-39-s-regulatory-code",
         
           title: "AlphaGenome: The AI That Reads DNA&#39;s Regulatory Code",
         
@@ -77,7 +88,18 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/alphafold-technical-notes/";
+            window.location.href = "/blog/alphafold-original/";
+          
+        },
+      },{id: "post-alphafold-technical-deep-dive-with-intuitive-explanations",
+        
+          title: "AlphaFold: Technical Deep Dive with Intuitive Explanations",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/alphafold-more-friendly/";
           
         },
       },{id: "books-the-godfather",
