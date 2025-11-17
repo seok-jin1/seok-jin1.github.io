@@ -2,7 +2,7 @@
 layout: post
 title: "AlphaFold: The AI That Learned How Proteins Fold"
 date: 2025-11-08
-permalink: /blog/alphafold-technical-notes/
+permalink: /blog/alphafold-original/
 tags:
   - AI
   - biology
@@ -10,9 +10,9 @@ tags:
   - science
 ---
 
-Imagine you’re given a long string of beads, each bead representing one of the twenty amino acids that make up life’s proteins. Now, without touching it, you must predict exactly how that string twists and folds into a three dimensional shape that decides whether it becomes silk, muscle, or an enzyme. For decades this challenge, known as the **protein folding problem**, baffled scientists.
+Imagine you're given a long string of beads, each bead representing one of the twenty amino acids that make up life's proteins. Now, without touching it, you must predict exactly how that string twists and folds into a three dimensional shape that decides whether it becomes silk, muscle, or an enzyme. For decades this challenge, known as the **protein folding problem**, baffled scientists.
 
-Formally, we are given an amino-acid sequence 
+Formally, we are given an amino-acid sequence
 
 $$
 x = (x_1, x_2, \dots, x_L), \quad x_i \in \{1,\dots,20\},
@@ -29,7 +29,7 @@ $$
 
 where $\hat{\mathbf{X}}$ collects predicted coordinates, $\hat{\mathbf{x}}_{i,a}$ is the 3D position of atom $a$ in residue $i$, and $\mathbb{R}^3$ denotes ordinary 3D space.
 
-In 2021, Google DeepMind’s **AlphaFold** shocked the world by *solving* much of it. Published in *Nature*, the model predicted protein shapes with almost experimental accuracy, earning headlines like “the greatest breakthrough in biology since the human genome.”
+In 2021, Google DeepMind's **AlphaFold** shocked the world by *solving* much of it. Published in *Nature*, the model predicted protein shapes with almost experimental accuracy, earning headlines like "the greatest breakthrough in biology since the human genome."
 
 Explore the full [Nature article](https://www.nature.com/articles/s41586-021-03819-2) and its [supplementary material (PDF)](https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-021-03819-2/MediaObjects/41586_2021_3819_MOESM1_ESM.pdf) for deeper technical details.
 
@@ -97,9 +97,9 @@ The authors outline seven novel contributions that distinguish the AlphaFold2 mo
    - $$\mathcal{M}$$ is the masked set,
    - $$p_{\theta}$$ is the model's predicted distribution.
 
-6. **Self-distillation on unlabeled sequences.** A noisy-student self-training loop (inspired by the CVPR 2020 paper *Self-training with Noisy Student improves ImageNet classification*) lets AlphaFold learn from vast unlabeled protein sequences. A “teacher” AlphaFold model creates pseudo-labels (structures and distances), and a “student” model learns to match them under strong augmentations.
+6. **Self-distillation on unlabeled sequences.** A noisy-student self-training loop (inspired by the CVPR 2020 paper *Self-training with Noisy Student improves ImageNet classification*) lets AlphaFold learn from vast unlabeled protein sequences. A "teacher" AlphaFold model creates pseudo-labels (structures and distances), and a "student" model learns to match them under strong augmentations.
 
-7. **Self-estimated accuracy.** AlphaFold outputs per-residue pLDDT scores, giving scientists a built-in estimate of how trustworthy each part of the predicted structure is. Concretely, the network predicts a 50-bin distribution over “local distance difference test” (LDDT) scores; the expected value becomes pLDDT.
+7. **Self-estimated accuracy.** AlphaFold outputs per-residue pLDDT scores, giving scientists a built-in estimate of how trustworthy each part of the predicted structure is. Concretely, the network predicts a 50-bin distribution over "local distance difference test" (LDDT) scores; the expected value becomes pLDDT.
 
 ---
 
@@ -111,9 +111,9 @@ Classic AlphaFold and similar models ingest an $L \times L \times c$ tensor (seq
 
 AlphaFold2 instead embeds the **MSA track** and the **pair track** separately, then lets the **Evoformer** exchange information between them.
 
-- MSA representation:  
+- MSA representation:
   $M \in \mathbb{R}^{N_{\text{msa}} \times L \times d_m}$
-- Pair representation:  
+- Pair representation:
   $Z \in \mathbb{R}^{L \times L \times d_z}$
 
 At a high level, a single Evoformer block performs:
@@ -143,7 +143,7 @@ As far as the literature shows, no prior deep-learning protein-folding system in
 
 AlphaFold, trRosetta (Yang et al., PNAS 2019), and related models first train a network to predict residue–residue distance distributions (distograms) and then solve a downstream optimization problem to find a structure that fits those constraints, essentially a two-step pipeline of distogram prediction followed by energy minimization.
 
-AlphaFold2 represents each residue as a rigid backbone frame $(R_i, \mathbf{t}_i)$ and assumes residue internals depend only on torsion angles once that frame is set. By directly predicting the frame transforms and the torsion angles, AlphaFold2 computes every atom’s 3-D position, compares it with experimental structures, and **backpropagates the loss in one sweep**. That makes the whole system an **end-to-end model** rather than a cascade.
+AlphaFold2 represents each residue as a rigid backbone frame $(R_i, \mathbf{t}_i)$ and assumes residue internals depend only on torsion angles once that frame is set. By directly predicting the frame transforms and the torsion angles, AlphaFold2 computes every atom's 3-D position, compares it with experimental structures, and **backpropagates the loss in one sweep**. That makes the whole system an **end-to-end model** rather than a cascade.
 
 ---
 
@@ -281,7 +281,7 @@ A single Evoformer block repeatedly applies:
 
 ### Structure Module and FAPE Loss
 
-After several Evoformer blocks (and recycling iterations), AlphaFold passes the “single” representation (roughly, the first MSA row after processing) and the pair representation into the **Structure Module**. This module uses **Invariant Point Attention** (IPA) to update residue frames $F_i = (R_i, \mathbf{t}_i)$.
+After several Evoformer blocks (and recycling iterations), AlphaFold passes the "single" representation (roughly, the first MSA row after processing) and the pair representation into the **Structure Module**. This module uses **Invariant Point Attention** (IPA) to update residue frames $F_i = (R_i, \mathbf{t}_i)$.
 
 <img src="/assets/img/alphafold/structure-module-ipa.png" alt="Structure module IPA" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
 *Figure 8. The Structure Module combines pair biases, single-sequence features, and learned query/key/value points to perform IPA before emitting updated frames and coordinates.*
@@ -335,7 +335,7 @@ The full training objective is a weighted sum of:
 
 ## The Brain Behind AlphaFold
 
-AlphaFold has two main “brains,” shown in the classic diagrams of colored blocks flowing from left to right:
+AlphaFold has two main "brains," shown in the classic diagrams of colored blocks flowing from left to right:
 
 1. **Evoformer: The Relationship Builder**
    - Reads a *multiple sequence alignment* (MSA), thousands of related sequences that reveal which amino acids evolve together.
@@ -344,7 +344,7 @@ AlphaFold has two main “brains,” shown in the classic diagrams of colored bl
 
 2. **Structure Module: The Sculptor**
    - Takes those relationships and builds a 3-D model atom by atom.
-   - Uses **Invariant Point Attention**, which “looks” at the structure in 3-D space while staying unaffected by rotations, as if holding the molecule and spinning it in your hand.
+   - Uses **Invariant Point Attention**, which "looks" at the structure in 3-D space while staying unaffected by rotations, as if holding the molecule and spinning it in your hand.
    - Predicts residue frames $F_i = (R_i, \mathbf{t}_i)$ and torsion angles, then deterministically computes full-atom coordinates.
 
 The two modules are run multiple times with **recycling**, so each pass refines the coordinates in light of the previous prediction—like an artist going over the same sculpture with finer tools.
@@ -353,7 +353,7 @@ The two modules are run multiple times with **recycling**, so each pass refines 
 
 ## How Accurate Is It?
 
-In the international **CASP14** competition, AlphaFold stunned everyone: for most test proteins, the average error was **less than 1 Ångström**, roughly the width of a single atom. That’s the level where even crystallography experiments start to disagree with each other.
+In the international **CASP14** competition, AlphaFold stunned everyone: for most test proteins, the average error was **less than 1 Ångström**, roughly the width of a single atom. That's the level where even crystallography experiments start to disagree with each other.
 
 To help users judge trust in each prediction, AlphaFold reports:
 
@@ -363,7 +363,7 @@ To help users judge trust in each prediction, AlphaFold reports:
 | **70 to 90** | Domain-level reliable | good for backbone tracing |
 | **< 70** | Uncertain or flexible | may indicate loops or motion |
 
-🖼️ *Visual idea:* imagine a rainbow-colored protein model, where bright blue regions are rock-solid while orange and red show where the AI isn’t sure.
+🖼️ *Visual idea:* imagine a rainbow-colored protein model, where bright blue regions are rock-solid while orange and red show where the AI isn't sure.
 
 ---
 
@@ -379,13 +379,13 @@ Scientists now use these models to:
 
 ---
 
-## Limits and What’s Next
+## Limits and What's Next
 
 Like any expert, AlphaFold still has blind spots:
 
-- It struggles when few related sequences exist (a “shallow MSA”).
+- It struggles when few related sequences exist (a "shallow MSA").
 - It models single proteins best, while complexes of multiple chains remain trickier.
-- It doesn’t explicitly handle small molecules, metals, or dynamic motions.
+- It doesn't explicitly handle small molecules, metals, or dynamic motions.
 
 DeepMind and others have since expanded it: **AlphaFold-Multimer** for complexes, **ESMFold** for faster predictions, and new hybrids that blend AI with physics.
 
@@ -393,7 +393,7 @@ DeepMind and others have since expanded it: **AlphaFold-Multimer** for complexes
 
 ### Key Takeaways
 
-- AlphaFold taught AI to understand the rules of life’s most fundamental building blocks.
+- AlphaFold taught AI to understand the rules of life's most fundamental building blocks.
 - It bridged the gap between biological data and 3-D reality.
 - Most importantly, it showed how learning from patterns, not brute force, can decode nature itself.
 

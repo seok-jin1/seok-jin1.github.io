@@ -12,7 +12,6 @@ profile:
     <p>Immune Modulation Laboratory<br />Korea University</p>
     <p>Seoul, Republic of Korea</p>
     <p><a href="mailto:laughingkang@korea.ac.kr">laughingkang@korea.ac.kr</a></p>
-    <p><a href="tel:+821082581318">+82-10-8258-1318</a></p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 selected_papers_title: Featured publications
