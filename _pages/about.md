@@ -12,6 +12,7 @@ profile:
     <p>Immune Modulation Laboratory<br />Korea University</p>
     <p>Seoul, Republic of Korea</p>
     <p><a href="mailto:laughingkang@korea.ac.kr">laughingkang@korea.ac.kr</a></p>
+    <p><a href="/assets/pdf/RenderCV_ver4.pdf" target="_blank" rel="noopener noreferrer"><i class="fa-regular fa-file-pdf"></i> CV</a></p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 selected_papers_title: Featured publications
