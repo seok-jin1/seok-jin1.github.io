@@ -113,17 +113,6 @@ ninja.data = [{
             window.location.href = "/blog/alphagenome-technical-notes/";
           
         },
-      },{id: "post-alphafold-the-ai-that-learned-how-proteins-fold",
-        
-          title: "AlphaFold: The AI That Learned How Proteins Fold",
-        
-        description: "",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/alphafold-original/";
-          
-        },
       },{id: "post-alphafold-technical-deep-dive-with-intuitive-explanations",
         
           title: "AlphaFold: Technical Deep Dive with Intuitive Explanations",
