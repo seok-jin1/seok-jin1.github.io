@@ -4,4 +4,6 @@ github_users:
 repo_description_lines_max: 2
 
 github_repos:
-  - seok-jin1/seok-jin1.github.io
+  - seok-jin1/RFantibody-gui
+  - seok-jin1/alphagenome-gui
+  - seok-jin1/pyrosetta-gui
