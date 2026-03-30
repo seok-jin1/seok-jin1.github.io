@@ -56,6 +56,28 @@ pagination:
   </div>
   {% endif %}
 
+<!-- Active Research Projects -->
+<div class="container mt-3 mb-3">
+  <h4><i class="fa-solid fa-flask fa-sm"></i> Active Research Projects</h4>
+  <div class="row row-cols-1 row-cols-md-2">
+    <div class="col mb-3">
+      <a href="https://github.com/seok-jin1/tcr-pmhc-prediction" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+        <div class="card hoverable">
+          <div class="card-body">
+            <div class="float-right">
+              <i class="fa-brands fa-github fa-lg"></i>
+            </div>
+            <h5 class="card-title">TCR-pMHC Binding Prediction Model</h5>
+            <p class="card-text text-muted">Deep learning model for predicting T-cell receptor and peptide-MHC binding specificity.</p>
+            <p class="post-meta"><i class="fa-solid fa-code-branch fa-sm"></i> In progress</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<hr>
+
 {% assign featured_posts = site.posts | where: "featured", "true" %}
 {% if featured_posts.size > 0 %}
 <br>
