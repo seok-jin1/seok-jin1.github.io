@@ -3,7 +3,7 @@ layout: post
 title: "AlphaFold: The AI That Learned How Proteins Fold"
 date: 2025-11-08
 permalink: /blog/alphafold-original/
-published: true
+published: false
 tags:
   - AI
   - biology
