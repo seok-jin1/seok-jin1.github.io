@@ -245,6 +245,11 @@ plt.show()
 
 The dashed line at `5e-8` is the conventional genome-wide significance threshold for common-variant GWAS. It is a useful convention, not a law of nature. In sequencing studies, rare-variant analyses, or ancestry-specific studies, the appropriate threshold may differ.
 
+{% include figure.liquid loading="eager" path="assets/img/blog/gwas-summary/figure3-manhattan-plot.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+<div class="caption">
+    Figure 3. Manhattan plot of GWAS association results. Each dot represents a tested variant; the y-axis shows the strength of association. The red dashed line marks genome-wide significance (5×10⁻⁸). Peaks indicate genomic loci harboring disease-associated variants.
+</div>
+
 ---
 
 ## 6. QQ Plot
@@ -270,6 +275,11 @@ plt.show()
 ```
 
 If you have access to lambda GC or LDSC intercept estimates from the original study, interpret the QQ plot together with those numbers. The plot alone cannot distinguish polygenicity from confounding.
+
+{% include figure.liquid loading="eager" path="assets/img/blog/gwas-summary/figure4-qq-plot.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+<div class="caption">
+    Figure 4. QQ plot comparing observed versus expected p-value distributions. The diagonal line represents the null expectation. Deviation in the upper tail indicates genuine association signals. The genomic inflation factor (λ_GC) quantifies systematic inflation.
+</div>
 
 ---
 
@@ -308,6 +318,11 @@ plink2 \
 ```
 
 According to the [PLINK 2 report postprocessing documentation](https://www.cog-genomics.org/plink/2.0/postproc), `--clump` groups association results into LD-based clumps so that nearby correlated hits are not over-counted as independent biology.
+
+{% include figure.liquid loading="eager" path="assets/img/blog/gwas-summary/figure5-locus-zoom.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+<div class="caption">
+    Figure 5. Locus zoom plot of the top GWAS signal. Variants are colored by linkage disequilibrium (r²) with the lead SNP (purple diamond). This view reveals the extent of the association signal and helps distinguish independent signals from correlated hits.
+</div>
 
 ---
 
