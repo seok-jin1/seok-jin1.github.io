@@ -58,7 +58,106 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-multi-omics-integration-for-immunology-mofa-scvi-and-beyond",
+        },{id: "post-molecular-docking-diffdock-vs-autodock-vina-for-drug-discovery",
+        
+          title: "Molecular Docking: DiffDock vs AutoDock Vina for Drug Discovery",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/molecular-docking-tutorial/";
+          
+        },
+      },{id: "post-rna-velocity-with-scvelo-and-cellrank-predicting-cell-state-transitions",
+        
+          title: "RNA Velocity with scVelo and CellRank: Predicting Cell State Transitions",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/rna-velocity-scvelo/";
+          
+        },
+      },{id: "post-cellchat-and-cellphonedb-decoding-cell-cell-communication-in-the-immune-microenvironment",
+        
+          title: "CellChat and CellPhoneDB: Decoding Cell-Cell Communication in the Immune Microenvironment",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/cellchat-cell-communication/";
+          
+        },
+      },{id: "post-tcr-bcr-repertoire-analysis-screpertoire-and-dandelion-for-immune-profiling",
+        
+          title: "TCR/BCR Repertoire Analysis: scRepertoire and Dandelion for Immune Profiling",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/tcr-repertoire-analysis/";
+          
+        },
+      },{id: "post-scatac-seq-analysis-chromatin-accessibility-with-archr-and-signac",
+        
+          title: "scATAC-seq Analysis: Chromatin Accessibility with ArchR and Signac",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/scatac-seq-analysis/";
+          
+        },
+      },{id: "post-scenic-multimodal-gene-regulatory-networks-from-rna-atac",
+        
+          title: "SCENIC+: Multimodal Gene Regulatory Networks from RNA + ATAC",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/scenicplus-multimodal-grn/";
+          
+        },
+      },{id: "post-pyscenic-inferring-gene-regulatory-networks-from-single-cell-data",
+        
+          title: "pySCENIC: Inferring Gene Regulatory Networks from Single-Cell Data",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/pyscenic-grn-tutorial/";
+          
+        },
+      },{id: "post-molecular-dynamics-with-openmm-from-setup-to-analysis",
+        
+          title: "Molecular Dynamics with OpenMM: From Setup to Analysis",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/openmm-molecular-dynamics/";
+          
+        },
+      },{id: "post-pymol-python-publication-quality-protein-structure-visualization",
+        
+          title: "PyMOL + Python: Publication-Quality Protein Structure Visualization",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/pymol-python-visualization/";
+          
+        },
+      },{id: "post-multi-omics-integration-for-immunology-mofa-scvi-and-beyond",
         
           title: "Multi-Omics Integration for Immunology: MOFA+, scVI, and Beyond",
         
