@@ -58,7 +58,29 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-molecular-docking-diffdock-vs-autodock-vina-for-drug-discovery",
+        },{id: "post-onconpc-machine-learning-for-cancer-of-unknown-primary-in-precision-oncology",
+        
+          title: "OncoNPC: Machine Learning for Cancer of Unknown Primary in Precision Oncology",
+        
+        description: "A paper review of OncoNPC, a machine-learning model that uses targeted tumor sequencing to predict the primary site of cancers of unknown primary and guide treatment decisions.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/onconpc-cup-precision-oncology/";
+          
+        },
+      },{id: "post-gwas-summary-statistics-for-precision-medicine-from-manhattan-plot-to-candidate-genes",
+        
+          title: "GWAS Summary Statistics for Precision Medicine: From Manhattan Plot to Candidate Genes",
+        
+        description: "A practical guide to reading GWAS summary statistics, visualizing association signals, and turning loci into biologically meaningful hypotheses.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/gwas-summary-statistics-precision-medicine/";
+          
+        },
+      },{id: "post-molecular-docking-diffdock-vs-autodock-vina-for-drug-discovery",
         
           title: "Molecular Docking: DiffDock vs AutoDock Vina for Drug Discovery",
         
