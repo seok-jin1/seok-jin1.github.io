@@ -74,6 +74,20 @@ pagination:
         </div>
       </a>
     </div>
+    <div class="col mb-3">
+      <a href="{{ '/blog/tag/single-cell/' | relative_url }}" style="text-decoration: none;">
+        <div class="card hoverable">
+          <div class="card-body">
+            <div class="float-right">
+              <i class="fa-solid fa-chart-line fa-lg"></i>
+            </div>
+            <h5 class="card-title">Immune Cell State Dynamics</h5>
+            <p class="card-text text-muted">Modeling differentiation, exhaustion, and treatment-responsive state transitions from single-cell and multi-omics data.</p>
+            <p class="post-meta"><i class="fa-solid fa-code-branch fa-sm"></i> In progress</p>
+          </div>
+        </div>
+      </a>
+    </div>
   </div>
 </div>
 <hr>
