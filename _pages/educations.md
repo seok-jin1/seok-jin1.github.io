@@ -7,7 +7,11 @@ nav: true
 nav_order: 1
 ---
 
-Interdisciplinary science offers a unique framework to address the multifaceted challenges of modern biology that cannot be solved through a single discipline. By integrating experimental biology, computational modeling, and artificial intelligence, I aim to uncover the fundamental principles governing complex biological systems. My academic journey reflects this commitment to convergence: trained in biological experimentation and molecular techniques, I advanced into bioinformatics to interpret large-scale genomic data, and now focus on leveraging AI and machine learning to predict and design biological functions. This integration of wet-lab validation, computational analysis, and intelligent modeling allows me to approach unsolved problems in life sciences with both mechanistic insight and predictive precision.
+Interdisciplinary science offers a unique framework to address the multifaceted challenges of modern biology that no single discipline can solve alone. My academic journey reflects this conviction: trained in wet-lab immunology and molecular techniques, I advanced into bioinformatics to interpret large-scale omics data, and now integrate AI and machine learning to predict, design, and engineer biological functions.
+
+**In the short term**, I am building computational and experimental expertise in TCR and antibody engineering, cell-cell interaction and communication networks, and single-cell-driven cellular dynamics. These are the tools needed to understand how immune systems make decisions at the molecular and cellular level.
+
+**In the long term**, my goal is to unify these threads into a precision medicine framework --- one that connects protein-level design (TCR, antibody), cellular-level dynamics (cell state transitions, intercellular signaling), and patient-level outcomes (biomarker-guided therapy, immunotherapy optimization). I aim to establish my own independent research group as a faculty member, leading a lab at the intersection of computational immunology, AI-driven protein design, and translational medicine.
 
 ---
 
