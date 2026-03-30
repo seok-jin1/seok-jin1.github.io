@@ -48,6 +48,20 @@ npm install -g purgecss
 purgecss -c purgecss.config.js
 ```
 
+### Git Flow
+
+```bash
+# 변경된 파일 스테이징
+git add <파일경로>         # 특정 파일
+git add .                  # 전체 변경사항
+
+# 커밋
+git commit -m "커밋 메시지"
+
+# 푸시 (GitHub Actions가 자동으로 배포)
+git push origin main
+```
+
 ### Code Quality and Formatting
 
 ```bash
