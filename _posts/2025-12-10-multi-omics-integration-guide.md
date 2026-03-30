@@ -4,6 +4,7 @@ title: "Multi-Omics Integration for Immunology: MOFA+, scVI, and Beyond"
 date: 2025-12-10
 permalink: /blog/multi-omics-integration-guide/
 published: true
+categories: [tutorial]
 tags:
   - bioinformatics
   - multi-omics

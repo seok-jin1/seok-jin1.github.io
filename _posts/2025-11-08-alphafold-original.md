@@ -4,6 +4,7 @@ title: "AlphaFold: The AI That Learned How Proteins Fold"
 date: 2025-11-08
 permalink: /blog/alphafold-original/
 published: false
+categories: [paper-review]
 tags:
   - AI
   - biology

@@ -4,6 +4,7 @@ title: "AlphaFold 3: Predicting the Structure of All Life's Molecules"
 date: 2025-11-20
 permalink: /blog/alphafold3-nature2024-explained/
 published: true
+categories: [paper-review]
 tags:
   - AI
   - biology

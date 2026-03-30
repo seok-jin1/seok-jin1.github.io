@@ -4,6 +4,7 @@ title: "Single-Cell RNA-seq Analysis with Scanpy: A Practical Guide for Immunolo
 date: 2025-12-01
 permalink: /blog/scrna-seq-scanpy-tutorial/
 published: true
+categories: [tutorial]
 tags:
   - bioinformatics
   - single-cell

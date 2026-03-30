@@ -3,6 +3,7 @@ layout: post
 title: "AlphaFold: Technical Deep Dive with Intuitive Explanations"
 date: 2025-11-08
 permalink: /blog/alphafold-more-friendly/
+categories: [paper-review]
 tags:
   - AI
   - biology

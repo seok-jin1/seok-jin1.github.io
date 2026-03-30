@@ -4,6 +4,7 @@ title: "AlphaMissense: AI-Powered Prediction of Genetic Variant Pathogenicity"
 date: 2025-11-17
 permalink: /blog/alphamissense-science2023-explained/
 published: true
+categories: [paper-review]
 tags:
   - AI
   - biology

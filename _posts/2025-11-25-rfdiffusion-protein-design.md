@@ -4,6 +4,7 @@ title: "RFdiffusion: De Novo Protein Design with Denoising Diffusion"
 date: 2025-11-25
 permalink: /blog/rfdiffusion-protein-design/
 published: true
+categories: [paper-review]
 tags:
   - AI
   - biology

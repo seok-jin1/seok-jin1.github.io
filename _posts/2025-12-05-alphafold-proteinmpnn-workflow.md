@@ -4,6 +4,7 @@ title: "AlphaFold + ProteinMPNN: A Practical Protein Design Workflow"
 date: 2025-12-05
 permalink: /blog/alphafold-proteinmpnn-workflow/
 published: true
+categories: [tutorial]
 tags:
   - AI
   - protein-design

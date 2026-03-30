@@ -4,6 +4,7 @@ title: "ESM-3: Simulating Evolution with Protein Language Models"
 date: 2025-11-22
 permalink: /blog/esm3-protein-language-model/
 published: true
+categories: [paper-review]
 tags:
   - AI
   - biology
