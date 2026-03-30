@@ -12,7 +12,7 @@ tags:
   - medicine
 ---
 
-Imagine discovering a single-letter typo in your DNA—just one amino acid swapped for another in a protein-coding gene. Is this harmless variation, or does it trigger disease? For decades, scientists have struggled to answer this question for the millions of <span style="background-color: #fff3b0;">missense variants</span> found in human genomes. While we know the genetic code for all ~20,000 human proteins, we've experimentally verified the clinical impact of only ~2% of the 4 million+ missense variants observed in human populations.
+Imagine discovering a single-letter typo in your DNA—just one amino acid swapped for another in a protein-coding gene. Is this harmless variation, or does it trigger disease? For decades, scientists have struggled to answer this question for the millions of <span style="background-color: #fff3b0;">missense variants</span> found in human genomes. While we know the genetic code for all ~20,000 human proteins, we've clinically interpreted only ~2% of the 4 million+ missense variants observed in human populations.
 
 In 2023, Google DeepMind's **AlphaMissense** transformed this landscape. Published in *Science*, the model predicted the pathogenicity of all 71 million possible human missense variants, classifying 89% of them with high confidence—32% likely pathogenic and 57% likely benign. By fine-tuning AlphaFold's protein structure prediction architecture on population frequency data, AlphaMissense achieved state-of-the-art accuracy across multiple clinical and experimental benchmarks.
 
@@ -122,17 +122,17 @@ $$
 p(a_i \mid \mathbf{a}_{-i}, \text{MSA}, \text{structure}) = \text{softmax}\bigl(f_\theta(m_i, z_{i,:})\bigr)
 $$
 
-where $f_\theta$ is a learned projection from the Evoformer embeddings to a 20-dimensional logit vector (one per amino acid). The **pathogenicity score** for variant $a_i \to a'$ is:
+where $f_\theta$ is a learned projection from the Evoformer embeddings to a 20-dimensional logit vector (one per amino acid). In a simplified formulation, the **pathogenicity score** for variant $a_i \to a'$ can be understood as:
 
 $$
 s(a_i \to a') = 1 - p(a' \mid \mathbf{a}_{-i}, \text{MSA}, \text{structure})
 $$
 
-This score measures how "unexpected" the alternative amino acid $a'$ is given the evolutionary and structural context. A variant that disrupts conserved residues or introduces steric clashes receives a high pathogenicity score.
+In practice, the actual scoring involves log-likelihood differences between wild-type and variant residues, combined with population frequency-based fine-tuning. Conceptually, this score measures how "unexpected" the alternative amino acid $a'$ is given the evolutionary and structural context. A variant that disrupts conserved residues or introduces steric clashes receives a high pathogenicity score.
 
 ### Calibration
 
-Raw scores are calibrated to probabilities via **Platt scaling** (temperature scaling):
+Raw scores are calibrated to probabilities via **Platt scaling**:
 
 $$
 P(\text{pathogenic} \mid s) = \sigma\bigl(T \cdot s + b\bigr)
@@ -173,8 +173,8 @@ AlphaMissense's 71 million variant predictions are already accelerating research
 
 Patients with rare genetic diseases often carry **variants of uncertain significance (VUS)**—mutations flagged by sequencing but lacking clinical interpretation. AlphaMissense helps clinicians prioritize which VUS are likely pathogenic. For example:
 
-- **BRCA1/BRCA2 (breast/ovarian cancer):** AlphaMissense correctly flags 95% of known pathogenic BRCA1 missense variants with pathogenicity scores >0.8, while assigning <0.2 to benign polymorphisms. This helps distinguish cancer-driving mutations from harmless variation in these high-profile genes.
-- **SCN1A (epilepsy):** Pathogenic missense variants in the sodium channel gene SCN1A cause Dravet syndrome, a severe childhood epilepsy. AlphaMissense achieves 0.92 auROC on SCN1A variants in the DDD (Deciphering Developmental Disorders) dataset, outperforming PolyPhen-2 (0.87) and CADD (0.85).
+- **BRCA1/BRCA2 (breast/ovarian cancer):** AlphaMissense can distinguish cancer-driving mutations from harmless variation in these high-profile genes by leveraging structural and evolutionary context.
+- **SCN5A (cardiac arrhythmia):** As shown in Figure 4 below, AlphaMissense pathogenicity scores for the cardiac sodium channel SCN5A correlate with experimental gain-of-function measurements from deep mutational scanning, demonstrating that the model captures functional consequences of mutations.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -218,9 +218,7 @@ AlphaMissense scores correlate strongly with gene-level **missense constraint** 
 
 ### Experimental Validation: Deep Mutational Scanning
 
-AlphaMissense predictions match **multiplex assays of variant effect (MAVE)** experiments, where researchers systematically mutagenize a gene and measure the functional impact of each variant in high-throughput assays. Across 42 MAVE datasets (covering genes like *BRCA1*, *TP53*, *PTEN*), AlphaMissense achieves median Spearman correlation of 0.62 between predicted pathogenicity and experimental fitness scores—significantly higher than EVE (0.52) or ESM-1v (0.48).
-
-Example: For *TP53* (the most commonly mutated gene in cancer), AlphaMissense scores correlate 0.71 with yeast-based transcriptional activity assays, accurately predicting which mutations abolish p53's tumor suppressor function.
+AlphaMissense predictions match **multiplex assays of variant effect (MAVE)** experiments, where researchers systematically mutagenize a gene and measure the functional impact of each variant in high-throughput assays. Across MAVE datasets covering genes like *BRCA1*, *TP53*, and *PTEN*, AlphaMissense achieves higher Spearman correlation between predicted pathogenicity and experimental fitness scores than competing methods including EVE and ESM-1v.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -254,9 +252,8 @@ ClinVar is the gold-standard database of clinically interpreted variants. Using 
 |:-------|:--------------|:----|:-------|:-----------|:-----|
 | **auROC** | **0.940** | 0.901 | 0.888 | 0.907 | 0.895 |
 | **auPRC** | **0.883** | 0.792 | 0.761 | 0.811 | 0.783 |
-| **Precision @ 90% recall** | **0.772** | 0.651 | 0.618 | 0.672 | 0.645 |
 
-AlphaMissense outperforms all prior methods by 3-4% in auROC, with particularly large gains in precision at high recall (important for clinical screening where missing true pathogenic variants is costly).
+AlphaMissense outperforms all prior methods by 3-4% in auROC. As shown in Figure 10 (Panel E), it also achieves substantially higher precision at all recall levels—important for clinical screening where missing true pathogenic variants is costly.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -269,26 +266,18 @@ AlphaMissense outperforms all prior methods by 3-4% in auROC, with particularly 
 
 ### DDD (Developmental Disorders)
 
-The DDD study sequenced 4,293 children with severe developmental disorders and their parents, identifying 94 *de novo* missense variants in known disease genes. These variants are highly enriched for pathogenicity. AlphaMissense correctly assigned high scores (>0.7) to 89% of DDD variants, compared to 81% for PolyPhen-2 and 76% for CADD.
+The DDD (Deciphering Developmental Disorders) study sequenced thousands of children with severe developmental disorders and their parents, identifying *de novo* missense variants in known disease genes. These variants are highly enriched for pathogenicity. As shown in Figure 9 (Panel C), AlphaMissense achieves the highest auROC on DDD de novo variants among all tested methods, outperforming PolyPhen-2 and CADD.
 
 ### MAVE (Experimental Assays)
 
-Across 42 deep mutational scanning datasets, AlphaMissense predictions correlate strongly with experimental measurements:
+Across deep mutational scanning datasets in the ProteinGym benchmark, AlphaMissense predictions correlate strongly with experimental measurements:
 
-- **Median Spearman ρ:** 0.62 (AlphaMissense) vs. 0.52 (EVE) vs. 0.48 (ESM-1v)
-- **Best-performing genes:** *BRCA1* (ρ=0.78), *PTEN* (ρ=0.74), *UBE2I* (ρ=0.81)
-- **Challenging genes:** Membrane proteins and intrinsically disordered proteins show lower correlations (median ρ ~0.4), likely because AlphaFold's structural predictions are less accurate for these classes.
+- **Median Spearman ρ:** AlphaMissense consistently outperforms EVE and ESM-1v across the ProteinGym benchmark, with the largest gains on well-characterized genes.
+- **Challenging genes:** Membrane proteins and intrinsically disordered proteins show lower correlations, likely because AlphaFold's structural predictions are less accurate for these classes.
 
 ### Per-Gene Performance Analysis
 
-AlphaMissense performance varies by gene characteristics:
-
-- **High MSA depth (>1000 sequences):** auROC 0.95 (excellent)
-- **Shallow MSA (<100 sequences):** auROC 0.87 (still competitive with other methods)
-- **Structured domains:** auROC 0.93
-- **Disordered regions:** auROC 0.82 (degraded but still useful)
-
-This demonstrates that AlphaMissense degrades gracefully when evolutionary information is sparse, relying more on the protein language model component in such cases.
+AlphaMissense performance varies by gene characteristics. Genes with deep MSAs (many homologous sequences) achieve the highest accuracy, while genes with shallow MSAs show reduced but still competitive performance. Similarly, predictions for structured domains are more accurate than for disordered regions. This demonstrates that AlphaMissense degrades gracefully when evolutionary information is sparse, relying more on the protein language model component in such cases.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">

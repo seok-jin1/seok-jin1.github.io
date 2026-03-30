@@ -386,10 +386,10 @@ IPA is the geometric attention mechanism that respects rigid-body symmetries. In
 Formally, the attention is computed as:
 
 $$
-\alpha_j^{(i)} = \mathrm{softmax}_j\big( Q_i^{\top} K_j + \| \mathbf{p}^{(i)}_{j} - \mathbf{p}^{(i)}_{i} \|_2 \big),
+\alpha_j^{(i)} = \mathrm{softmax}_j\big( Q_i^{\top} K_j - w_p \| \mathbf{p}^{(i)}_{j} - \mathbf{p}^{(i)}_{i} \|^2 \big),
 $$
 
-where $\mathbf{p}^{(i)}_j$ is the position of a query point in the local frame of residue $i$, and $\mathbf{p}^{(i)}_i$ is a key point, also in that frame. The scalar $\| \cdot \|_2$ (distance) and the attention scores are combined, allowing geometry to directly influence what gets attended to.
+where $\mathbf{p}^{(i)}_j$ is the position of a query point in the local frame of residue $i$, $\mathbf{p}^{(i)}_i$ is a key point in that frame, and $w_p$ is a learned weight. The **negative** squared distance term ensures that closer residues receive higher attention, allowing geometry to directly influence what gets attended to.
 
 💡 **Why this is powerful**: Most neural networks treat coordinates arbitrarily—move the protein, and the network output changes. IPA doesn't care where the protein is globally positioned. This constraint pushes the network to learn real geometric relationships rather than arbitrary coordinate artifacts.
 
@@ -491,7 +491,7 @@ The two modules are run multiple times with **recycling**, so each pass refines 
 
 ## How Accurate Is It?
 
-In the international **CASP14** competition, AlphaFold stunned everyone: for most test proteins, the average error was **less than 1 Ångström**, roughly the width of a single atom. That's the level where even crystallography experiments start to disagree with each other.
+In the international **CASP14** competition, AlphaFold stunned everyone: for many target domains, the backbone error was **around 1 Ångström**, approaching the width of a single atom. That's the level where even crystallography experiments start to disagree with each other.
 
 To help users judge trust in each prediction, AlphaFold reports:
 

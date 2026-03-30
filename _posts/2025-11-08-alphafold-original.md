@@ -3,6 +3,7 @@ layout: post
 title: "AlphaFold: The AI That Learned How Proteins Fold"
 date: 2025-11-08
 permalink: /blog/alphafold-original/
+published: true
 tags:
   - AI
   - biology
@@ -242,11 +243,11 @@ A single Evoformer block repeatedly applies:
     $$
       \alpha_{s,i,j}
       = \mathrm{softmax}_j\!\big(
-          Q_{s,i}^\top K_{s,j} / \sqrt{d_m}
+          Q_{s,i}^\top K_{s,j} / \sqrt{d_m} + b_{ij}
         \big),
     $$
 
-    where $$Q_{s,i}$$ and $$K_{s,j}$$ are query and key vectors, $$d_m$$ scales the dot product, and the softmax normalizes across positions $$j$$.
+    where $$Q_{s,i}$$ and $$K_{s,j}$$ are query and key vectors, $$d_m$$ scales the dot product, $$b_{ij}$$ is a bias derived from the pair representation $$Z_{ij}$$ (allowing geometric context to modulate sequence attention), and the softmax normalizes across positions $$j$$.
 
     <img src="/assets/img/alphafold/row-attention-block.png" alt="Row attention block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
     *Figure 4. Row-wise attention mixes residues within a single MSA row while injecting pair-derived biases before writing the updates back into $$M$$.*
@@ -353,7 +354,7 @@ The two modules are run multiple times with **recycling**, so each pass refines 
 
 ## How Accurate Is It?
 
-In the international **CASP14** competition, AlphaFold stunned everyone: for most test proteins, the average error was **less than 1 Ångström**, roughly the width of a single atom. That's the level where even crystallography experiments start to disagree with each other.
+In the international **CASP14** competition, AlphaFold stunned everyone: for many target domains, the backbone error was **around 1 Ångström**, approaching the width of a single atom. That's the level where even crystallography experiments start to disagree with each other.
 
 To help users judge trust in each prediction, AlphaFold reports:
 

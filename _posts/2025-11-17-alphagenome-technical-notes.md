@@ -133,7 +133,7 @@ AlphaGenome breaks this trade-off through architectural innovations and distribu
 | **Modalities** | Separate heads | Unified (11 modalities) |
 | **Splice junctions** | No | Yes (explicit) |
 | **Hi-C contacts** | Limited | Dedicated 2D module |
-| **Training time** | ~8 hours | ~4 hours |
+| **Training time** | Days (single TPU) | Distributed across TPU pod |
 | **Inference** | ~2 seconds | ~1 second |
 | **Parameters** | 220M | 450M |
 
@@ -538,16 +538,15 @@ AlphaGenome was evaluated against the best external models (Enformer, Borzoi, Se
 
 ### Computational Efficiency
 
-Despite being 2× larger than Enformer (450M vs 220M parameters), AlphaGenome is **faster and cheaper to train**:
+Despite being 2× larger than Enformer (450M vs 220M parameters), AlphaGenome achieves efficient training and inference through distributed computing:
 
-- **Training time:** 4 hours (vs 8 hours for Enformer)
-- **Training hardware:** 8 TPUv3 chips
+- **Training hardware:** Distributed across TPU pod with sequence parallelism
 - **Inference time:** ~1 second per 1Mb sequence
-- **Deployment:** Runs on single consumer GPU (A100, 80GB VRAM)
+- **Deployment:** Distilled student model can run on a single GPU
 
 This efficiency comes from:
-1. Knowledge distillation reducing model size
-2. Sequence parallelism enabling distributed training
+1. Knowledge distillation reducing deployment model size
+2. Sequence parallelism enabling distributed training across chips
 3. Optimized convolution and attention kernels
 
 ---
