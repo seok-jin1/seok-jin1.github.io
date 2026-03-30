@@ -58,7 +58,40 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-alphamissense-ai-powered-prediction-of-genetic-variant-pathogenicity",
+        },{id: "post-rfdiffusion-de-novo-protein-design-with-denoising-diffusion",
+        
+          title: "RFdiffusion: De Novo Protein Design with Denoising Diffusion",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/rfdiffusion-protein-design/";
+          
+        },
+      },{id: "post-esm-3-simulating-evolution-with-protein-language-models",
+        
+          title: "ESM-3: Simulating Evolution with Protein Language Models",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/esm3-protein-language-model/";
+          
+        },
+      },{id: "post-alphafold-3-predicting-the-structure-of-all-life-39-s-molecules",
+        
+          title: "AlphaFold 3: Predicting the Structure of All Life&#39;s Molecules",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/alphafold3-nature2024-explained/";
+          
+        },
+      },{id: "post-alphamissense-ai-powered-prediction-of-genetic-variant-pathogenicity",
         
           title: "AlphaMissense: AI-Powered Prediction of Genetic Variant Pathogenicity",
         
