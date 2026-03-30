@@ -1,9 +1,28 @@
 github_users:
-  - seok-jin1
+  - username: seok-jin1
+    name: Seok-Jin Kang
+    image: /assets/img/education/graduate-education.jpg
+    headline: Computational biology and immunology
+    description: Building biomedical research tools across protein design, genome modeling, and AI-assisted analysis.
 
 repo_description_lines_max: 2
 
 github_repos:
-  - seok-jin1/RFantibody-gui
-  - seok-jin1/alphagenome-gui
-  - seok-jin1/pyrosetta-gui
+  - repository: seok-jin1/RFantibody-gui
+    title: RFantibody GUI
+    description: Interactive GUI for RFantibody-oriented design and analysis workflows.
+    image: https://opengraph.githubassets.com/1/seok-jin1/RFantibody-gui
+    image_alt: RFantibody GUI repository preview
+    image_fit: cover
+  - repository: seok-jin1/alphagenome-gui
+    title: AlphaGenome GUI
+    description: Local web GUI for AlphaGenome interval prediction, variant scoring, splicing analysis, and in-silico mutagenesis.
+    image: https://raw.githubusercontent.com/seok-jin1/alphagenome-gui/main/screenshots/01_interval_predict.png
+    image_alt: AlphaGenome GUI interval prediction screenshot
+    image_fit: contain
+  - repository: seok-jin1/pyrosetta-gui
+    title: PyRosetta GUI
+    description: Local web GUI for PyRosetta protocols including docking, mutation scanning, saturation mutagenesis, and structure analysis.
+    image: https://raw.githubusercontent.com/seok-jin1/pyrosetta-gui/main/screenshots/16_saturation_result.png
+    image_alt: PyRosetta GUI saturation mutagenesis result screenshot
+    image_fit: contain

@@ -1,34 +1,41 @@
-{% assign lang = site.lang | split: '-' | first %}
+{% assign user = include.user | default: include.username %}
+{% if user.username %}
+  {% assign username = user.username %}
+  {% assign display_name = user.name | default: user.username %}
+  {% assign headline = user.headline %}
+  {% assign description = user.description %}
+  {% assign image = user.image %}
+{% else %}
+  {% assign username = user %}
+  {% assign display_name = user %}
+{% endif %}
 
-{% case lang %}
-  {% when 'pt' %}
-    {% assign lang = site.lang %}
+{% if image %}
+  {% if image contains '://' %}
+    {% assign image_src = image %}
+  {% else %}
+    {% assign image_src = image | relative_url %}
+  {% endif %}
+{% endif %}
 
-  {% when 'zh' %}
-    {% assign lang_last = site.lang | split: '-' | last %}
-    {% case lang_last %}
-      {% when 'cn', 'sg', 'my', 'hans' %}
-        {% assign lang = 'cn' %}
-      {% when 'tw', 'hk', 'mo', 'hant' %}
-        {% assign lang = 'zh-tw' %}
-    {% endcase %}
+<div class="repo p-2">
+  <a class="repo-card repo-card--user" href="https://github.com/{{ username }}" target="_blank" rel="noopener noreferrer">
+    <div class="repo-card__media repo-card__media--portrait">
+      {% if image_src %}
+        <img src="{{ image_src }}" alt="{{ display_name }}" loading="lazy">
+      {% endif %}
+    </div>
 
-    {% comment %} Add a new language using when... if needed {% endcomment %}
-    {% comment %} If you still encounter language-display issues, check the available locale codes in github-readme-stats (different from ISO-639 standard used in your website) {% endcomment %}
-    {% comment %} https://github.com/anuraghazra/github-readme-stats?tab=readme-ov-file#available-locales {% endcomment %}
-{% endcase %}
-
-<div class="repo p-2 text-center">
-  <a href="https://github.com/{{ include.username }}">
-    <img
-      class="only-light w-100"
-      alt="{{ include.username }}"
-      src="https://github-readme-stats.vercel.app/api/?username={{ include.username }}&theme={{ site.repo_theme_light }}&locale={{ lang }}&show_icons=true"
-    >
-    <img
-      class="only-dark w-100"
-      alt="{{ include.username }}"
-      src="https://github-readme-stats.vercel.app/api/?username={{ include.username }}&theme={{ site.repo_theme_dark }}&locale={{ lang }}&show_icons=true"
-    >
+    <div class="repo-card__body">
+      <p class="repo-card__eyebrow">GitHub User</p>
+      <h3 class="repo-card__title">{{ display_name }}</h3>
+      <p class="repo-card__meta">@{{ username }}</p>
+      {% if headline %}
+        <p class="repo-card__headline">{{ headline }}</p>
+      {% endif %}
+      {% if description %}
+        <p class="repo-card__description">{{ description }}</p>
+      {% endif %}
+    </div>
   </a>
 </div>
