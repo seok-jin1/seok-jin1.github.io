@@ -58,7 +58,40 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-rfdiffusion-de-novo-protein-design-with-denoising-diffusion",
+        },{id: "post-multi-omics-integration-for-immunology-mofa-scvi-and-beyond",
+        
+          title: "Multi-Omics Integration for Immunology: MOFA+, scVI, and Beyond",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/multi-omics-integration-guide/";
+          
+        },
+      },{id: "post-alphafold-proteinmpnn-a-practical-protein-design-workflow",
+        
+          title: "AlphaFold + ProteinMPNN: A Practical Protein Design Workflow",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/alphafold-proteinmpnn-workflow/";
+          
+        },
+      },{id: "post-single-cell-rna-seq-analysis-with-scanpy-a-practical-guide-for-immunologists",
+        
+          title: "Single-Cell RNA-seq Analysis with Scanpy: A Practical Guide for Immunologists",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/scrna-seq-scanpy-tutorial/";
+          
+        },
+      },{id: "post-rfdiffusion-de-novo-protein-design-with-denoising-diffusion",
         
           title: "RFdiffusion: De Novo Protein Design with Denoising Diffusion",
         
