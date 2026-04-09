@@ -4,7 +4,7 @@
     - name: Name
       value: Seok-Jin Kang
     - name: Title
-      value: "Postdoctoral Fellow, Immune Modulation Laboratory (PI: Taehoon Chun)"
+      value: "Research Professor, Immune Modulation Laboratory (PI: Taehoon Chun)"
     - name: Affiliation
       value: Korea University, Seoul, Republic of Korea
     - name: Email
@@ -20,43 +20,160 @@
   type: time_table
   contents:
     - title: M.S. & Ph.D. in Biotechnology
-      institution: Korea University, Seoul, Republic of Korea
+      institution: Korea University (2026 QS ranking&#58; 61st), Seoul, Republic of Korea
       year: Mar 2018 - Feb 2025
       description:
-        - Immune Modulation Laboratory (PI: Taehoon Chun).
+        - Immune Modulation Laboratory (Advisor&#58; Prof. Taehoon Chun).
         - Dissertation research on multi-omics driven immunotherapy design.
     - title: B.S. in Biotechnology
       institution: Korea University, Seoul, Republic of Korea
       year: Mar 2014 - Feb 2018
-      description:
-        - Undergraduate researcher supporting the Immune Modulation Laboratory.
-        - Focus on molecular biology, immunology, and biotechnology.
 
 - title: Professional Experience
   type: time_table
   contents:
+    - title: Research Professor
+      institution: Immune Modulation Laboratory, Korea University (2026 QS ranking&#58; 61st)
+      year: Mar 2026 - Present
+      description:
+        - Advisor&#58; Prof. Taehoon Chun
     - title: Postdoctoral Fellow
       institution: Immune Modulation Laboratory, Korea University
-      year: Mar 2025 - Present
+      year: Mar 2025 - Feb 2026
       description:
-        - Lead computational and experimental programs integrating multi-omics with machine learning and quantum-inspired modeling.
-        - Design immune-specific biosensors and next-generation CAR-T receptors using AlphaFold, ProteinMPNN, and Rosetta.
-        - Build AI pipelines for CRISPR editing analysis and single-cell profiling of iPSC-derived T cells.
-    - title: Laboratory Intern
-      institution: Immune Modulation Laboratory, Korea University
-      year: Jan 2016 - Feb 2018
-      description:
-        - Conducted molecular cloning, PCR/qPCR, and gene expression analyses to study host-virus interactions in porcine circovirus.
-        - Assisted ELISA and flow cytometry assays evaluating probiotic and viral vector candidates.
-        - Supported in vivo mouse challenge studies, including tissue collection and cytokine quantification.
+        - Advisor&#58; Prof. Taehoon Chun
+        - Led computational and experimental programs integrating multi-omics with machine learning and quantum-inspired modeling.
+        - Designed immune-specific biosensors and next-generation CAR-T receptors using AlphaFold, ProteinMPNN, and Rosetta.
+        - Built AI pipelines for CRISPR editing analysis and single-cell profiling of iPSC-derived T cells.
 
 - title: Publications
-  type: list
+  type: nested_list
   contents:
-    - "SJ Kang, H Shin. <em>Biophysical mechanisms of spider-silk constituting element-induced stick-slip behavior and hydrogen bond regeneration for high toughness in silk fibers.</em> <strong>International Journal of Biological Macromolecules</strong>, 2025 (Impact factor : 8.5)."
-    - "SJ Kang, H Shin. <em>Amino acid sequence-based IDR classification using ensemble machine learning and quantum neural networks.</em> <strong>Computational Biology and Chemistry</strong>, 2025 (Impact factor : 3.1)."
-    - "JH Yoon, GB Yeon, H Lee, H An, J Oh, SJ Kang, et al. <em>Tumor-targeted delivery of CXCL10 by mesenchymal stromal cells potentiates adoptive T cell therapy to treat solid tumors.</em> <strong>Biomedicine &amp; Pharmacotherapy</strong>, 192:118579, 2025 (Impact factor : 7.5)."
-    - "Additional co-authored works on xenotransplantation, porcine circovirus host interactions, and probiotic-driven immune modulation (Biotechnology Letters 2024 (Impact factor : 2.1); Journal of Animal Science and Technology 2023 (Impact factor : 3.2); Food Science of Animal Resources 2023 (Impact factor : 3.7))."
+    - title: Featured Publications
+      items:
+        - "5. SJ Kang†, H Shin*. <em>Biophysical mechanisms of spider-silk constituting element–induced stick-slip behavior and hydrogen bond regeneration for high toughness in silk fibers.</em> <strong>International Journal of Biological Macromolecules</strong>, 147027, 2025 (Impact factor : 8.5, Q1)."
+        - "4. SJ Kang†, H Shin*. <em>Amino acid sequence-based IDR classification using ensemble machine learning and quantum neural networks.</em> <strong>Computational Biology and Chemistry</strong>, 108480, 2025 (Impact factor : 3.1, Q1)."
+        - "3. SJ Kang†, J Yang†, NY Lee, CH Lee, IB Park, SW Park, HJ Lee, HW Park, HS Yun, T Chun*. <em>Monitoring cellular immune responses after consumption of selected probiotics in immunocompromised mice.</em> <strong>Food Science of Animal Resources</strong> 42 (5), 903, 2022 (Impact factor : 3.7, Q2)."
+        - "2. SJ Kang†, IB Park, T Chun*. <em>Open reading frame 5 protein of porcine circovirus type 2 induces RNF128 (GRAIL) which inhibits mRNA transcription of interferon-β in porcine epithelial cells.</em> <strong>Research in Veterinary Science</strong> 140, 79–82, 2021 (Impact factor : 1.8, Q2)."
+        - "1. SJ Kang†, T Chun*. <em>Structural heterogeneity of the mammalian polycomb repressor complex in immune regulation.</em> <strong>Experimental &amp; Molecular Medicine</strong> 52 (7), 1004–1015, 2020 (Impact factor : 12.9, Q1)."
+    - title: Under Review
+      items:
+        - "SJ Kang†, H Shin*. <em>Spaceflight microbiomics reveals the functional collapse and loss of redundancy in the rhizosphere of ISS-grown Capsicum annuum.</em> <strong>ISME Communications</strong>, under review, 2026 (Impact factor : 6.1, Q1)."
+        - "SJ Kang†, H Shin*. <em>Quantum-Enhanced Weighted Gene Co-expression Network Analysis Reveals Regulatory Networks Underlying Sexual Size Dimorphism in Macrobrachium nipponense.</em> <strong>Integrative Zoology</strong>, under review (Round 1), 2026 (Impact factor : 3.7, Q1)."
+        - "SJ Kang†, H Shin*. <em>Quantum-Enhanced Transfer Learning for IDR Binding Partner Prediction.</em> <strong>IEEE Transactions on Computational Biology and Bioinformatics</strong>, under review, 2025 (Impact factor : 3.4, Q1)."
+    - title: Published Articles
+      items:
+        - "SP Choi†, J Yang†, IB Park†, SJ Kang, SW Park, CH Lee, HJ Lee, J Bae, CY Choi, J Shin, JI Kim, HY Jin, YS Lee, T Chun*. <em>Targeting MAFB potentiates immune checkpoint inhibitor efficacy by reprogramming tumor-associated macrophages to an M1-like phenotype in colorectal cancer.</em> <strong>Translational Research</strong>, 13, S1931-5224(26)0042-3, 2026 (Impact factor : 5.9, Q1)."
+        - "SW Park†, CY Choi†, IB Park†, SJ Kang, HJ Lee, JI Kim, J Bae, D Geum, YP Cheon, T Chun*. <em>LDB1 represses fetal hemoglobin expression by enhancing BCL11A transcription.</em> <strong>Redox Biology</strong>, 118, 108480, 2026 (Impact factor : 11.9, Q1)."
+        - "JH Yoon†, GB Yeon†, H Lee, H An, J Oh, SJ Kang, IB Park, SA Lim, SS Hwang, DS Kim, JH Kim, T Chun, YX Fu, J Bae*. <em>Tumor-targeted delivery of CXCL10 by mesenchymal stromal cells potentiates adoptive T cell therapy to treat solid tumors.</em> <strong>Biomedicine &amp; Pharmacotherapy</strong> 192, 118579, 2025 (Impact factor : 7.5, Q1)."
+        - "CH Lee†, HJ Lee†, SW Park, J Shin, SJ Kang, IB Park, HK Kim, T Chun*. <em>Mutational analysis of pig tissue factor pathway inhibitor α to increase anti-coagulation activity in pig-to-human xenotransplantation.</em> <strong>Biotechnology Letters</strong> 46 (4), 521–530, 2024 (Impact factor : 2.1, Q3)."
+        - "SW Park†, IB Park†, SJ Kang, J Bae, T Chun*. <em>Interaction between host cell proteins and open reading frames of porcine circovirus type 2.</em> <strong>Journal of Animal Science and Technology</strong> 65 (4), 698, 2023 (Impact factor : 3.2, Q1)."
+        - "SP Choi†, SW Park, SJ Kang, SK Lim, MS Kwon, HJ Choi, T Chun*. <em>Monitoring mRNA expression patterns in macrophages in response to two different strains of probiotics.</em> <strong>Food Science of Animal Resources</strong> 43 (4), 703, 2023 (Impact factor : 3.7, Q2)."
+        - "CY Choi†, CH Lee, J Yang, SJ Kang, IB Park, SW Park, NY Lee, HB Hwang, HS Yun, T Chun*. <em>Efficacies of potential probiotic candidates isolated from traditional fermented Korean foods in stimulating immunoglobulin A secretion.</em> <strong>Food Science of Animal Resources</strong> 43 (2), 346, 2023 (Impact factor : 3.7, Q2)."
+        - "SP Choi†, YC Choi, J Yang, CY Choi, CH Lee, SJ Kang, IB Park, T Chun*. <em>Monitoring mRNA transcription of genes involved in early pregnancy from endometrium and peripheral blood mononuclear cells of pregnant pigs with different parity.</em> <strong>Reproduction in Domestic Animals</strong> 53 (6), 1594–1599, 2018 (Impact factor : 1.7, Q3)."
+        - "CY Choi†, YC Choi, IB Park, CH Lee, SJ Kang, T Chun*. <em>The ORF5 protein of porcine circovirus type 2 enhances viral replication by dampening type I interferon expression in porcine epithelial cells.</em> <strong>Veterinary Microbiology</strong> 226, 50–58, 2018 (Impact factor : 2.7, Q1)."
+
+- title: Patents
+  type: nested_list
+  contents:
+    - title: Registration
+      items:
+        - "T Chun, J Yang, CH Lee, <strong>SJ Kang</strong>, IB Park. <em>Chimeric antigen receptor specifically binding to CD38 and use thereof.</em> Korean Intellectual Property Office, 10-2021-0025895, October 2021."
+        - "T Chun, J Yang, CH Lee, <strong>SJ Kang</strong>, IB Park. <em>Chimeric antigen receptor specifically binding to VLA-4 and use thereof.</em> Korean Intellectual Property Office, 10-2021-0025905, March 2021."
+    - title: Pending
+      items:
+        - "<strong>SJ Kang</strong>, H Shin. <em>Method and system for classifying intrinsically disordered proteins based on amino acid sequences using quantum neural networks.</em> Korean Intellectual Property Office, 10-2025-0078871, June 2025."
+        - "T Chun, IB Park, <strong>SJ Kang</strong>, HJ Lee. <em>Regulation of BCL11A expression by LDB1 transcriptional regulator and uses thereof.</em> Korean Intellectual Property Office, 10-2025-0010845, January 2025."
+        - "T Chun, IB Park, <strong>SJ Kang</strong>, HJ Lee. <em>Regulation of PLZF expression by LDB1 transcriptional regulator and uses thereof.</em> Korean Intellectual Property Office, 10-2025-0010844, January 2025."
+
+- title: Research Projects
+  type: time_table
+  contents:
+    - title: "Q2515581 — Optimization of HLA gene editing for the development of allogeneic stem cell therapy"
+      institution: Korea National Institute of Health (PI&#58; Prof. Dongho Geum)
+      year: May 2025 - Dec 2025
+      description:
+        - Hypoimmunogenic iPSC generation via CRISPR-Cas9 HLA editing.
+        - Directed differentiation into immune-evasive cardiomyocytes and T cells.
+        - In vivo engraftment validation using humanized murine models.
+    - title: "Q2431261 — Safety evaluation of viral vector-based gene therapy with respect to non-specific genome insertion"
+      institution: Ministry of Food and Drug Safety (PI&#58; Prof. Taehoon Chun)
+      year: Feb 2025 - Dec 2025
+      description:
+        - Vector engineering (Lentiviral/AAV) and in vivo administration.
+        - WGS/NGS library construction for genomic integration profiling.
+        - Statistical analysis of insertion site distribution and toxicity correlations.
+    - title: "R2131151 — Development of cellular immune evaluation technology for viral vector-based genetic vaccines"
+      institution: Ministry of Food and Drug Safety (PI&#58; Prof. Taehoon Chun)
+      year: Feb 2022 - Dec 2025
+      description:
+        - Candidate selection for Adenovirus/Vaccinia-based platforms.
+        - Assay development for humoral and cellular immunity assessment.
+        - Safety profiling including cytotoxicity and organ-specific toxicity.
+    - title: "R2222761 — Regulation of immune cell differentiation by chromatin 3D structural changes"
+      institution: National Research Foundation of Korea (PI&#58; Prof. Taehoon Chun)
+      year: Sep 2022 - Feb 2025
+      description:
+        - Chromatin 3D structural analysis mediated by LDB1 looper.
+        - Multi-omics integration (RNA/ATAC/ChIP-seq) for enhancer–promoter mapping.
+        - In vivo validation using LDB1-floxed mouse models.
+    - title: "R2212861 — Development of universal SARS-CoV-2 and sarbecovirus vaccine candidate using NDV vector platform"
+      institution: Korea Health Industry Development Institute (PI&#58; Prof. Kisoon Kim)
+      year: Apr 2022 - Dec 2023
+      description:
+        - Structural epitope modeling using AlphaFold for cross-protection.
+        - Immunogenicity evaluation in viral challenge animal models.
+        - Immune profiling via ELISA and flow cytometry.
+    - title: "Q2029461 — Production and efficacy evaluation of novel recombinant immunotherapeutics"
+      institution: Immunological Designing Lab Co., Ltd. (PI&#58; Prof. Taehoon Chun)
+      year: Jan 2021 - Jun 2023
+      description:
+        - Recombinant protein production and purification.
+        - Affinity characterization via SPR and ELISA.
+    - title: "R1923081 — Mechanistic study of macrophage polarization regulated by chromatin remodeling factor Phc2"
+      institution: National Research Foundation of Korea (PI&#58; Prof. Taehoon Chun)
+      year: Sep 2019 - Feb 2022
+      description:
+        - Transcriptomic profiling of macrophage polarization states.
+        - Differential expression analysis (DEG) and pathway enrichment.
+        - Regulatory network identification of Phc2-mediated activation.
+    - title: "Q2015891 — Screening of immune-enhancing probiotics using immunodeficient mouse models"
+      institution: CJ CheilJedang & BLOSSOM PARK (PI&#58; Prof. Taehoon Chun)
+      year: Jun 2020 - Feb 2021
+      description:
+        - In vivo screening and cytokine profiling (Flow cytometry/qPCR).
+        - Statistical evaluation of immune enhancement using R.
+    - title: "R1715822 — Development of novel immune cell therapy targeting multiple myeloma"
+      institution: National Research Foundation of Korea (PI&#58; Prof. Taehoon Chun)
+      year: Mar 2018 - Jun 2022
+      description:
+        - CAR construct engineering and optimization via molecular cloning.
+        - Binder selection for high affinity and specificity.
+        - Kinetics analysis (Kd) using surface plasmon resonance (SPR).
+    - title: "PJ013271012018 — Development of genetic markers associated to the resistance to PMWS"
+      institution: Rural Development Administration (PI&#58; Prof. Taehoon Chun)
+      year: Mar 2018 - Dec 2020
+      description:
+        - Comparative genomics for resistance marker identification.
+        - Variant detection pipeline using BLAST and Biopython.
+    - title: "R1727591 — Development of DNA markers to enhance resistance against chronic wasting diseases"
+      institution: Rural Development Administration (PI&#58; Prof. Taehoon Chun)
+      year: Jan 2018 - Dec 2020
+      description:
+        - SNP genotyping and sequence analysis for resistance markers.
+        - Pipeline development using Python/Biopython for variant detection.
+    - title: "Q1815701 — Determination of dosing period and amount of probiotics for alleviating allergic rhinitis"
+      institution: CJ CheilJedang (PI&#58; Prof. Taehoon Chun)
+      year: Jun 2018 - Nov 2018
+      description:
+        - Th1/Th2 cytokine profiling via ELISA and gene expression.
+        - Dosing optimization modeling for immune regulation.
+    - title: "Q1613841 — Selection and in vivo efficacy verification of probiotics with enhanced IgA secretion"
+      institution: CJ CheilJedang (PI&#58; Prof. Taehoon Chun)
+      year: Jul 2016 - Apr 2017
+      description:
+        - Mucosal IgA quantification in murine models.
+        - Immune gene validation using qPCR.
 
 - title: Conference Presentations
   type: list
@@ -66,19 +183,32 @@
     - <em>Microorganisms from kimchi, GK3 and Baechu10, change the cytokine production pattern of host peritoneal macrophages.</em> Korean Association of Immunologists (KAI), Seoul, 2018.
 
 - title: Books
-  type: list
+  type: nested_list
   contents:
-    - <em>2026 Science Trends: Multi-omics.</em> Kindle, ISBN 9798266588004, 2025.
-    - <em>2026 Life Science Trends: Multi-omics (Korean edition).</em> Purple, ISBN 9788924169034, 2025.
-    - <em>2026 Science Trends: Personalized Medicine (Korean edition).</em> Purple, ISBN 9788924169041, 2025.
-    - <em>2025 Science Trends: Artificial Intelligence.</em> Kindle, ISBN 979-8307079270, 2025.
-    - <em>2025 Science Trends: Artificial Intelligence (Korean edition).</em> Purple, ISBN 9788924143621, 2024.
+    - title: International Publications
+      items:
+        - "<em>2026 Science Trends, Chapter&#58; Multi-omics.</em> Kindle, ISBN 9798266588004, September 2025."
+        - "<em>2025 Science Trends, Chapter&#58; Artificial Intelligence.</em> Kindle, ISBN 979-8307079270, January 2025."
+    - title: Domestic Publications
+      items:
+        - "<em>2026 생명과학트렌드, 챕터&#58; 멀티오믹스 (2026 Life Science Trends, Chapter&#58; Multi-omics).</em> Pubple, ISBN 9788924169034, August 2025."
+        - "<em>2026 과학트렌드, 챕터&#58; 개인 맞춤형 치료 (2026 Science Trends&#58; Personalized Medicine).</em> Pubple, ISBN 9788924169041, August 2025."
+        - "<em>2025 과학트렌드, 챕터&#58; 인공지능 (2025 Science Trends, Chapter&#58; Artificial Intelligence).</em> Pubple, ISBN 9788924143621, December 2024."
 
 - title: Certifications
   type: list
   contents:
-    - Big Data Analysis Engineer (빅데이터 분석 기사) - Korea Data Agency (BAE-010002862), July 11, 2025 (Score 100/100).
-    - Advanced Data Analytics Semi-Professional (ADsP) (데이터 분석 준전문가) - Korea Data Agency (ADsP-040004911), March 22, 2024.
+    - Big Data Analysis Engineer (빅데이터 분석 기사) - Korea Data Agency (BAE-010002862), 2025.
+    - Advanced Data Analytics Semi-Professional (ADsP) (데이터 분석 준전문가) - Korea Data Agency (ADsP-040004911), 2024.
+
+- title: Research Interests
+  type: list
+  contents:
+    - Precision Medicine
+    - CAR-T Cell Therapy
+    - Multi-omics Integration
+    - Computer-aided Drug Design (CADD)
+    - Quantum Computing
 
 - title: Technical Skills
   type: nested_list
@@ -100,11 +230,3 @@
         - Western blotting, PCR/qPCR, flow cytometry, ELISA
         - Chromatography, electrophoresis, surface plasmon resonance
         - Protein-protein interaction analysis, affinity measurements, mouse & pig models
-
-- title: Research Interests
-  type: list
-  contents:
-    - Computational immunology and AI-assisted drug discovery
-    - Protein engineering and CAR-T cell therapy
-    - Multi-omics data integration
-    - Quantum computing applications in biology
