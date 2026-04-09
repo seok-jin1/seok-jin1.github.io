@@ -23,9 +23,9 @@ $$
 
 where each residue $i$ is described by a rigid-body frame consisting of a rotation matrix $R_i$ in the special orthogonal group $\mathrm{SO}(3)$ and a translation vector $\mathbf{t}_i$ in three-dimensional space, and $L$ is the total number of residues.
 
-The challenge is not just to predict what shape a given sequence folds into (the prediction problem solved by AlphaFold), but to *generate entirely new protein structures* that do not exist in nature and that satisfy desired functional constraints. This is the inverse of the protein folding problem: rather than asking "what structure does this sequence adopt?", we ask "what structures could exist, and how do we create them?"
+The challenge is not just to predict what shape a given sequence folds into (the prediction problem solved by AlphaFold), but to _generate entirely new protein structures_ that do not exist in nature and that satisfy desired functional constraints. This is the inverse of the protein folding problem: rather than asking "what structure does this sequence adopt?", we ask "what structures could exist, and how do we create them?"
 
-In 2023, a team led by Watson et al. at the University of Washington's Institute for Protein Design introduced **RFdiffusion**, a method that adapts <span style="background-color: #fff3b0;">denoising diffusion probabilistic models (DDPMs)</span> to protein backbone generation. Published in *Nature*, RFdiffusion demonstrated that diffusion models -- the same family of generative models behind image generators like DALL-E and Stable Diffusion -- could design proteins with unprecedented diversity, controllability, and experimental success rates.
+In 2023, a team led by Watson et al. at the University of Washington's Institute for Protein Design introduced **RFdiffusion**, a method that adapts <span style="background-color: #fff3b0;">denoising diffusion probabilistic models (DDPMs)</span> to protein backbone generation. Published in _Nature_, RFdiffusion demonstrated that diffusion models -- the same family of generative models behind image generators like DALL-E and Stable Diffusion -- could design proteins with unprecedented diversity, controllability, and experimental success rates.
 
 The timing of RFdiffusion's publication is noteworthy. By 2023, diffusion models had already proven transformative in computer vision and other domains, but their application to protein structure generation required solving fundamental challenges related to the non-Euclidean geometry of molecular structures. RFdiffusion showed that these challenges could be elegantly addressed, opening the door for a wave of subsequent diffusion-based methods in structural biology.
 
@@ -96,17 +96,17 @@ The authors outline seven key contributions that distinguish RFdiffusion from pr
 
 RFdiffusion occupies a unique position in the protein design landscape. The table below compares it with other prominent methods.
 
-| Feature | **RFdiffusion** | **Hallucination (trRosetta/AF2)** | **ProteinMPNN** | **Rosetta** | **ProteinSGM** |
-|---|---|---|---|---|---|
-| **What it generates** | Protein backbones | Sequences (→ structures) | Sequences for fixed backbones | Sequences + structures | Distance matrices |
-| **Generative paradigm** | Denoising diffusion | Gradient-based optimization | Autoregressive | Monte Carlo / energy minimization | Score-based diffusion |
-| **Operating space** | SE(3) frames | Sequence logits | Sequence logits | Cartesian + torsion | Inter-residue distances |
-| **Structural diversity** | High (stochastic sampling) | Low (mode collapse risk) | N/A (fixed backbone) | Moderate | Moderate |
-| **Motif scaffolding** | Native support | Possible but challenging | Not applicable | Fragment assembly | Not demonstrated |
-| **Symmetric design** | Native support | Not straightforward | Not applicable | Specialized protocols | Not demonstrated |
-| **Binder design** | Native support | Possible with tricks | Not applicable | Specialized protocols | Not demonstrated |
-| **Pre-trained knowledge** | RoseTTAFold weights | trRosetta/AF2 weights | Structure-conditioned LM | Physics-based potentials | Trained on PDB distances |
-| **Experimental validation** | Extensive | Limited | Extensive (for sequences) | Extensive | Limited |
+| Feature                     | **RFdiffusion**            | **Hallucination (trRosetta/AF2)** | **ProteinMPNN**               | **Rosetta**                       | **ProteinSGM**           |
+| --------------------------- | -------------------------- | --------------------------------- | ----------------------------- | --------------------------------- | ------------------------ |
+| **What it generates**       | Protein backbones          | Sequences (→ structures)          | Sequences for fixed backbones | Sequences + structures            | Distance matrices        |
+| **Generative paradigm**     | Denoising diffusion        | Gradient-based optimization       | Autoregressive                | Monte Carlo / energy minimization | Score-based diffusion    |
+| **Operating space**         | SE(3) frames               | Sequence logits                   | Sequence logits               | Cartesian + torsion               | Inter-residue distances  |
+| **Structural diversity**    | High (stochastic sampling) | Low (mode collapse risk)          | N/A (fixed backbone)          | Moderate                          | Moderate                 |
+| **Motif scaffolding**       | Native support             | Possible but challenging          | Not applicable                | Fragment assembly                 | Not demonstrated         |
+| **Symmetric design**        | Native support             | Not straightforward               | Not applicable                | Specialized protocols             | Not demonstrated         |
+| **Binder design**           | Native support             | Possible with tricks              | Not applicable                | Specialized protocols             | Not demonstrated         |
+| **Pre-trained knowledge**   | RoseTTAFold weights        | trRosetta/AF2 weights             | Structure-conditioned LM      | Physics-based potentials          | Trained on PDB distances |
+| **Experimental validation** | Extensive                  | Limited                           | Extensive (for sequences)     | Extensive                         | Limited                  |
 
 The central advantage of RFdiffusion is that it generates backbones directly in 3D coordinate space with native support for conditional generation tasks (motif scaffolding, symmetry, binder design), while inheriting rich structural knowledge from a pre-trained structure prediction network.
 
@@ -233,6 +233,7 @@ $$
 $$
 
 where:
+
 - $\hat{\mathbf{t}}_i^{(0)}$ and $\hat{R}_i^{(0)}$ are the predicted clean translation and rotation for residue $i$,
 - $\mathbf{t}_i^{(0)}$ and $R_i^{(0)}$ are the ground-truth values,
 - $d_{\mathrm{SO}(3)}$ is a distance metric on the rotation group (geodesic distance),
@@ -411,7 +412,7 @@ The therapeutic implications of this capability are substantial. Traditional app
 For immune checkpoint targets like PD-L1, designed binders could serve as alternatives to monoclonal antibodies in cancer immunotherapy, potentially offering advantages in:
 
 - **Stability**: small designed proteins are often more thermostable than antibodies and can withstand harsher storage and delivery conditions
-- **Manufacturability**: expression in *E. coli* rather than mammalian cells dramatically reduces production costs and complexity
+- **Manufacturability**: expression in _E. coli_ rather than mammalian cells dramatically reduces production costs and complexity
 - **Engineering flexibility**: the ability to engineer multi-specific constructs, fuse binders to other functional domains, or create multi-valent assemblies is more straightforward with small, modular designed proteins
 
 For viral targets like the SARS-CoV-2 receptor-binding domain and influenza hemagglutinin, de novo binders could form the basis of diagnostics, therapeutic decoys, or biosensors that can be rapidly redesigned as new variants emerge. The speed of the RFdiffusion pipeline -- from target structure to designed binder candidates in hours rather than months -- is particularly relevant for pandemic preparedness, where the ability to rapidly generate binders against novel viral surfaces could accelerate the development of countermeasures.
@@ -430,7 +431,7 @@ Fold conditioning is particularly useful when the designer has a specific struct
 - Producing an **alpha-helical repeat protein** of a defined length and curvature, useful for creating molecular rulers or curved scaffolds
 - Designing a **beta-propeller** with a specific number of blades, providing a symmetric platform for displaying multiple copies of a functional element
 
-It bridges the gap between fully unconstrained generation (which may produce topologies that are not suitable for the intended application) and the rigid constraints of motif scaffolding (which fix specific residue coordinates). With fold conditioning, the designer specifies *what kind* of protein to make without specifying the exact coordinates, giving the diffusion model freedom to explore diverse solutions within the desired topological class.
+It bridges the gap between fully unconstrained generation (which may produce topologies that are not suitable for the intended application) and the rigid constraints of motif scaffolding (which fix specific residue coordinates). With fold conditioning, the designer specifies _what kind_ of protein to make without specifying the exact coordinates, giving the diffusion model freedom to explore diverse solutions within the desired topological class.
 
 This capability is also valuable for benchmarking and method development. By conditioning on known fold types and comparing the generated structures to natural proteins with the same topology, researchers can assess how well RFdiffusion captures the structural features of different protein families and identify areas where the model may need improvement.
 
@@ -448,7 +449,7 @@ In addition to scRMSD, the authors use AlphaFold2's predicted local distance dif
 
 **Experimental validation.** Moving beyond computational metrics, the authors conducted extensive experimental characterization of designed proteins. This is a critical step because computational predictions, no matter how sophisticated, can fail to capture important aspects of protein behavior such as aggregation, misfolding, or proteolytic degradation. The experimental characterization included:
 
-- **Protein expression and solubility**: Designed proteins were expressed in *E. coli* and many showed high soluble expression levels, indicating that the designed sequences encode well-folded, non-aggregating proteins. High soluble expression is a non-trivial requirement -- many naturally occurring proteins (and many computationally designed ones) aggregate or are directed to inclusion bodies when expressed in bacteria.
+- **Protein expression and solubility**: Designed proteins were expressed in _E. coli_ and many showed high soluble expression levels, indicating that the designed sequences encode well-folded, non-aggregating proteins. High soluble expression is a non-trivial requirement -- many naturally occurring proteins (and many computationally designed ones) aggregate or are directed to inclusion bodies when expressed in bacteria.
 
 - **Circular dichroism (CD)**: CD spectra confirmed that designed proteins adopt the expected secondary structures. Alpha-helical designs showed the characteristic double-minimum pattern at 208 nm and 222 nm, while beta-sheet-containing designs showed the expected spectral signatures. These measurements provide a global assessment of secondary structure content.
 
@@ -467,7 +468,7 @@ According to the authors, RFdiffusion achieved substantially higher success rate
 
 3. **In silico validation (AlphaFold2):** Each designed sequence is fed to AlphaFold2, which predicts its structure from sequence alone, without knowledge of the target backbone. Designs where the AF2-predicted structure closely matches the RFdiffusion backbone (low scRMSD, typically below 2 Angstroms) and where AF2 shows high confidence (high pLDDT scores) are advanced to experimental testing. This step filters out backbones that are not "designable" -- structures for which no sequence can reliably fold into the intended shape.
 
-4. **Experimental testing:** The computationally validated designs are synthesized (typically via gene synthesis and expression in *E. coli*), and characterized using biophysical assays. Only a fraction of computationally passing designs need to be tested experimentally, and the paper reports that the computational filtering is effective at enriching for experimentally successful designs.
+4. **Experimental testing:** The computationally validated designs are synthesized (typically via gene synthesis and expression in _E. coli_), and characterized using biophysical assays. Only a fraction of computationally passing designs need to be tested experimentally, and the paper reports that the computational filtering is effective at enriching for experimentally successful designs.
 
 This multi-stage funnel is critical to the practical utility of the method. The computational stages are relatively inexpensive compared to experimental characterization, so the pipeline front-loads the filtering and ensures that only the most promising candidates reach the wet lab.
 
@@ -545,4 +546,4 @@ Looking forward, RFdiffusion marks a turning point in computational protein desi
 
 ---
 
-*Reference: Watson, J. L. et al.,* **Nature 620**, 1089--1100 (2023). DOI: [10.1038/s41586-023-06415-8](https://doi.org/10.1038/s41586-023-06415-8)
+_Reference: Watson, J. L. et al.,_ **Nature 620**, 1089--1100 (2023). DOI: [10.1038/s41586-023-06415-8](https://doi.org/10.1038/s41586-023-06415-8)

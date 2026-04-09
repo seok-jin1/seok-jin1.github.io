@@ -25,15 +25,15 @@ A **regulon** is defined as a transcription factor together with its set of dire
 
 In immunology, regulons map directly to well-known biology:
 
-| TF | Regulon context | Immune cell type |
-|---|---|---|
-| TBX21 (T-bet) | Th1 differentiation, IFN-gamma production | Th1 CD4+ T cells, CD8+ T cells |
-| GATA3 | Th2 differentiation, IL-4/5/13 regulation | Th2 CD4+ T cells |
-| RORC (RORgammat) | Th17 differentiation, IL-17 production | Th17 CD4+ T cells |
-| FOXP3 | Regulatory T cell identity, immunosuppression | Tregs |
-| SPI1 (PU.1) | Myeloid lineage commitment | Monocytes, macrophages, DCs |
-| MAFB | Monocyte/macrophage differentiation | Macrophages |
-| IRF8 | DC specification, type I IFN signaling | cDC1, pDCs |
+| TF               | Regulon context                               | Immune cell type               |
+| ---------------- | --------------------------------------------- | ------------------------------ |
+| TBX21 (T-bet)    | Th1 differentiation, IFN-gamma production     | Th1 CD4+ T cells, CD8+ T cells |
+| GATA3            | Th2 differentiation, IL-4/5/13 regulation     | Th2 CD4+ T cells               |
+| RORC (RORgammat) | Th17 differentiation, IL-17 production        | Th17 CD4+ T cells              |
+| FOXP3            | Regulatory T cell identity, immunosuppression | Tregs                          |
+| SPI1 (PU.1)      | Myeloid lineage commitment                    | Monocytes, macrophages, DCs    |
+| MAFB             | Monocyte/macrophage differentiation           | Macrophages                    |
+| IRF8             | DC specification, type I IFN signaling        | cDC1, pDCs                     |
 
 By recovering these regulons from scRNA-seq data in an unbiased manner, SCENIC can reveal both known and novel regulatory programs operating in your dataset.
 
@@ -50,6 +50,7 @@ The SCENIC workflow consists of three sequential steps:
 **Step 3: AUCell** -- Score each cell for the activity of each regulon using the Area Under the recovery Curve (AUC). This produces a cells-by-regulons activity matrix that can be used for clustering, visualization, and differential analysis.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/pyscenic/figure1-pipeline-overview.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 1. Overview of the three-step SCENIC pipeline. Gene expression data is first used to build co-expression modules (GRNBoost2), which are then pruned using motif enrichment (cisTarget), and finally scored per cell (AUCell).
 </div>
@@ -396,6 +397,7 @@ if foxp3_reg:
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/pyscenic/figure2-regulon-targets.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 2. Target gene networks for key immune TFs. Each node is a target gene; edge width reflects the regulatory weight. Only the top 20 targets per regulon are shown.
 </div>
@@ -503,6 +505,7 @@ plt.show()
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/pyscenic/figure3-regulon-umap.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 3. Regulon activity scores projected onto UMAP embeddings. Each panel shows the AUCell score for a key immune TF regulon. TBX21 activity localizes to Th1 and CD8 effector clusters; FOXP3 activity is restricted to the Treg cluster; SPI1 and MAFB mark myeloid populations.
 </div>
@@ -558,6 +561,7 @@ plt.show()
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/pyscenic/figure4-regulon-heatmap.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 4. Heatmap of mean regulon activity (Z-scored) across immune cell types. Columns are cell types; rows are regulons. The pattern recapitulates known biology: TBX21 is active in Th1 cells, FOXP3 in Tregs, SPI1 and MAFB in monocytes/macrophages, and IRF8 in cDC1 cells.
 </div>
@@ -601,6 +605,7 @@ plt.show()
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/pyscenic/figure5-rss-barplot.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 5. Regulon Specificity Scores for selected immune cell types. TBX21 and EOMES rank highest in Th1 cells, FOXP3 dominates in Tregs, SPI1 and CEBPB lead in monocytes, and IRF8 is the top regulator in cDC1 cells.
 </div>
@@ -658,6 +663,7 @@ plt.show()
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/pyscenic/figure6-binary-umap.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 6. UMAP embedding computed on binary regulon activity rather than gene expression. Left: cells colored by annotated cell type. Right: cells colored by TBX21 regulon activity. Regulon-based dimensionality reduction often produces cleaner separation between functionally distinct populations.
 </div>
@@ -710,6 +716,7 @@ for reg, ct in tests:
 ```
 
 Expected output:
+
 ```
 Key regulon-cell type associations (Mann-Whitney U):
 ------------------------------------------------------------
@@ -804,10 +811,10 @@ for f in db_files:
 
 **Version compatibility table:**
 
-| Database version | Motif annotation | Species |
-|---|---|---|
-| `v10_clust` | `v10nr_clust` | hg38, mm10 |
-| `v9` | `v9nr` | hg19, mm9 |
+| Database version | Motif annotation | Species    |
+| ---------------- | ---------------- | ---------- |
+| `v10_clust`      | `v10nr_clust`    | hg38, mm10 |
+| `v9`             | `v9nr`           | hg19, mm9  |
 
 ### 10.2 Gene Filtering Guidelines
 
@@ -831,12 +838,12 @@ for tf in ['TBX21', 'GATA3', 'RORC', 'FOXP3', 'SPI1', 'MAFB', 'IRF8']:
 
 ### 10.3 Computational Requirements
 
-| Dataset size | GRNBoost2 | cisTarget | AUCell | Total (8 cores) |
-|---|---|---|---|---|
-| 5k cells, 15k genes | ~10 min | ~15 min | ~2 min | ~30 min |
-| 10k cells, 20k genes | ~25 min | ~20 min | ~5 min | ~50 min |
-| 50k cells, 20k genes | ~2 hr | ~20 min | ~15 min | ~2.5 hr |
-| 100k cells, 25k genes | ~6 hr | ~25 min | ~30 min | ~7 hr |
+| Dataset size          | GRNBoost2 | cisTarget | AUCell  | Total (8 cores) |
+| --------------------- | --------- | --------- | ------- | --------------- |
+| 5k cells, 15k genes   | ~10 min   | ~15 min   | ~2 min  | ~30 min         |
+| 10k cells, 20k genes  | ~25 min   | ~20 min   | ~5 min  | ~50 min         |
+| 50k cells, 20k genes  | ~2 hr     | ~20 min   | ~15 min | ~2.5 hr         |
+| 100k cells, 25k genes | ~6 hr     | ~25 min   | ~30 min | ~7 hr           |
 
 > **Memory:** Ranking databases require ~3-4 GB RAM each. Budget at least 16 GB for a typical run, 32 GB+ for large datasets. GRNBoost2 memory usage scales with `n_cells x n_TFs`.
 
@@ -972,7 +979,7 @@ python run_scenic.py \
 
 ## References
 
-- Aibar, S. et al. SCENIC: single-cell regulatory network inference and clustering. *Nature Methods* 14, 1083-1086 (2017).
-- Van de Sande, B. et al. A scalable SCENIC workflow for single-cell gene regulatory network analysis. *Nature Protocols* 15, 2247-2276 (2020).
-- Bravo Gonzalez-Blas, C. et al. SCENIC+: single-cell multiomic inference of enhancers and gene regulatory networks. *Nature Methods* 20, 1355-1367 (2023).
-- Moerman, T. et al. GRNBoost2 and Arboreto: efficient and scalable inference of gene regulatory networks. *Bioinformatics* 35, 2159-2161 (2019).
+- Aibar, S. et al. SCENIC: single-cell regulatory network inference and clustering. _Nature Methods_ 14, 1083-1086 (2017).
+- Van de Sande, B. et al. A scalable SCENIC workflow for single-cell gene regulatory network analysis. _Nature Protocols_ 15, 2247-2276 (2020).
+- Bravo Gonzalez-Blas, C. et al. SCENIC+: single-cell multiomic inference of enhancers and gene regulatory networks. _Nature Methods_ 20, 1355-1367 (2023).
+- Moerman, T. et al. GRNBoost2 and Arboreto: efficient and scalable inference of gene regulatory networks. _Bioinformatics_ 35, 2159-2161 (2019).

@@ -126,17 +126,17 @@ Classic sequence-to-function models like Enformer (Avsec et al., Nature Methods 
 
 AlphaGenome breaks this trade-off through architectural innovations and distributed computing:
 
-| Feature | Enformer | AlphaGenome |
-|:--------|:---------|:------------|
-| **Context window** | 200kb | 1Mb (5×) |
-| **Output resolution** | 128bp bins | 1bp (128×) |
-| **Architecture** | CNN + Transformer | CNN + Transformer + U-Net |
-| **Modalities** | Separate heads | Unified (11 modalities) |
-| **Splice junctions** | No | Yes (explicit) |
-| **Hi-C contacts** | Limited | Dedicated 2D module |
-| **Training time** | Days (single TPU) | Distributed across TPU pod |
-| **Inference** | ~2 seconds | ~1 second |
-| **Parameters** | 220M | 450M |
+| Feature               | Enformer          | AlphaGenome                |
+| :-------------------- | :---------------- | :------------------------- |
+| **Context window**    | 200kb             | 1Mb (5×)                   |
+| **Output resolution** | 128bp bins        | 1bp (128×)                 |
+| **Architecture**      | CNN + Transformer | CNN + Transformer + U-Net  |
+| **Modalities**        | Separate heads    | Unified (11 modalities)    |
+| **Splice junctions**  | No                | Yes (explicit)             |
+| **Hi-C contacts**     | Limited           | Dedicated 2D module        |
+| **Training time**     | Days (single TPU) | Distributed across TPU pod |
+| **Inference**         | ~2 seconds        | ~1 second                  |
+| **Parameters**        | 220M              | 450M                       |
 
 Mathematically, the key difference lies in resolution restoration:
 
@@ -490,7 +490,7 @@ GWAS studies identify genomic loci associated with disease, but the causal varia
 
 **3. Disease mutation analysis:**
 
-Example: T-cell acute lymphoblastic leukemia (T-ALL) patients harbor recurrent mutations in the TAL1 enhancer region. AlphaGenome reveals that the mutation creates a *de novo* MYB transcription factor binding motif, leading to aberrant TAL1 activation.
+Example: T-cell acute lymphoblastic leukemia (T-ALL) patients harbor recurrent mutations in the TAL1 enhancer region. AlphaGenome reveals that the mutation creates a _de novo_ MYB transcription factor binding motif, leading to aberrant TAL1 activation.
 
 ---
 
@@ -502,20 +502,20 @@ AlphaGenome was evaluated against the best external models (Enformer, Borzoi, Se
 
 **Table: Pearson correlation on human test chromosomes (chr8, chr9)**
 
-| Modality | Best Prior Model | Prior r | AlphaGenome | Improvement |
-|:---------|:-----------------|:--------|:------------|:------------|
-| Gene expression (CAGE) | Borzoi | 0.46 | 0.54 | +17.4% |
-| TSS activity (CAGE) | Enformer | 0.58 | 0.62 | +6.9% |
-| Nascent RNA (PRO-cap) | Enformer | 0.51 | 0.56 | +9.8% |
-| DNase accessibility | Borzoi | 0.72 | 0.76 | +5.6% |
-| ATAC-seq | Borzoi | 0.68 | 0.71 | +4.4% |
-| H3K4me3 (promoters) | Borzoi | 0.61 | 0.65 | +6.6% |
-| H3K27ac (enhancers) | Enformer | 0.64 | 0.68 | +6.3% |
-| H3K36me3 (gene bodies) | Enformer | 0.59 | 0.63 | +6.8% |
-| CTCF binding | Borzoi | 0.53 | 0.57 | +7.5% |
-| Hi-C contacts | Orca | 0.52 | 0.55 | +5.8% |
-| Splice donor usage | Pangolin | 0.71 | 0.80 | +12.7% |
-| Splice acceptor usage | Pangolin | 0.69 | 0.78 | +13.0% |
+| Modality               | Best Prior Model | Prior r | AlphaGenome | Improvement |
+| :--------------------- | :--------------- | :------ | :---------- | :---------- |
+| Gene expression (CAGE) | Borzoi           | 0.46    | 0.54        | +17.4%      |
+| TSS activity (CAGE)    | Enformer         | 0.58    | 0.62        | +6.9%       |
+| Nascent RNA (PRO-cap)  | Enformer         | 0.51    | 0.56        | +9.8%       |
+| DNase accessibility    | Borzoi           | 0.72    | 0.76        | +5.6%       |
+| ATAC-seq               | Borzoi           | 0.68    | 0.71        | +4.4%       |
+| H3K4me3 (promoters)    | Borzoi           | 0.61    | 0.65        | +6.6%       |
+| H3K27ac (enhancers)    | Enformer         | 0.64    | 0.68        | +6.3%       |
+| H3K36me3 (gene bodies) | Enformer         | 0.59    | 0.63        | +6.8%       |
+| CTCF binding           | Borzoi           | 0.53    | 0.57        | +7.5%       |
+| Hi-C contacts          | Orca             | 0.52    | 0.55        | +5.8%       |
+| Splice donor usage     | Pangolin         | 0.71    | 0.80        | +12.7%      |
+| Splice acceptor usage  | Pangolin         | 0.69    | 0.78        | +13.0%      |
 
 **Overall:** AlphaGenome wins **22 out of 24** tasks.
 
@@ -523,14 +523,14 @@ AlphaGenome was evaluated against the best external models (Enformer, Borzoi, Se
 
 **Table: Variant interpretation benchmarks**
 
-| Task | Dataset | Metric | AlphaGenome | 2nd Best Model |
-|:-----|:--------|:-------|:------------|:---------------|
-| eQTL recovery | GTEx v8 | Recall @ 5% FDR | 41% | 19% (Borzoi) |
-| eQTL direction | GTEx v8 | Accuracy | 74% | 68% (Enformer) |
-| ATAC QTL | UK Biobank | Accuracy | 74% | 68% (ChromBPNet) |
-| GWAS resolution | GWAS Catalog | % single variant | 49% | ~30% (colocalization) |
-| Splice disruption | ClinVar | auROC | 0.88 | 0.82 (Pangolin) |
-| Promoter variants | MPRA | Spearman ρ | 0.61 | 0.54 (Enformer) |
+| Task              | Dataset      | Metric           | AlphaGenome | 2nd Best Model        |
+| :---------------- | :----------- | :--------------- | :---------- | :-------------------- |
+| eQTL recovery     | GTEx v8      | Recall @ 5% FDR  | 41%         | 19% (Borzoi)          |
+| eQTL direction    | GTEx v8      | Accuracy         | 74%         | 68% (Enformer)        |
+| ATAC QTL          | UK Biobank   | Accuracy         | 74%         | 68% (ChromBPNet)      |
+| GWAS resolution   | GWAS Catalog | % single variant | 49%         | ~30% (colocalization) |
+| Splice disruption | ClinVar      | auROC            | 0.88        | 0.82 (Pangolin)       |
+| Promoter variants | MPRA         | Spearman ρ       | 0.61        | 0.54 (Enformer)       |
 
 **Overall:** AlphaGenome wins **24 out of 26** variant tasks.
 
@@ -546,6 +546,7 @@ Despite being 2× larger than Enformer (450M vs 220M parameters), AlphaGenome ac
 - **Deployment:** Distilled student model can run on a single GPU
 
 This efficiency comes from:
+
 1. Knowledge distillation reducing deployment model size
 2. Sequence parallelism enabling distributed training across chips
 3. Optimized convolution and attention kernels
@@ -599,7 +600,7 @@ AlphaGenome reveals the molecular mechanism of these oncogenic variants through 
 
 **The chr1:47239296:C>ACG insertion:**
 
-This variant creates a *de novo* **MYB transcription factor binding motif**. In silico mutagenesis comparing reference vs alternate sequences shows:
+This variant creates a _de novo_ **MYB transcription factor binding motif**. In silico mutagenesis comparing reference vs alternate sequences shows:
 
 - **Reference sequence**: Scanning 40bp around the variant position → no predicted impact on TAL1 expression
 - **Alternate sequence**: The 3bp insertion (C→ACG) creates MYB motif → predicted increase in:
@@ -652,6 +653,7 @@ prioritizing genes with large regulatory effects from nearby variants.
 **Screening regulatory sequences:**
 
 Pharmaceutical companies design antisense oligonucleotides (ASOs) or CRISPR therapies targeting specific genes. AlphaGenome predicts:
+
 - Which splice sites to target for exon skipping
 - Optimal guide RNA positions for minimal off-target effects
 - Enhancer sequences to activate/silence for gene therapy
@@ -672,6 +674,7 @@ Want a promoter that drives 10× higher expression in liver than brain? AlphaGen
 **Optimizing codon usage:**
 
 AlphaGenome predicts how synonymous codon changes affect:
+
 - mRNA stability (via secondary structure)
 - Splicing (exonic splicing enhancers)
 - Translation efficiency (codon optimality)
@@ -718,6 +721,7 @@ Training data is sparse for rare cell types (e.g., retinal photoreceptors, enter
 **3. Dynamic processes:**
 
 AlphaGenome is trained on static snapshots. It doesn't model:
+
 - Developmental trajectories (embryonic → adult)
 - Circadian rhythms (day/night gene expression oscillations)
 - Response to stimuli (immune activation, stress response)
@@ -725,6 +729,7 @@ AlphaGenome is trained on static snapshots. It doesn't model:
 **4. 3D genome structure:**
 
 Hi-C contact maps are predicted at coarse resolution. AlphaGenome doesn't explicitly model:
+
 - Topologically associating domain (TAD) boundaries
 - CTCF-mediated chromatin loops
 - Phase-separated condensates (e.g., transcriptional hubs)
@@ -732,6 +737,7 @@ Hi-C contact maps are predicted at coarse resolution. AlphaGenome doesn't explic
 **5. Epigenetic memory:**
 
 DNA methylation—a key epigenetic mark—is not predicted. This means AlphaGenome can't model:
+
 - Imprinting (parent-of-origin effects)
 - X-chromosome inactivation
 - Cellular reprogramming
@@ -739,6 +745,7 @@ DNA methylation—a key epigenetic mark—is not predicted. This means AlphaGeno
 **6. Complex genetics:**
 
 The in silico mutagenesis framework assumes:
+
 - Single-variant effects (no epistasis)
 - Additive contributions
 - No environmental interactions
@@ -750,6 +757,7 @@ In reality, many diseases involve complex multi-variant haplotypes and gene-envi
 **AlphaGenome-Multimer:**
 
 Just as AlphaFold-Multimer predicts protein complexes, an AlphaGenome-Multimer could model:
+
 - Cooperative TF binding (e.g., AP-1 dimers)
 - Enhanceosome assembly (multiple TFs on one enhancer)
 - Chromatin remodeler positioning
@@ -757,6 +765,7 @@ Just as AlphaFold-Multimer predicts protein complexes, an AlphaGenome-Multimer c
 **Dynamic AlphaGenome:**
 
 Incorporate time-series data:
+
 - Single-cell RNA-seq trajectories
 - Circadian transcriptome datasets
 - Developmental atlases (embryo → adult)
@@ -766,6 +775,7 @@ This would enable predictions like: "At 6 hours post-fertilization, this enhance
 **Cross-species transfer:**
 
 Current model handles human and mouse. Extending to:
+
 - Model organisms (zebrafish, drosophila, C. elegans)
 - Agricultural species (crops, livestock)
 - Non-model organisms with limited training data
@@ -773,6 +783,7 @@ Current model handles human and mouse. Extending to:
 **Integration with AlphaFold:**
 
 Joint prediction of:
+
 - Gene regulatory networks
 - Protein-DNA binding structures
 - Regulatory protein complexes
@@ -782,6 +793,7 @@ This would answer: "How does SNP rs123 alter CTCF-DNA binding, change chromatin 
 **Therapeutic design:**
 
 Use AlphaGenome for:
+
 - CRISPR guide RNA design (minimize off-targets)
 - Antisense oligonucleotide optimization (maximize efficacy)
 - Gene therapy enhancer engineering (tissue-specific expression)
@@ -800,9 +812,10 @@ The genome is no longer a static blueprint. With AlphaGenome, it becomes a progr
 
 ---
 
-*Reference: Avsec et al., "AlphaGenome: Nucleotide-resolution prediction of regulatory function at megabase scale,"* bioRxiv (2025). DOI: [10.1101/2025.06.25.661532](https://doi.org/10.1101/2025.06.25.661532)
+_Reference: Avsec et al., "AlphaGenome: Nucleotide-resolution prediction of regulatory function at megabase scale,"_ bioRxiv (2025). DOI: [10.1101/2025.06.25.661532](https://doi.org/10.1101/2025.06.25.661532)
 
 **Official resources:**
+
 - [AlphaGenome homepage](https://deepmind.google.com/science/alphagenome/)
 - [GitHub repository](https://github.com/google-deepmind/alphagenome)
 - [DeepMind blog](https://deepmind.google/discover/blog/alphagenome-ai-for-better-understanding-the-genome/)

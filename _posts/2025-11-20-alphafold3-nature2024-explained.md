@@ -15,7 +15,7 @@ tags:
 
 Imagine trying to assemble a jigsaw puzzle where the pieces are not rigid plastic but floppy, vibrating molecular chains that constantly shift shape depending on what they touch. Now imagine that the puzzle includes not just protein pieces but also DNA strands, RNA loops, drug-like small molecules, metal ions, and sugar modifications---all interacting simultaneously. For decades, structural biologists solved these puzzles one painstaking experiment at a time, using X-ray crystallography, cryo-EM, or NMR. AlphaFold 2 revolutionized the protein-only version of this puzzle in 2020, but the full molecular jigsaw---proteins interacting with nucleic acids, ligands, and each other---remained largely unsolved computationally.
 
-In 2024, Google DeepMind's **AlphaFold 3** (AF3) tackled this broader challenge. Published in *Nature*, AF3 introduced a unified deep learning architecture capable of jointly predicting the 3-D structure of complexes containing proteins, DNA, RNA, small molecules, ions, and modified residues. The key architectural innovation is a <span style="background-color: #fff3b0;">diffusion-based structure module</span> that replaces AlphaFold 2's deterministic structure module, enabling the model to generate diverse, high-quality structural predictions by learning to denoise atomic coordinates from random noise.
+In 2024, Google DeepMind's **AlphaFold 3** (AF3) tackled this broader challenge. Published in _Nature_, AF3 introduced a unified deep learning architecture capable of jointly predicting the 3-D structure of complexes containing proteins, DNA, RNA, small molecules, ions, and modified residues. The key architectural innovation is a <span style="background-color: #fff3b0;">diffusion-based structure module</span> that replaces AlphaFold 2's deterministic structure module, enabling the model to generate diverse, high-quality structural predictions by learning to denoise atomic coordinates from random noise.
 
 This post walks through the Nature paper, examining how AF3 combines a simplified trunk architecture (Pairformer), a powerful diffusion module, and a unified tokenization scheme to predict the structure of virtually any biomolecular complex.
 
@@ -56,16 +56,16 @@ The authors present seven key innovations that distinguish AlphaFold 3 from its 
 
 **_Architecture and scope._** AlphaFold 2 was designed exclusively for single-chain protein structure prediction (later extended to multimers via AlphaFold-Multimer). It used a 48-layer Evoformer that jointly processed MSA and pair representations, followed by a deterministic Structure Module that predicted backbone frames and side-chain torsion angles. AF3 takes a fundamentally different approach:
 
-| Feature | AlphaFold 2 | AlphaFold 3 |
-|:--------|:-----------|:------------|
-| **Scope** | Proteins only | Proteins, DNA, RNA, ligands, ions, modifications |
-| **MSA processing** | Evoformer (joint MSA + pair, 48 layers) | Separate MSA module, then Pairformer (pair + single only) |
-| **Structure generation** | Deterministic (backbone frames + torsions) | Diffusion-based (raw atom coordinates) |
-| **Representation** | Residue-level only | Token-level + atom-level (unified) |
-| **Output format** | Backbone frames + chi angles | Full-atom Cartesian coordinates |
-| **Sampling** | Recycling (deterministic) | Stochastic diffusion (multiple samples) |
-| **Training data** | PDB proteins | PDB + cross-distilled AF2 predictions |
-| **Confidence** | pLDDT, PAE | pLDDT, PAE, iPTM, ranking score |
+| Feature                  | AlphaFold 2                                | AlphaFold 3                                               |
+| :----------------------- | :----------------------------------------- | :-------------------------------------------------------- |
+| **Scope**                | Proteins only                              | Proteins, DNA, RNA, ligands, ions, modifications          |
+| **MSA processing**       | Evoformer (joint MSA + pair, 48 layers)    | Separate MSA module, then Pairformer (pair + single only) |
+| **Structure generation** | Deterministic (backbone frames + torsions) | Diffusion-based (raw atom coordinates)                    |
+| **Representation**       | Residue-level only                         | Token-level + atom-level (unified)                        |
+| **Output format**        | Backbone frames + chi angles               | Full-atom Cartesian coordinates                           |
+| **Sampling**             | Recycling (deterministic)                  | Stochastic diffusion (multiple samples)                   |
+| **Training data**        | PDB proteins                               | PDB + cross-distilled AF2 predictions                     |
+| **Confidence**           | pLDDT, PAE                                 | pLDDT, PAE, iPTM, ranking score                           |
 
 **_Why diffusion?_** The deterministic Structure Module in AF2 produces a single prediction per input, making it difficult to capture conformational heterogeneity or assess uncertainty through sampling. AF3's diffusion module generates structures by sampling from a learned distribution, allowing multiple plausible conformations to be produced and ranked. This is particularly important for flexible interfaces (protein-ligand binding, protein-RNA contacts) where a single structure may not adequately represent the ensemble of possible conformations.
 
@@ -227,6 +227,7 @@ AF3's ability to model diverse biomolecular interactions opens new avenues acros
 Traditional drug design relies heavily on experimental protein-ligand co-crystal structures or physics-based docking tools like AutoDock Vina and Glide. AF3 substantially outperforms these tools on protein-ligand structure prediction benchmarks, as the paper reports. For drug-like small molecules, AF3 achieves higher success rates (fraction of predictions below 2 Angstrom RMSD from the experimental pose) compared to the best traditional docking methods and even specialized deep learning approaches.
 
 This capability enables:
+
 - **Virtual screening** of drug candidates against predicted binding poses
 - **Lead optimization** by predicting how chemical modifications affect binding geometry
 - **Polypharmacology analysis** by modeling a drug's interactions with multiple protein targets
@@ -234,6 +235,7 @@ This capability enables:
 ### Nucleic Acid Interactions
 
 AF3 is the first general-purpose model to accurately predict protein-DNA and protein-RNA complex structures. This is critical for understanding:
+
 - **Transcription factor-DNA binding:** How regulatory proteins recognize specific DNA sequences
 - **CRISPR-Cas complexes:** Structural basis of genome editing machinery
 - **Ribosome and spliceosome assemblies:** RNA-protein machines essential for gene expression
@@ -253,6 +255,7 @@ The paper reports that AF3 substantially outperforms existing protein-nucleic ac
 ### Post-Translational Modifications and Covalent Ligands
 
 AF3 natively handles covalent modifications to proteins, including:
+
 - **Glycosylation:** Sugar chains attached to asparagine or serine/threonine residues
 - **Phosphorylation:** Addition of phosphate groups that regulate protein activity
 - **Bonded ligands:** Covalent inhibitors, cofactors (heme, FAD, NAD+), and prosthetic groups
@@ -273,12 +276,12 @@ AF3 was evaluated on a range of biomolecular interaction benchmarks. All evaluat
 
 On the PoseBusters benchmark (a curated set of recent protein-ligand co-crystal structures designed to test physically valid predictions), the paper reports that AF3 achieves substantially higher success rates than traditional docking methods and the specialized deep learning tool DiffDock:
 
-| Method | Category |
-|:-------|:---------|
-| **AlphaFold 3** | Generalist (deep learning) |
-| DiffDock | Specialist (deep learning, ligand docking) |
-| Vina (AutoDock) | Traditional (physics-based docking) |
-| Gold | Traditional (physics-based docking) |
+| Method          | Category                                   |
+| :-------------- | :----------------------------------------- |
+| **AlphaFold 3** | Generalist (deep learning)                 |
+| DiffDock        | Specialist (deep learning, ligand docking) |
+| Vina (AutoDock) | Traditional (physics-based docking)        |
+| Gold            | Traditional (physics-based docking)        |
 
 The paper reports that AF3 achieves the highest fraction of successful ligand poses (RMSD < 2 Angstrom) on PoseBusters while also passing physical validity checks (no steric clashes, correct bond geometry). Notably, many deep learning docking methods that achieve high RMSD success rates fail physical validity checks, a problem that AF3 largely avoids.
 
@@ -295,20 +298,20 @@ The paper reports that AF3 achieves the highest fraction of successful ligand po
 
 On recent protein-DNA and protein-RNA complex structures, the paper reports that AF3 substantially outperforms existing methods. The evaluation uses interface LDDT (iLDDT) and DockQ scores to assess prediction quality at the binding interface:
 
-| Interaction Type | AF3 Performance |
-|:----------------|:----------------|
-| **Protein-DNA** | Substantially improved over prior methods |
-| **Protein-RNA** | Substantially improved over prior methods |
-| **RNA-only** | Competitive with RNA-specific prediction tools |
+| Interaction Type | AF3 Performance                                |
+| :--------------- | :--------------------------------------------- |
+| **Protein-DNA**  | Substantially improved over prior methods      |
+| **Protein-RNA**  | Substantially improved over prior methods      |
+| **RNA-only**     | Competitive with RNA-specific prediction tools |
 
 ### Protein-Protein Interfaces
 
 On recent PDB structures (post training cutoff), the paper reports AF3 performance across different protein-protein interaction categories:
 
-| Category | AF3 vs. AF2-Multimer |
-|:---------|:--------------------|
+| Category                    | AF3 vs. AF2-Multimer   |
+| :-------------------------- | :--------------------- |
 | **General protein-protein** | Comparable or improved |
-| **Antibody-antigen** | Notably improved |
+| **Antibody-antigen**        | Notably improved       |
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -341,6 +344,7 @@ The diffusion module can generate structures that look physically reasonable but
 ### 2. Stereochemistry and Chirality Issues
 
 Diffusion models operating on raw Cartesian coordinates do not inherently enforce chemical validity. While AF3 includes post-processing steps to correct bond lengths and chirality violations, some samples may still contain:
+
 - Incorrect stereochemistry at chiral centers
 - Strained bond angles
 - Physically implausible conformations for small molecules
@@ -354,6 +358,7 @@ While the diffusion module can in principle generate diverse conformations, the 
 ### 4. Training Data Biases
 
 AF3 is trained primarily on crystallographic structures from the PDB, which are biased toward:
+
 - Well-folded, stable proteins (underrepresenting disordered and membrane proteins)
 - Specific organism biases (overrepresenting human and model organisms)
 - Crystallization-compatible conformations (excluding transient states)
@@ -390,6 +395,6 @@ AF3 requires substantial computational resources, particularly for large complex
 
 ---
 
-*Reference: Abramson et al.,* **Nature 630**, 493--500 (2024). DOI: [10.1038/s41586-024-07487-w](https://doi.org/10.1038/s41586-024-07487-w)
+_Reference: Abramson et al.,_ **Nature 630**, 493--500 (2024). DOI: [10.1038/s41586-024-07487-w](https://doi.org/10.1038/s41586-024-07487-w)
 
-*Access predictions: [AlphaFold Server](https://alphafoldserver.com/)*
+_Access predictions: [AlphaFold Server](https://alphafoldserver.com/)_

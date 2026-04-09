@@ -31,7 +31,7 @@ $$
 
 where $\hat{\mathbf{X}}$ collects predicted coordinates, $\hat{\mathbf{x}}_{i,a}$ is the 3D position of atom $a$ in residue $i$, and $\mathbb{R}^3$ denotes ordinary 3D space.
 
-In 2021, Google DeepMind's **AlphaFold** shocked the world by *solving* much of it. Published in *Nature*, the model predicted protein shapes with almost experimental accuracy, earning headlines like "the greatest breakthrough in biology since the human genome."
+In 2021, Google DeepMind's **AlphaFold** shocked the world by _solving_ much of it. Published in _Nature_, the model predicted protein shapes with almost experimental accuracy, earning headlines like "the greatest breakthrough in biology since the human genome."
 
 Explore the full [Nature article](https://www.nature.com/articles/s41586-021-03819-2) and its [supplementary material (PDF)](https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-021-03819-2/MediaObjects/41586_2021_3819_MOESM1_ESM.pdf) for deeper technical details.
 
@@ -108,6 +108,7 @@ The authors outline seven novel contributions that distinguish the AlphaFold2 mo
    $$
 
    where:
+
    - $$\mathcal{L}_{\text{msa-mask}}$$ is the masked-token loss,
    - $$(s,i)$$ indexes MSA row and residue,
    - $$\mathcal{M}$$ is the masked set,
@@ -279,6 +280,7 @@ Z^{(0)}_{\text{seed}} = Z^{(0)} + \Delta Z_{\text{recycle}} + \Delta Z_{\text{te
 $$
 
 where:
+
 - $M^{(0)}, Z^{(0)}$ are base embeddings from the input,
 - $\Delta M_{\text{recycle}}, \Delta Z_{\text{recycle}}$ come from previous iteration predictions,
 - $\Delta M_{\text{template}}, \Delta Z_{\text{template}}$ come from template structures,
@@ -292,83 +294,83 @@ A single Evoformer block repeatedly applies:
 
 1. **MSA row attention**
 
-    Row attention looks across the alignment: for a given sequence (MSA row) $s$, it asks "which other positions in this sequence are similar?" This helps identify conserved or co-varying regions.
+   Row attention looks across the alignment: for a given sequence (MSA row) $s$, it asks "which other positions in this sequence are similar?" This helps identify conserved or co-varying regions.
 
-    For each MSA row $s$ and residue $i$,
+   For each MSA row $s$ and residue $i$,
 
-    $$
-      \mathrm{Attn}^{\text{row}}(M)_{s,i}
-      = \sum_{j} \alpha_{s,i,j} V_{s,j},
-    $$
+   $$
+     \mathrm{Attn}^{\text{row}}(M)_{s,i}
+     = \sum_{j} \alpha_{s,i,j} V_{s,j},
+   $$
 
-    where $$\mathrm{Attn}^{\text{row}}$$ aggregates row information for MSA row $$s$$ at residue $$i$$, using attention weights $$\alpha_{s,i,j}$$ over values $$V_{s,j}$$. The attention weights are computed as:
+   where $$\mathrm{Attn}^{\text{row}}$$ aggregates row information for MSA row $$s$$ at residue $$i$$, using attention weights $$\alpha_{s,i,j}$$ over values $$V_{s,j}$$. The attention weights are computed as:
 
-    $$
-      \alpha_{s,i,j}
-      = \mathrm{softmax}_j\!\big(
-          Q_{s,i}^\top K_{s,j} / \sqrt{d_m} + \text{bias}_{i,j}
-        \big),
-    $$
+   $$
+     \alpha_{s,i,j}
+     = \mathrm{softmax}_j\!\big(
+         Q_{s,i}^\top K_{s,j} / \sqrt{d_m} + \text{bias}_{i,j}
+       \big),
+   $$
 
-    where $$Q_{s,i}$$ and $$K_{s,j}$$ are query and key vectors, $d_m$ scales the dot product, and $\text{bias}_{i,j}$ is derived from the pair representation $Z_{ij}$ (allowing pair geometry to modulate sequence attention). The softmax normalizes across positions $$j$$, ensuring the weights sum to 1. This is crucial: the pair representation helps row attention understand which sequence positions should be related.
+   where $$Q_{s,i}$$ and $$K_{s,j}$$ are query and key vectors, $d_m$ scales the dot product, and $\text{bias}_{i,j}$ is derived from the pair representation $Z_{ij}$ (allowing pair geometry to modulate sequence attention). The softmax normalizes across positions $$j$$, ensuring the weights sum to 1. This is crucial: the pair representation helps row attention understand which sequence positions should be related.
 
-    💡 **Key Insight**: Row attention uses both sequence information (via query-key matching) and geometric information (via the pair bias) to decide what to attend to. This fusion is what makes Evoformer powerful.
+   💡 **Key Insight**: Row attention uses both sequence information (via query-key matching) and geometric information (via the pair bias) to decide what to attend to. This fusion is what makes Evoformer powerful.
 
-    <img src="/assets/img/alphafold/row-attention-block.png" alt="Row attention block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
-    *Figure 4. Row-wise attention mixes residues within a single MSA row while injecting pair-derived biases before writing the updates back into $$M$$.*
+   <img src="/assets/img/alphafold/row-attention-block.png" alt="Row attention block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
+   *Figure 4. Row-wise attention mixes residues within a single MSA row while injecting pair-derived biases before writing the updates back into $$M$$.*
 
 2. **MSA column attention**
 
-    Column attention looks across the evolutionary dimension: for a given position (residue) $i$, it asks "which homologous sequences have important information at this position?" If many different organisms have the same amino acid at position $i$, that's a strong signal.
+   Column attention looks across the evolutionary dimension: for a given position (residue) $i$, it asks "which homologous sequences have important information at this position?" If many different organisms have the same amino acid at position $i$, that's a strong signal.
 
-    <img src="/assets/img/alphafold/column-attention-block.png" alt="Column attention block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
-    *Figure 5. Column-wise attention processes the stack of MSA rows for a single residue position, ensuring homologous sequences vote on residues $$i$$ consistently.*
+   <img src="/assets/img/alphafold/column-attention-block.png" alt="Column attention block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
+   *Figure 5. Column-wise attention processes the stack of MSA rows for a single residue position, ensuring homologous sequences vote on residues $$i$$ consistently.*
 
 3. **Outer-product mean** from MSA to pair
 
-    This operation bridges the evolutionary signal (MSA) and geometric signal (pairs). It asks: "Which residues co-vary across the alignment?" If residues $i$ and $j$ always have certain amino acids together across many homologs, that's a strong signal they might be in contact.
+   This operation bridges the evolutionary signal (MSA) and geometric signal (pairs). It asks: "Which residues co-vary across the alignment?" If residues $i$ and $j$ always have certain amino acids together across many homologs, that's a strong signal they might be in contact.
 
-    $$
-    \mathrm{OP}_{ij}
-    =
-    \frac{1}{N_{\text{msa}}}
-    \sum_{s=1}^{N_{\text{msa}}}
-    (W_1 M_{s,i}) \otimes (W_2 M_{s,j}),
-    $$
+   $$
+   \mathrm{OP}_{ij}
+   =
+   \frac{1}{N_{\text{msa}}}
+   \sum_{s=1}^{N_{\text{msa}}}
+   (W_1 M_{s,i}) \otimes (W_2 M_{s,j}),
+   $$
 
-    where $$\mathrm{OP}_{ij}$$ captures correlations between residues $$i$$ and $$j$$ by taking the outer product of their embeddings across all $N_{\text{msa}}$ sequences and averaging. Here, $W_1$ and $W_2$ are learned linear projections that compress the MSA embeddings, and $\otimes$ denotes the outer product (producing a matrix from two vectors). This result is added to the pair representation $Z_{ij}$.
+   where $$\mathrm{OP}_{ij}$$ captures correlations between residues $$i$$ and $$j$$ by taking the outer product of their embeddings across all $N_{\text{msa}}$ sequences and averaging. Here, $W_1$ and $W_2$ are learned linear projections that compress the MSA embeddings, and $\otimes$ denotes the outer product (producing a matrix from two vectors). This result is added to the pair representation $Z_{ij}$.
 
-    💡 **Why outer product?** The outer product $(u \otimes v)_{ab} = u_a v_b$ captures all pairwise interactions between features of position $i$ and position $j$. Averaging over sequences gives a "consensus" view of which feature combinations co-occur evolutionarily.
+   💡 **Why outer product?** The outer product $(u \otimes v)_{ab} = u_a v_b$ captures all pairwise interactions between features of position $i$ and position $j$. Averaging over sequences gives a "consensus" view of which feature combinations co-occur evolutionarily.
 
 4. **Triangle multiplicative updates** and **triangle attention** on $$Z$$
 
-    These operations model three-body interactions. Imagine three residues $i$, $j$, $k$ that form a geometric triplet. If you know: (1) the distance/angle between $i$ and $k$, and (2) the distance/angle between $k$ and $j$, you can infer something about the relationship between $i$ and $j$ (by triangle geometry).
+   These operations model three-body interactions. Imagine three residues $i$, $j$, $k$ that form a geometric triplet. If you know: (1) the distance/angle between $i$ and $k$, and (2) the distance/angle between $k$ and $j$, you can infer something about the relationship between $i$ and $j$ (by triangle geometry).
 
-    **Triangle multiplicative updates** treat the pair matrix as edges of a fully connected graph and pass messages around triangles $(i,j,k)$:
+   **Triangle multiplicative updates** treat the pair matrix as edges of a fully connected graph and pass messages around triangles $(i,j,k)$:
 
-    $$
-    Z_{ij}' = Z_{ij} + \text{gate}(\text{left-edge}) \odot \text{gate}(\text{right-edge}) \odot \text{value},
-    $$
+   $$
+   Z_{ij}' = Z_{ij} + \text{gate}(\text{left-edge}) \odot \text{gate}(\text{right-edge}) \odot \text{value},
+   $$
 
-    where $\text{left-edge}$ refers to information from $Z_{ik}$ or $Z_{kj}$, $\text{right-edge}$ refers to information from the other direction, $\odot$ denotes element-wise multiplication (Hadamard product), and $\text{gate}$ functions (sigmoid or similar) control information flow. The updates propagate geometric constraints through the network.
+   where $\text{left-edge}$ refers to information from $Z_{ik}$ or $Z_{kj}$, $\text{right-edge}$ refers to information from the other direction, $\odot$ denotes element-wise multiplication (Hadamard product), and $\text{gate}$ functions (sigmoid or similar) control information flow. The updates propagate geometric constraints through the network.
 
-    💡 **Why multiplicative?** Multiplication naturally encodes "conditional" reasoning: if the left edge is weak (small values), it gates out the right edge's contribution, implementing a kind of "if-then" logic for geometric constraints.
+   💡 **Why multiplicative?** Multiplication naturally encodes "conditional" reasoning: if the left edge is weak (small values), it gates out the right edge's contribution, implementing a kind of "if-then" logic for geometric constraints.
 
-    **Triangle attention** is an alternative or complementary operation that uses dot-product attention:
+   **Triangle attention** is an alternative or complementary operation that uses dot-product attention:
 
-    $$
-    Z_{ij}' = Z_{ij} + \sum_{k} \mathrm{softmax}_k(\text{score}_{k}) \cdot V_k,
-    $$
+   $$
+   Z_{ij}' = Z_{ij} + \sum_{k} \mathrm{softmax}_k(\text{score}_{k}) \cdot V_k,
+   $$
 
-    where the score depends on both $Z_{ik}$ and $Z_{kj}$, and the model learns which intermediate residue $k$ "best explains" the relationship between $i$ and $j$.
+   where the score depends on both $Z_{ik}$ and $Z_{kj}$, and the model learns which intermediate residue $k$ "best explains" the relationship between $i$ and $j$.
 
-    <img src="/assets/img/alphafold/triangle-multiplicative-block.png" alt="Triangle multiplicative block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
-    *Figure 6. Triangle multiplicative updates gate information separately along left and right edges before normalizing and writing the result to the $$ij$$ slot of $$Z$$.*
+   <img src="/assets/img/alphafold/triangle-multiplicative-block.png" alt="Triangle multiplicative block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
+   *Figure 6. Triangle multiplicative updates gate information separately along left and right edges before normalizing and writing the result to the $$ij$$ slot of $$Z$$.*
 
-    <img src="/assets/img/alphafold/triangle-attention-block.png" alt="Triangle attention block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
-    *Figure 7. Triangle attention treats the triplet edges as attention keys/values so that each pair chooses which intermediate residue $$k$$ best explains its geometry.*
+   <img src="/assets/img/alphafold/triangle-attention-block.png" alt="Triangle attention block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
+   *Figure 7. Triangle attention treats the triplet edges as attention keys/values so that each pair chooses which intermediate residue $$k$$ best explains its geometry.*
 
-    All sublayers (row attention, column attention, outer-product, triangle operations) live inside residual blocks with layer normalization and feed-forward networks. Residual connections allow gradients to flow and let the network learn when to apply or skip operations.
+   All sublayers (row attention, column attention, outer-product, triangle operations) live inside residual blocks with layer normalization and feed-forward networks. Residual connections allow gradients to flow and let the network learn when to apply or skip operations.
 
 ### Structure Module and Invariant Point Attention (IPA)
 
@@ -400,6 +402,7 @@ where $\mathbf{p}^{(i)}_j$ is the position of a query point in the local frame o
 #### Frame Updates and Torsion Angles
 
 After IPA updates, the Structure Module outputs:
+
 - **Updated frames** $F_i' = (R_i', \mathbf{t}_i')$ for each residue,
 - **Torsion angles** $\phi_i, \psi_i, \chi_i, \ldots$ that define bond angles and rotations within the residue.
 
@@ -407,7 +410,7 @@ Given these, the full-atom 3D coordinates are deterministically computed: each a
 
 ### Frame Aligned Point Error (FAPE) Loss
 
-The key geometric loss is the **Frame Aligned Point Error** (FAPE). The idea is elegant: compare the predicted and ground-truth structures *in the local frame* of each residue, not in global coordinates. This makes the loss invariant to global rigid-body motions.
+The key geometric loss is the **Frame Aligned Point Error** (FAPE). The idea is elegant: compare the predicted and ground-truth structures _in the local frame_ of each residue, not in global coordinates. This makes the loss invariant to global rigid-body motions.
 
 For each residue $i$, each atom $a$, and a supervising frame $F_i^\star = (R_i^\star, \mathbf{t}_i^\star)$ from the experimental structure:
 
@@ -418,7 +421,7 @@ $$
   = R_i^{\star\top}(\mathbf{x}^\star_{i,a} - \mathbf{t}_i^\star),
 $$
 
-  This rotates the experimental atom position $\mathbf{x}^\star_{i,a}$ into the local frame of residue $i$ by multiplying by $R_i^{\star\top}$ (inverse rotation) and subtracting the translation $\mathbf{t}_i^\star$.
+This rotates the experimental atom position $\mathbf{x}^\star_{i,a}$ into the local frame of residue $i$ by multiplying by $R_i^{\star\top}$ (inverse rotation) and subtracting the translation $\mathbf{t}_i^\star$.
 
 - **Prediction in the same frame**:
 
@@ -427,7 +430,7 @@ $$
   = R_i^{\star\top}(\hat{\mathbf{x}}_{i,a} - \mathbf{t}_i^\star),
 $$
 
-  The predicted atom is also rotated into this reference frame.
+The predicted atom is also rotated into this reference frame.
 
 The FAPE loss compares these local coordinates:
 
@@ -477,7 +480,8 @@ The brilliance is that **every component respects geometry**: frames are SE(3)-e
 AlphaFold has two main "brains," shown in the classic diagrams of colored blocks flowing from left to right:
 
 1. **Evoformer: The Relationship Builder**
-   - Reads a *multiple sequence alignment* (MSA), thousands of related sequences that reveal which amino acids evolve together.
+
+   - Reads a _multiple sequence alignment_ (MSA), thousands of related sequences that reveal which amino acids evolve together.
    - Maintains the two latent tensors $M$ (MSA) and $Z$ (pair).
    - Uses Transformer-style attention and geometric updates (triangle rules, outer-product mean) to learn which parts of a protein likely touch or move together.
 
@@ -496,13 +500,13 @@ In the international **CASP14** competition, AlphaFold stunned everyone: for man
 
 To help users judge trust in each prediction, AlphaFold reports:
 
-| Score | What It Means | Typical Use |
-|:------|:--------------|:------------|
-| **pLDDT > 90** | Nearly atomic accuracy | safe for detailed modeling |
-| **70 to 90** | Domain-level reliable | good for backbone tracing |
-| **< 70** | Uncertain or flexible | may indicate loops or motion |
+| Score          | What It Means          | Typical Use                  |
+| :------------- | :--------------------- | :--------------------------- |
+| **pLDDT > 90** | Nearly atomic accuracy | safe for detailed modeling   |
+| **70 to 90**   | Domain-level reliable  | good for backbone tracing    |
+| **< 70**       | Uncertain or flexible  | may indicate loops or motion |
 
-🖼️ *Visual idea:* imagine a rainbow-colored protein model, where bright blue regions are rock-solid while orange and red show where the AI isn't sure.
+🖼️ _Visual idea:_ imagine a rainbow-colored protein model, where bright blue regions are rock-solid while orange and red show where the AI isn't sure.
 
 ---
 
@@ -522,15 +526,15 @@ Scientists now use these models to:
 
 **Compared to previous structure prediction methods:**
 
-| Aspect | Classical/older AI | AlphaFold2 |
-|:-------|:--|:--|
-| **Architecture** | Two-step (distogram + optimization) | End-to-end, recycles predictions |
-| **Representations** | Single merged tensor ($L \times L$) | Separate MSA and pair tensors with cross-talk |
-| **Attention** | Standard sequence attention | Geometric attention (IPA) respecting rigid-body symmetries |
-| **Structure updates** | Torsion angles only | Frames + torsion angles = fully determined coordinates |
-| **Loss design** | MSA loss + distogram loss | FAPE loss (geometry-aware) + multiple auxiliary losses |
-| **Confidence** | Single score or none | Per-residue pLDDT scores |
-| **Scalability** | Limited by MSA size | Leverages templates and extra MSA stacks |
+| Aspect                | Classical/older AI                  | AlphaFold2                                                 |
+| :-------------------- | :---------------------------------- | :--------------------------------------------------------- |
+| **Architecture**      | Two-step (distogram + optimization) | End-to-end, recycles predictions                           |
+| **Representations**   | Single merged tensor ($L \times L$) | Separate MSA and pair tensors with cross-talk              |
+| **Attention**         | Standard sequence attention         | Geometric attention (IPA) respecting rigid-body symmetries |
+| **Structure updates** | Torsion angles only                 | Frames + torsion angles = fully determined coordinates     |
+| **Loss design**       | MSA loss + distogram loss           | FAPE loss (geometry-aware) + multiple auxiliary losses     |
+| **Confidence**        | Single score or none                | Per-residue pLDDT scores                                   |
+| **Scalability**       | Limited by MSA size                 | Leverages templates and extra MSA stacks                   |
 
 AlphaFold2's secret: **geometric-first design** at every layer, plus the insight that iterative refinement via recycling produces better results.
 
@@ -557,7 +561,7 @@ DeepMind and others have since expanded it: **AlphaFold-Multimer** for complexes
 
 ---
 
-*Reference: Jumper et al.,* **Nature 596**, 583–589 (2021). DOI: [10.1038/s41586-021-03819-2](https://doi.org/10.1038/s41586-021-03819-2)
+_Reference: Jumper et al.,_ **Nature 596**, 583–589 (2021). DOI: [10.1038/s41586-021-03819-2](https://doi.org/10.1038/s41586-021-03819-2)
 
 <style>
 .post-content img.zoomable {

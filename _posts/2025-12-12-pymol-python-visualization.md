@@ -104,6 +104,7 @@ cmd.save(filename)                  # Save session (.pse) or structure
 AlphaFold stores per-residue confidence (pLDDT) in the B-factor column. This recipe creates the standard confidence color scheme.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/pymol-python/figure1-plddt-coloring.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 1. AlphaFold model colored by pLDDT confidence. Dark blue: very high (>90), light blue: high (70-90), yellow: low (50-70), orange: very low (<50).
 </div>
@@ -163,6 +164,7 @@ for pdb in pdb_files:
 Showing two interacting chains with interface residues as sticks and hydrogen bonds as dashed lines.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/pymol-python/figure2-binding-interface.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 2. Spike RBD (blue) bound to ACE2 (coral). Interface residues within 4 angstroms are shown as sticks with polar contacts as dashed lines.
 </div>
@@ -225,6 +227,7 @@ cmd.set("label_font_id", 7)
 Electrostatic surfaces reveal charge distributions critical for understanding molecular recognition.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/pymol-python/figure3-electrostatics.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 3. Electrostatic surface potential of ACE2. Red = negative, blue = positive, white = neutral. The binding groove shows complementary negative charge to the spike RBD.
 </div>
@@ -281,6 +284,7 @@ render_electrostatics("6lzg_chainA.pdb", "electrostatics.png")
 Journal figures often require multiple views. Script consistent viewpoints with `cmd.get_view()` / `cmd.set_view()`.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/pymol-python/figure4-multi-panel.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 4. Multi-panel figure: (A) overview, (B) interface close-up, (C) 90-degree rotation, (D) surface representation. All panels share identical lighting and style.
 </div>
@@ -377,6 +381,7 @@ with open("views.json", "w") as f:
 ## 8. Tips for Journal-Quality Figures
 
 {% include figure.liquid loading="eager" path="assets/img/blog/pymol-python/figure5-quality-comparison.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 5. Left: default PyMOL (no ray tracing). Right: publication settings with ray tracing, anti-aliasing, and optimized lighting.
 </div>

@@ -23,6 +23,7 @@ In this tutorial we compare two paradigms side by side:
 By the end you will have working Python code for both approaches, understand their trade-offs, and know how to plug them into a virtual screening pipeline.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/molecular-docking/figure1-docking-overview.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 1. Molecular docking overview. A ligand is placed into a protein binding pocket, and a scoring function evaluates the predicted binding affinity.
 </div>
@@ -39,10 +40,10 @@ Drug discovery is expensive: the average cost to bring a single drug to market e
 
 The two dominant approaches are:
 
-| Approach | Representative Tools | Scoring | Speed |
-|----------|---------------------|---------|-------|
-| Physics-based | AutoDock Vina, Glide, GOLD | Empirical / force-field | Minutes per ligand |
-| AI-based | DiffDock, EquiBind, TankBind | Learned from crystal structures | Seconds per ligand |
+| Approach      | Representative Tools         | Scoring                         | Speed              |
+| ------------- | ---------------------------- | ------------------------------- | ------------------ |
+| Physics-based | AutoDock Vina, Glide, GOLD   | Empirical / force-field         | Minutes per ligand |
+| AI-based      | DiffDock, EquiBind, TankBind | Learned from crystal structures | Seconds per ligand |
 
 ---
 
@@ -231,12 +232,12 @@ print("\nPoses saved to aspirin_vina_out.pdbqt")
 
 **Interpreting Vina Scores**: Vina reports binding free energy in **kcal/mol**. More negative values indicate stronger predicted binding. A rough guide:
 
-| Affinity (kcal/mol) | Interpretation |
-|---------------------|----------------|
-| < -10 | Very strong binding |
-| -8 to -10 | Strong binding |
-| -6 to -8 | Moderate binding |
-| > -6 | Weak binding |
+| Affinity (kcal/mol) | Interpretation      |
+| ------------------- | ------------------- |
+| < -10               | Very strong binding |
+| -8 to -10           | Strong binding      |
+| -6 to -8            | Moderate binding    |
+| > -6                | Weak binding        |
 
 > **Caveat**: Vina scores correlate only moderately with experimental binding affinities. They are best used for **ranking** compounds rather than predicting absolute $$K_d$$ values.
 
@@ -279,6 +280,7 @@ view.show()
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/molecular-docking/figure2-vina-pose.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 2. AutoDock Vina docking result for aspirin in the SARS-CoV-2 Mpro active site. The protein is shown in cartoon representation, the ligand in green sticks, and the binding pocket surface in transparent white.
 </div>
@@ -307,6 +309,7 @@ $$
 where $$\mathbf{r}_t$$ is the translational component, $$\mathbf{R}_t$$ is the rotational component in SO(3), and $$\boldsymbol{\tau}_t$$ represents $$k$$ torsion angles on the torus $$\mathbb{T}^k$$.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/molecular-docking/figure3-diffdock-architecture.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 3. DiffDock architecture. A score model learns to reverse the diffusion over translational, rotational, and torsional degrees of freedom. A separate confidence model ranks the generated poses.
 </div>
@@ -481,6 +484,7 @@ if diffdock_mol and vina_mol:
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/molecular-docking/figure4-vina-vs-diffdock.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 4. Overlay of top-ranked poses from AutoDock Vina (green) and DiffDock (magenta) in the Mpro binding site. Despite different methodologies, both methods often identify similar binding modes for well-defined pockets.
 </div>
@@ -558,6 +562,7 @@ print("Energy minimization complete")
 ```
 
 > **Best practices for docking into AlphaFold structures**:
+>
 > - Only dock into regions with **pLDDT > 70** (confident predictions).
 > - Always energy-minimize before docking.
 > - Be cautious with **disordered loops** -- AlphaFold may place them incorrectly.
@@ -798,6 +803,7 @@ for r in results:
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/molecular-docking/figure5-screening-workflow.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 5. Virtual screening pipeline. Compounds are filtered for drug-likeness, docked with Vina or DiffDock, ranked by score, and top hits proceed to interaction analysis.
 </div>
@@ -948,6 +954,7 @@ plt.show()
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/molecular-docking/figure6-interaction-analysis.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 6. Post-docking analysis. Left: Protein-ligand interaction fingerprint showing hydrogen bonds, hydrophobic contacts, and pi-stacking. Right: Hierarchical clustering dendrogram of docked poses reveals two distinct binding modes.
 </div>
@@ -956,21 +963,21 @@ plt.show()
 
 ## 7. Comparison: Vina vs DiffDock vs Glide
 
-| Feature | AutoDock Vina | DiffDock | Glide (Schrodinger) |
-|---------|:------------:|:--------:|:-------------------:|
-| **License** | Open source (Apache 2.0) | Open source (MIT) | Commercial |
-| **Scoring** | Empirical (hybrid) | Learned (confidence) | Empirical (GlideScore) |
-| **Speed (per ligand)** | 1-5 min | 5-30 sec (GPU) | 1-10 min |
-| **GPU acceleration** | No | Yes (required) | Optional |
-| **Receptor flexibility** | Limited (side chains) | Implicit (learned) | Side-chain sampling |
-| **Success rate (RMSD < 2A)** | ~50-60% | ~35-40% (v1.1) | ~70-80% |
-| **Blind docking** | Poor | Good | Poor |
-| **Ensemble docking** | Manual | Built-in | Manual |
-| **Virtual screening** | Excellent | Good (batched) | Excellent |
-| **Water molecules** | Not modeled | Not modeled | Explicit waters |
-| **Metal coordination** | Limited | Not supported | Supported |
-| **Covalent docking** | No | No | Yes (CovDock) |
-| **Best for** | Large-scale screening | Novel pockets, blind docking | Accuracy-critical projects |
+| Feature                      |      AutoDock Vina       |           DiffDock           |    Glide (Schrodinger)     |
+| ---------------------------- | :----------------------: | :--------------------------: | :------------------------: |
+| **License**                  | Open source (Apache 2.0) |      Open source (MIT)       |         Commercial         |
+| **Scoring**                  |    Empirical (hybrid)    |     Learned (confidence)     |   Empirical (GlideScore)   |
+| **Speed (per ligand)**       |         1-5 min          |        5-30 sec (GPU)        |          1-10 min          |
+| **GPU acceleration**         |            No            |        Yes (required)        |          Optional          |
+| **Receptor flexibility**     |  Limited (side chains)   |      Implicit (learned)      |    Side-chain sampling     |
+| **Success rate (RMSD < 2A)** |         ~50-60%          |        ~35-40% (v1.1)        |          ~70-80%           |
+| **Blind docking**            |           Poor           |             Good             |            Poor            |
+| **Ensemble docking**         |          Manual          |           Built-in           |           Manual           |
+| **Virtual screening**        |        Excellent         |        Good (batched)        |         Excellent          |
+| **Water molecules**          |       Not modeled        |         Not modeled          |      Explicit waters       |
+| **Metal coordination**       |         Limited          |        Not supported         |         Supported          |
+| **Covalent docking**         |            No            |              No              |       Yes (CovDock)        |
+| **Best for**                 |  Large-scale screening   | Novel pockets, blind docking | Accuracy-critical projects |
 
 > **Key insight**: DiffDock excels at **blind docking** (no prior knowledge of the binding site) and produces diverse poses, but its success rate on standard benchmarks currently trails physics-based methods. The best strategy is often to **use both** and consensus-score the results.
 

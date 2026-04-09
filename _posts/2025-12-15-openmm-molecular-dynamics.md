@@ -114,6 +114,7 @@ print(f"After solvation: {modeller.topology.getNumAtoms()} atoms")
 The padding parameter controls how much water surrounds the protein on each side. A value of 1.0 nm is standard for most applications. The ionic strength of 0.15 M NaCl approximates physiological salt concentration.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/openmm-md/figure1-system-setup.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 1. System preparation workflow: the raw crystal structure is protonated, placed in a cubic water box with periodic boundary conditions, and neutralized with counterions.
 </div>
@@ -154,12 +155,12 @@ print(f"System created: {system.getNumParticles()} particles, "
 
 Key choices explained:
 
-| Parameter | Value | Rationale |
-|-----------|-------|-----------|
-| `nonbondedMethod` | PME | Accurate long-range electrostatics for periodic systems |
-| `nonbondedCutoff` | 1.0 nm | Standard cutoff; balances accuracy and speed |
-| `constraints` | HBonds | Allows 2 fs or larger timestep by freezing fast H-bond vibrations |
-| `hydrogenMass` | 1.5 amu | Hydrogen mass repartitioning enables 4 fs timestep without loss of accuracy |
+| Parameter         | Value   | Rationale                                                                   |
+| ----------------- | ------- | --------------------------------------------------------------------------- |
+| `nonbondedMethod` | PME     | Accurate long-range electrostatics for periodic systems                     |
+| `nonbondedCutoff` | 1.0 nm  | Standard cutoff; balances accuracy and speed                                |
+| `constraints`     | HBonds  | Allows 2 fs or larger timestep by freezing fast H-bond vibrations           |
+| `hydrogenMass`    | 1.5 amu | Hydrogen mass repartitioning enables 4 fs timestep without loss of accuracy |
 
 ### 3.2 Integrator and Barostat
 
@@ -181,6 +182,7 @@ system.addForce(barostat)
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/openmm-md/figure2-simulation-workflow.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 2. Overview of the simulation workflow: energy minimization removes steric clashes, NVT equilibration stabilizes temperature, NPT equilibration stabilizes density, and the production run generates the trajectory for analysis.
 </div>
@@ -332,6 +334,7 @@ print("Saved equilibrated checkpoint.")
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/openmm-md/figure3-equilibration.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 3. Equilibration monitoring: (a) temperature stabilizes around 300 K during NVT, (b) density converges to ~1.0 g/cm<sup>3</sup> during NPT, indicating a well-equilibrated system.
 </div>
@@ -414,12 +417,12 @@ with open('production_final.pdb', 'w') as f:
 
 **Typical performance benchmarks** (lysozyme in water, ~25,000 atoms):
 
-| Platform | Approximate Speed |
-|----------|------------------|
-| CPU (8 cores) | 5--15 ns/day |
-| GTX 1080 Ti | 100--200 ns/day |
-| RTX 3090 | 200--400 ns/day |
-| A100 | 400--800 ns/day |
+| Platform      | Approximate Speed |
+| ------------- | ----------------- |
+| CPU (8 cores) | 5--15 ns/day      |
+| GTX 1080 Ti   | 100--200 ns/day   |
+| RTX 3090      | 200--400 ns/day   |
+| A100          | 400--800 ns/day   |
 
 For a 10 ns simulation on a modern GPU, expect roughly 30 minutes to a few hours.
 
@@ -490,6 +493,7 @@ print(f"Mean RMSD (last 5 ns): {np.mean(rmsd_values[len(rmsd_values)//2:]):.2f} 
 For a well-behaved simulation of a stable protein like lysozyme, expect RMSD to plateau at 1--2 Angstroms within the first few nanoseconds.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/openmm-md/figure4-rmsd-rmsf.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 4. (a) Backbone RMSD over time: the plateau after ~2 ns indicates structural convergence. (b) Per-residue RMSF: loop regions (highlighted) show the highest fluctuations, consistent with their known flexibility.
 </div>
@@ -665,6 +669,7 @@ for idx in frame_indices:
 These PDB snapshots can be loaded into PyMOL, VMD, or ChimeraX for high-quality rendering.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/openmm-md/figure5-trajectory-snapshots.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 5. Trajectory snapshots at different time points showing the protein's conformational evolution. Loop regions exhibit the most visible structural changes, while the core beta-sheet and alpha-helical regions remain stable.
 </div>
@@ -834,12 +839,12 @@ Comparing MD simulations of wild-type and mutant proteins reveals how mutations 
 
 **Computational resources:**
 
-| Simulation Goal | System Size | Time | GPU Hours (RTX 3090) |
-|----------------|-------------|------|---------------------|
-| Quick test | ~25K atoms | 10 ns | ~1 hour |
-| Standard analysis | ~25K atoms | 100 ns | ~8 hours |
-| Thorough sampling | ~25K atoms | 1 us | ~3 days |
-| Protein-ligand FEP | ~50K atoms | 5 ns x 12 windows | ~6 hours |
+| Simulation Goal    | System Size | Time              | GPU Hours (RTX 3090) |
+| ------------------ | ----------- | ----------------- | -------------------- |
+| Quick test         | ~25K atoms  | 10 ns             | ~1 hour              |
+| Standard analysis  | ~25K atoms  | 100 ns            | ~8 hours             |
+| Thorough sampling  | ~25K atoms  | 1 us              | ~3 days              |
+| Protein-ligand FEP | ~50K atoms  | 5 ns x 12 windows | ~6 hours             |
 
 **Common pitfalls and solutions:**
 

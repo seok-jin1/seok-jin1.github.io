@@ -28,6 +28,7 @@ The Assay for Transposase-Accessible Chromatin (ATAC-seq) uses a hyperactive Tn5
 The resulting data is inherently **sparse and binary**: for any given genomic region in a single cell, chromatin is either accessible (fragment detected) or not. This sparsity -- far more extreme than scRNA-seq -- demands specialized computational methods.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/scatac-seq/figure1-atac-overview.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 1. Overview of the scATAC-seq assay. Tn5 transposase inserts adapters into open chromatin regions. After single-cell barcoding and sequencing, fragments are mapped back to the genome to identify accessible regions per cell.
 </div>
@@ -166,6 +167,7 @@ plotPDF(p1, p2, p3, p4,
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/scatac-seq/figure2-qc-plots.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 2. Quality control metrics for scATAC-seq data. (A) TSS enrichment score distribution. (B) Log10 fragment count distribution. (C) Fragment size distribution showing nucleosomal banding pattern. (D) TSS enrichment profile showing enrichment of fragments around transcription start sites.
 </div>
@@ -240,6 +242,7 @@ plotPDF(p_clusters, p_sample,
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/scatac-seq/figure3-umap-clusters.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 3. UMAP visualization of PBMC scATAC-seq data colored by cluster identity. Distinct clusters correspond to different immune cell populations identified by their chromatin accessibility profiles.
 </div>
@@ -421,6 +424,7 @@ plotPDF(p_motifs,
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/scatac-seq/figure4-motif-deviations.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 4. chromVAR motif deviation scores projected onto UMAP. Each panel shows the activity of a key immune transcription factor motif. RUNX3 marks CD8+ T cells, SPI1 (PU.1) marks myeloid cells, PAX5 marks B cells, and FOXP3 marks regulatory T cells.
 </div>
@@ -475,14 +479,14 @@ plotPDF(p_tracks,
 
 [Signac](https://stuartlab.org/signac/) extends the Seurat framework for chromatin data analysis. If you are already familiar with Seurat for scRNA-seq, Signac provides a natural extension with a consistent API. The core differences from ArchR:
 
-| Feature | ArchR | Signac |
-|---------|-------|--------|
-| Data storage | HDF5-based Arrow files | In-memory Seurat object |
-| Scalability | Excellent (100k+ cells) | Moderate (requires more RAM) |
-| Peak calling | Built-in MACS2 wrapper | Manual or via `CallPeaks()` |
-| Motif analysis | Built-in chromVAR | Via `RunChromVAR()` wrapper |
-| Integration | Built-in label transfer | Via Seurat v5 bridge |
-| Learning curve | Standalone API | Familiar if you know Seurat |
+| Feature        | ArchR                   | Signac                       |
+| -------------- | ----------------------- | ---------------------------- |
+| Data storage   | HDF5-based Arrow files  | In-memory Seurat object      |
+| Scalability    | Excellent (100k+ cells) | Moderate (requires more RAM) |
+| Peak calling   | Built-in MACS2 wrapper  | Manual or via `CallPeaks()`  |
+| Motif analysis | Built-in chromVAR       | Via `RunChromVAR()` wrapper  |
+| Integration    | Built-in label transfer | Via Seurat v5 bridge         |
+| Learning curve | Standalone API          | Familiar if you know Seurat  |
 
 ### 4.1 Creating a Signac Object
 
@@ -658,6 +662,7 @@ plotPDF(p_labels,
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/scatac-seq/figure5-label-transfer.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 5. UMAP of scATAC-seq data colored by cell type labels transferred from a reference scRNA-seq dataset. Label transfer uses gene activity scores from ATAC data and gene expression from RNA data to find shared nearest neighbors across modalities.
 </div>
@@ -766,6 +771,7 @@ p_links <- plotBrowserTrack(
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/scatac-seq/figure6-peak2gene-browser.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 6. Genome browser view of the IFNG locus showing cell-type-specific chromatin accessibility tracks and peak-to-gene links (arcs). Distal regulatory elements with correlated accessibility-expression patterns are connected to the IFNG promoter, revealing the enhancer landscape that drives interferon-gamma production in effector T cells.
 </div>
@@ -925,9 +931,9 @@ snap.pl.umap(data, color="leiden", interactive=False)
 
 ## References
 
-- Granja, J.M. et al. "ArchR is a scalable software package for integrative single-cell chromatin accessibility analysis." *Nature Genetics* 53, 403--411 (2021). [DOI: 10.1038/s41588-021-00790-6](https://doi.org/10.1038/s41588-021-00790-6)
-- Stuart, T. et al. "Multimodal single-cell chromatin analysis with Signac." *Nature Methods* 21, 789--797 (2024). [DOI: 10.1038/s41592-023-02036-9](https://doi.org/10.1038/s41592-023-02036-9)
-- Schep, A.N. et al. "chromVAR: inferring transcription-factor-associated accessibility from single-cell epigenomic data." *Nature Methods* 14, 975--978 (2017). [DOI: 10.1038/nmeth.4401](https://doi.org/10.1038/nmeth.4401)
-- Zhang, K. et al. "SnapATAC2: a fast, scalable and versatile tool for analysis of single-cell omics data." *Nature Methods* 21, 217--227 (2024). [DOI: 10.1038/s41592-023-02139-9](https://doi.org/10.1038/s41592-023-02139-9)
-- Gonzalez-Blas, C.B. et al. "cisTopic: cis-regulatory topic modeling on single-cell ATAC-seq data." *Nature Methods* 16, 397--400 (2019). [DOI: 10.1038/s41592-019-0367-1](https://doi.org/10.1038/s41592-019-0367-1)
-- Buenrostro, J.D. et al. "Single-cell chromatin accessibility reveals principles of regulatory variation." *Nature* 523, 486--490 (2015). [DOI: 10.1038/nature14590](https://doi.org/10.1038/nature14590)
+- Granja, J.M. et al. "ArchR is a scalable software package for integrative single-cell chromatin accessibility analysis." _Nature Genetics_ 53, 403--411 (2021). [DOI: 10.1038/s41588-021-00790-6](https://doi.org/10.1038/s41588-021-00790-6)
+- Stuart, T. et al. "Multimodal single-cell chromatin analysis with Signac." _Nature Methods_ 21, 789--797 (2024). [DOI: 10.1038/s41592-023-02036-9](https://doi.org/10.1038/s41592-023-02036-9)
+- Schep, A.N. et al. "chromVAR: inferring transcription-factor-associated accessibility from single-cell epigenomic data." _Nature Methods_ 14, 975--978 (2017). [DOI: 10.1038/nmeth.4401](https://doi.org/10.1038/nmeth.4401)
+- Zhang, K. et al. "SnapATAC2: a fast, scalable and versatile tool for analysis of single-cell omics data." _Nature Methods_ 21, 217--227 (2024). [DOI: 10.1038/s41592-023-02139-9](https://doi.org/10.1038/s41592-023-02139-9)
+- Gonzalez-Blas, C.B. et al. "cisTopic: cis-regulatory topic modeling on single-cell ATAC-seq data." _Nature Methods_ 16, 397--400 (2019). [DOI: 10.1038/s41592-019-0367-1](https://doi.org/10.1038/s41592-019-0367-1)
+- Buenrostro, J.D. et al. "Single-cell chromatin accessibility reveals principles of regulatory variation." _Nature_ 523, 486--490 (2015). [DOI: 10.1038/nature14590](https://doi.org/10.1038/nature14590)

@@ -53,43 +53,19 @@
       "name": "Programming & Tools",
       "level": "Expert",
       "icon": "fa-solid fa-code",
-      "keywords": [
-        "Python",
-        "R",
-        "PyTorch",
-        "TensorFlow",
-        "scikit-learn",
-        "Biopython",
-        "pandas",
-        "NumPy"
-      ]
+      "keywords": ["Python", "R", "PyTorch", "TensorFlow", "scikit-learn", "Biopython", "pandas", "NumPy"]
     },
     {
       "name": "Protein Engineering",
       "level": "Advanced",
       "icon": "fa-solid fa-dna",
-      "keywords": [
-        "AlphaFold",
-        "ProteinMPNN",
-        "Rosetta",
-        "TCR-peptide-MHC Prediction",
-        "CAR-T Design",
-        "Protein Purification"
-      ]
+      "keywords": ["AlphaFold", "ProteinMPNN", "Rosetta", "TCR-peptide-MHC Prediction", "CAR-T Design", "Protein Purification"]
     },
     {
       "name": "Immunology & Molecular Biology",
       "level": "Expert",
       "icon": "fa-solid fa-microscope",
-      "keywords": [
-        "CRISPR/Cas9 Gene Editing",
-        "Flow Cytometry",
-        "ELISA",
-        "qPCR",
-        "Western Blotting",
-        "Cell Culture",
-        "Mouse Models"
-      ]
+      "keywords": ["CRISPR/Cas9 Gene Editing", "Flow Cytometry", "ELISA", "qPCR", "Western Blotting", "Cell Culture", "Mouse Models"]
     }
   ]
 }

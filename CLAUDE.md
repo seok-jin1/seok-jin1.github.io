@@ -134,14 +134,17 @@ The GitHub Actions workflow (`.github/workflows/deploy.yml`) performs:
 ### Dependencies
 
 **Ruby (Gemfile):**
+
 - Jekyll with numerous plugins (scholar, feed, imagemagick, jupyter-notebook, etc.)
 - Key plugins: `jekyll-scholar`, `jekyll-imagemagick`, `jekyll-jupyter-notebook`
 
 **Node.js (package.json):**
+
 - Prettier with Liquid plugin for code formatting
 - Very minimal Node dependencies
 
 **System:**
+
 - ImageMagick (for image processing)
 - Python with nbconvert (for Jupyter notebook support)
 
@@ -171,6 +174,7 @@ The GitHub Actions workflow (`.github/workflows/deploy.yml`) performs:
 Primary config file: **`_config.yml`**
 
 Key settings to modify:
+
 - Lines 5-8: Personal info (title, name)
 - Line 21: Site URL
 - Lines 266-268: Scholar author name (for publication highlighting)
@@ -197,6 +201,7 @@ Key settings to modify:
 ## Responsive Images
 
 The jekyll-imagemagick plugin automatically generates responsive images:
+
 - Input formats: JPG, JPEG, PNG, TIFF, GIF
 - Output: WebP at multiple widths (480px, 800px, 1400px)
 - Processes files in `assets/img/`

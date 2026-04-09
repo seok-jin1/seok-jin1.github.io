@@ -20,7 +20,11 @@
           {% if content.entity %}
             <div class="ml-1 ml-md-4" style="display: flex; align-items: center; gap: 10px; margin-top: 5px; margin-bottom: 5px;">
               {% if content.entity_logo %}
-                <img src="{{ content.entity_logo | relative_url }}" alt="{{ content.entity }}" style="height: 30px; width: auto; object-fit: contain;">
+                <img
+                  src="{{ content.entity_logo | relative_url }}"
+                  alt="{{ content.entity }}"
+                  style="height: 30px; width: auto; object-fit: contain;"
+                >
               {% endif %}
               <span style="font-size: 0.85rem; color: #888;">{{ content.entity }}</span>
             </div>

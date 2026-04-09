@@ -117,6 +117,7 @@ The paper uses SHAP-based feature interpretation rather than treating the model 
 For clinical machine learning, this matters. A prediction that says "likely lung" is more convincing if it is accompanied by smoking-associated mutational signatures, lung-relevant driver patterns, and other coherent evidence.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/onconpc/figure4-shap-importance.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 4. SHAP-based feature importance for OncoNPC predictions. Somatic mutations (e.g., BRAF V600E, KRAS), mutational signatures (e.g., smoking, UV), copy-number alterations, and clinical variables each contribute to tissue-of-origin inference. Feature importance values reproduced from Moon et al., Nature Medicine 2023.
 </div>
@@ -137,6 +138,7 @@ The abstract already contains the key numbers:
 Those are unusually strong translational signals for a paper in this space.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/onconpc/figure3-confusion-matrix.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 3. Classification performance of OncoNPC across 22 cancer types (held-out set). The confusion matrix shows high accuracy along the diagonal for most cancer types, with the model achieving a weighted F1 score of 0.942 for high-confidence predictions. Data reproduced from Moon et al., Nature Medicine 2023.
 </div>
@@ -168,11 +170,13 @@ If your broader interest is precision medicine, this paper is a useful template 
 That mindset is transferable to many other domains, including immunotherapy response prediction, molecular subtype assignment, and biomarker-guided patient stratification.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/onconpc/figure5-survival-concordance.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 5. Kaplan-Meier survival analysis of CUP patients stratified by treatment concordance with OncoNPC predictions. Patients receiving first palliative treatment concordant with the model's prediction showed significantly improved overall survival (HR = 0.348). Data reproduced from Moon et al., Nature Medicine 2023.
 </div>
 
 {% include figure.liquid loading="eager" path="assets/img/blog/onconpc/figure6-actionability.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 6. (A) OncoNPC expands genomically guided therapy opportunities by 2.2-fold for CUP patients. (B) Distribution of prediction confidence across 971 CUP tumors, with 41.2% receiving high-confidence classifications. Data reproduced from Moon et al., Nature Medicine 2023.
 </div>

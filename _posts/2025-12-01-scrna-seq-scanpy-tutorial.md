@@ -124,6 +124,7 @@ sc.pl.violin(
 ```
 
 {% include figure.liquid path="assets/img/blog/scrna-seq/figure1-qc-violin.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 1. Violin plots of QC metrics. Left: number of genes detected per cell. Center: total UMI counts per cell. Right: percentage of mitochondrial reads. Cells with extreme values in any of these metrics are likely low-quality and should be filtered out.
 </div>
@@ -190,6 +191,7 @@ sc.pl.highly_variable_genes(adata, save="_hvg.png")
 ```
 
 {% include figure.liquid path="assets/img/blog/scrna-seq/figure2-highly-variable-genes.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 2. Highly variable gene selection. Black dots represent genes selected as highly variable. These genes show higher dispersion (variance) than expected for their mean expression level, indicating they capture meaningful biological variation rather than technical noise.
 </div>
@@ -222,6 +224,7 @@ sc.pl.pca_variance_ratio(adata, log=True, n_pcs=50, save="_elbow.png")
 ```
 
 {% include figure.liquid path="assets/img/blog/scrna-seq/figure3-pca-elbow.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 3. PCA variance ratio (elbow plot). Each point shows the proportion of variance explained by the corresponding principal component. The "elbow" where the curve flattens indicates the point of diminishing returns. For this dataset, approximately 10 PCs capture the major axes of variation.
 </div>
@@ -265,6 +268,7 @@ sc.pl.umap(adata, color=["leiden"], save="_leiden_clusters.png")
 ```
 
 {% include figure.liquid path="assets/img/blog/scrna-seq/figure4-umap-clusters.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 4. UMAP visualization colored by Leiden clusters. Each color represents a distinct cluster identified by the algorithm. At resolution 1.0, the algorithm identifies major immune cell populations that we will annotate in the next section.
 </div>
@@ -335,6 +339,7 @@ sc.pl.dotplot(
 ```
 
 {% include figure.liquid path="assets/img/blog/scrna-seq/figure5-marker-dotplot.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 5. Dot plot of canonical marker genes across Leiden clusters. Dot size represents the fraction of cells in each cluster expressing the gene (analogous to percent positive in flow cytometry). Color intensity represents the mean expression level (analogous to MFI). This plot allows systematic mapping of clusters to known immune cell types.
 </div>
@@ -376,6 +381,7 @@ sc.pl.umap(adata, color=["cell_type"], save="_annotated_umap.png")
 ```
 
 {% include figure.liquid path="assets/img/blog/scrna-seq/figure6-annotated-umap.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 6. UMAP visualization with manual cell type annotations. Clusters have been labeled based on canonical marker gene expression. The major PBMC populations --- T cells, B cells, monocytes, NK cells, dendritic cells, and platelets --- are clearly resolved.
 </div>
@@ -569,4 +575,4 @@ For further reading, the [Scanpy documentation](https://scanpy.readthedocs.io/) 
 
 ---
 
-*The complete code from this tutorial is available as a single script. All analysis was performed using the publicly available PBMC 3k dataset from 10x Genomics.*
+_The complete code from this tutorial is available as a single script. All analysis was performed using the publicly available PBMC 3k dataset from 10x Genomics._

@@ -36,6 +36,7 @@ This loop enables iterative refinement: generate candidates, filter by structura
 ### What We Will Build
 
 By the end of this tutorial, you will have a working pipeline that:
+
 - Predicts a protein complex structure with ColabFold
 - Prepares design inputs specifying which residues to redesign
 - Generates 100+ sequence variants with ProteinMPNN
@@ -141,6 +142,7 @@ colabfold_batch \
 ```
 
 **Key parameters:**
+
 - `--num-recycle 3`: Number of recycling iterations (improves accuracy for complexes).
 - `--num-models 5`: Run all five AF2 model variants and rank them.
 - `--amber`: Apply AMBER force field relaxation to reduce steric clashes.
@@ -162,6 +164,7 @@ ls protein_design/af2_predictions/
 ```
 
 **Key quality metrics:**
+
 - **pLDDT** (predicted Local Distance Difference Test): Per-residue confidence score (0--100). Regions with pLDDT > 90 are modeled with high confidence; 70--90 is acceptable; below 70 suggests disorder or poor prediction.
 - **PAE** (Predicted Aligned Error): A matrix of predicted positional errors between all residue pairs. Low inter-chain PAE indicates confident prediction of the complex interface.
 
@@ -410,13 +413,13 @@ python protein_mpnn_run.py \
 
 **Key parameters explained:**
 
-| Parameter | Description | Recommended |
-|-----------|-------------|-------------|
-| `--num_seq_per_target` | Number of sequences to generate per temperature | 100 for screening |
-| `--sampling_temp` | Temperature(s) for sampling. Lower = more conservative, higher = more diverse | `"0.1 0.2 0.3"` |
-| `--fixed_positions_jsonl` | Positions to keep fixed (not redesigned) | Required for CDR design |
-| `--batch_size` | Batch size for inference | 1 (increase if GPU memory allows) |
-| `--seed` | Random seed for reproducibility | Any integer |
+| Parameter                 | Description                                                                   | Recommended                       |
+| ------------------------- | ----------------------------------------------------------------------------- | --------------------------------- |
+| `--num_seq_per_target`    | Number of sequences to generate per temperature                               | 100 for screening                 |
+| `--sampling_temp`         | Temperature(s) for sampling. Lower = more conservative, higher = more diverse | `"0.1 0.2 0.3"`                   |
+| `--fixed_positions_jsonl` | Positions to keep fixed (not redesigned)                                      | Required for CDR design           |
+| `--batch_size`            | Batch size for inference                                                      | 1 (increase if GPU memory allows) |
+| `--seed`                  | Random seed for reproducibility                                               | Any integer                       |
 
 > **CPU vs GPU**: ProteinMPNN runs well on CPU for single structures. For batch design of hundreds of targets, GPU is recommended. On CPU, 100 sequences take approximately 30 seconds per target.
 
@@ -472,6 +475,7 @@ seqs = parse_mpnn_output(
 ```
 
 Each header line contains:
+
 - **score**: Negative log-likelihood of the sequence given the structure (lower is better).
 - **global_score**: Average score across all designed positions.
 - **seq_recovery**: Fraction of positions matching the original sequence.
@@ -1037,13 +1041,13 @@ Input Sequence
 
 ### When to Use This Workflow vs. Alternatives
 
-| Scenario | Recommended Tool |
-|----------|-----------------|
-| Redesign specific regions (CDRs, loops) | **This workflow** (AF2 + ProteinMPNN) |
-| De novo backbone generation | **RFdiffusion** + ProteinMPNN |
-| Small molecule binding site design | **RFdiffusion** or **Rosetta** |
+| Scenario                                  | Recommended Tool                                          |
+| ----------------------------------------- | --------------------------------------------------------- |
+| Redesign specific regions (CDRs, loops)   | **This workflow** (AF2 + ProteinMPNN)                     |
+| De novo backbone generation               | **RFdiffusion** + ProteinMPNN                             |
+| Small molecule binding site design        | **RFdiffusion** or **Rosetta**                            |
 | Sequence optimization only (no structure) | **ESM-IF** or **ProteinMPNN** with experimental structure |
-| Ultra-large scale virtual screening | **ESMFold** (faster than AF2) + ProteinMPNN |
+| Ultra-large scale virtual screening       | **ESMFold** (faster than AF2) + ProteinMPNN               |
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -1058,11 +1062,11 @@ Input Sequence
 
 - **ColabFold**: [github.com/sokrypton/ColabFold](https://github.com/sokrypton/ColabFold)
 - **ProteinMPNN**: [github.com/dauparas/ProteinMPNN](https://github.com/dauparas/ProteinMPNN)
-- **ProteinMPNN paper**: Dauparas et al., *Science* (2022). [DOI: 10.1126/science.add2187](https://doi.org/10.1126/science.add2187)
-- **AlphaFold2 paper**: Jumper et al., *Nature* (2021). [DOI: 10.1038/s41586-021-03819-2](https://doi.org/10.1038/s41586-021-03819-2)
-- **ColabFold paper**: Mirdita et al., *Nature Methods* (2022). [DOI: 10.1038/s41592-022-01488-1](https://doi.org/10.1038/s41592-022-01488-1)
-- **RFdiffusion**: Watson et al., *Nature* (2023). [DOI: 10.1038/s41586-023-06415-8](https://doi.org/10.1038/s41586-023-06415-8)
+- **ProteinMPNN paper**: Dauparas et al., _Science_ (2022). [DOI: 10.1126/science.add2187](https://doi.org/10.1126/science.add2187)
+- **AlphaFold2 paper**: Jumper et al., _Nature_ (2021). [DOI: 10.1038/s41586-021-03819-2](https://doi.org/10.1038/s41586-021-03819-2)
+- **ColabFold paper**: Mirdita et al., _Nature Methods_ (2022). [DOI: 10.1038/s41592-022-01488-1](https://doi.org/10.1038/s41592-022-01488-1)
+- **RFdiffusion**: Watson et al., _Nature_ (2023). [DOI: 10.1038/s41586-023-06415-8](https://doi.org/10.1038/s41586-023-06415-8)
 
 ---
 
-*This tutorial provides a computational starting point. All designs should be validated experimentally before drawing biological conclusions or pursuing therapeutic applications.*
+_This tutorial provides a computational starting point. All designs should be validated experimentally before drawing biological conclusions or pursuing therapeutic applications._

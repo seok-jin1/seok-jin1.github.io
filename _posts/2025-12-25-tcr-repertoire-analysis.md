@@ -32,19 +32,19 @@ With the advent of 10x Genomics 5' V(D)J sequencing, we can now pair TCR/BCR seq
 
 Both tools start from the output of the 10x Genomics Cell Ranger `vdj` pipeline. The key input file is `filtered_contig_annotations.csv`, which contains one row per contig (reconstructed receptor chain) with the following critical columns:
 
-| Column | Description |
-|--------|-------------|
-| `barcode` | Cell barcode (matches GEX data) |
-| `is_cell` | Whether the barcode is called as a cell |
-| `contig_id` | Unique identifier for the assembled contig |
-| `chain` | Chain type (TRA, TRB, IGH, IGK, IGL) |
-| `v_gene` | Assigned V gene (e.g., TRAV12-1) |
-| `d_gene` | Assigned D gene (TRB and IGH only) |
-| `j_gene` | Assigned J gene |
-| `c_gene` | Assigned constant gene |
-| `cdr3` | CDR3 amino acid sequence |
-| `cdr3_nt` | CDR3 nucleotide sequence |
-| `raw_clonotype_id` | Cell Ranger clonotype assignment |
+| Column             | Description                                |
+| ------------------ | ------------------------------------------ |
+| `barcode`          | Cell barcode (matches GEX data)            |
+| `is_cell`          | Whether the barcode is called as a cell    |
+| `contig_id`        | Unique identifier for the assembled contig |
+| `chain`            | Chain type (TRA, TRB, IGH, IGK, IGL)       |
+| `v_gene`           | Assigned V gene (e.g., TRAV12-1)           |
+| `d_gene`           | Assigned D gene (TRB and IGH only)         |
+| `j_gene`           | Assigned J gene                            |
+| `c_gene`           | Assigned constant gene                     |
+| `cdr3`             | CDR3 amino acid sequence                   |
+| `cdr3_nt`          | CDR3 nucleotide sequence                   |
+| `raw_clonotype_id` | Cell Ranger clonotype assignment           |
 
 For a typical paired GEX + VDJ experiment, you will have:
 
@@ -154,6 +154,7 @@ clonalQuant(
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/tcr-repertoire/figure1-clonal-quantification.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 1. Clonotype quantification across tissue compartments. Tumor-infiltrating T cells show fewer unique clonotypes but greater clonal expansion compared to blood, reflecting antigen-driven selection in the tumor microenvironment.
 </div>
@@ -197,18 +198,19 @@ clonalDiversity(
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/tcr-repertoire/figure2-diversity-metrics.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 2. Diversity metrics across compartments. Shannon entropy and inverse Simpson index are lower in tumor compared to blood, indicating oligoclonal expansion of tumor-reactive T cells. Chao1 estimates total species richness including unobserved clonotypes.
 </div>
 
 Key diversity indices and their interpretation:
 
-| Metric | Formula concept | Interpretation |
-|--------|----------------|----------------|
-| **Shannon** | $$H = -\sum p_i \ln(p_i)$$ | Sensitive to rare clonotypes; higher = more diverse |
-| **Simpson** | $$D = 1 - \sum p_i^2$$ | Probability two random cells have different TCRs; dominated by abundant clones |
-| **Chao1** | Estimates total richness from singletons | Predicts unobserved clonotypes; useful for under-sampled repertoires |
-| **ACE** | Abundance-based coverage estimator | Similar to Chao1 but uses more rare-species information |
+| Metric      | Formula concept                          | Interpretation                                                                 |
+| ----------- | ---------------------------------------- | ------------------------------------------------------------------------------ |
+| **Shannon** | $$H = -\sum p_i \ln(p_i)$$               | Sensitive to rare clonotypes; higher = more diverse                            |
+| **Simpson** | $$D = 1 - \sum p_i^2$$                   | Probability two random cells have different TCRs; dominated by abundant clones |
+| **Chao1**   | Estimates total richness from singletons | Predicts unobserved clonotypes; useful for under-sampled repertoires           |
+| **ACE**     | Abundance-based coverage estimator       | Similar to Chao1 but uses more rare-species information                        |
 
 Rarefaction analysis is critical when comparing samples with different cell numbers:
 
@@ -236,6 +238,7 @@ clonalOverlap(
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/tcr-repertoire/figure3-clonal-overlap.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 3. Morisita overlap index between tissue compartments. Significant overlap between tumor and blood TCR repertoires suggests active trafficking of tumor-reactive T cells, while lower overlap with adjacent normal tissue indicates tumor-specific recruitment.
 </div>
@@ -306,6 +309,7 @@ DimPlot(seurat_obj, group.by = "cloneSize") +
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/tcr-repertoire/figure4-umap-clonal-expansion.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 4. UMAP embedding colored by clonal expansion category. Hyperexpanded clones (red) concentrate in cytotoxic CD8+ T cell clusters, while naive and regulatory T cell clusters are predominantly composed of singleton clonotypes (grey), consistent with antigen-experienced effector expansion.
 </div>
@@ -418,6 +422,7 @@ print(vdj_tumor)
 ```
 
 The `Dandelion` object has two core DataFrames:
+
 - **`vdj.data`** --- per-contig information (one row per chain)
 - **`vdj.metadata`** --- per-cell information (one row per cell, with paired chain info)
 
@@ -467,6 +472,7 @@ plt.savefig("assets/img/blog/tcr-repertoire/figure5-gene-usage.png", dpi=150)
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/tcr-repertoire/figure5-gene-usage.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 5. TRB V gene usage in tumor-infiltrating T cells. Skewed V gene usage (e.g., over-representation of TRBV6-1 or TRBV20-1) can indicate antigen-driven selection, where specific V gene-encoded CDR1/CDR2 loops contribute to pMHC recognition.
 </div>
@@ -539,6 +545,7 @@ ddl.pl.clone_network(
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/tcr-repertoire/figure6-clonotype-network.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 6. Clonotype similarity network from Dandelion. Each node represents a cell, edges connect cells with similar CDR3 sequences. Dense clusters indicate clonal expansions. Coloring by V gene reveals that expanded clones tend to share V gene usage, consistent with convergent selection toward common antigens.
 </div>
@@ -638,7 +645,7 @@ cat(sprintf("Tumor-Blood shared clonotypes: %d\n", length(shared_clones)))
 
 ### TCR-Antigen Specificity Prediction
 
-Knowing that a T cell clone is expanded is only half the story --- the critical question is *what antigen does it recognize*? Several computational tools attempt to predict TCR-antigen specificity from sequence alone:
+Knowing that a T cell clone is expanded is only half the story --- the critical question is _what antigen does it recognize_? Several computational tools attempt to predict TCR-antigen specificity from sequence alone:
 
 **GLIPH2** (Grouping of Lymphocyte Interactions by Paratope Hotspots) clusters TCR sequences by shared CDR3 motifs that may recognize the same antigen:
 
@@ -757,12 +764,12 @@ cat(sprintf("Alpha-beta pairing rates: %s\n",
 
 The choice of clonotype definition affects your results significantly:
 
-| Definition | Stringency | Best for |
-|-----------|-----------|----------|
-| CTgene | Lowest | V/J gene usage analysis, broad patterns |
-| CTaa | Medium | Most analyses; groups convergent TCRs |
-| CTnt | High | Distinguishing truly independent recombination events |
-| CTstrict | Highest | When V gene identity matters for specificity |
+| Definition | Stringency | Best for                                              |
+| ---------- | ---------- | ----------------------------------------------------- |
+| CTgene     | Lowest     | V/J gene usage analysis, broad patterns               |
+| CTaa       | Medium     | Most analyses; groups convergent TCRs                 |
+| CTnt       | High       | Distinguishing truly independent recombination events |
+| CTstrict   | Highest    | When V gene identity matters for specificity          |
 
 For most immunological questions, **CTaa** (CDR3 amino acid) is the recommended default. It captures convergent recombination --- different nucleotide sequences encoding the same amino acid CDR3 --- which is a hallmark of antigen-driven selection.
 

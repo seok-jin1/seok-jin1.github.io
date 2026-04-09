@@ -13,7 +13,7 @@ tags:
   - tutorial
 ---
 
-Single-cell RNA sequencing captures a snapshot of gene expression in individual cells, but biology is not static. Cells are constantly transitioning between states --- differentiating, activating, or becoming exhausted. **RNA velocity** gives us a way to infer the *direction* and *speed* of these transitions from a single time point, effectively turning a snapshot into a movie.
+Single-cell RNA sequencing captures a snapshot of gene expression in individual cells, but biology is not static. Cells are constantly transitioning between states --- differentiating, activating, or becoming exhausted. **RNA velocity** gives us a way to infer the _direction_ and _speed_ of these transitions from a single time point, effectively turning a snapshot into a movie.
 
 In this tutorial, we will walk through the full RNA velocity analysis pipeline using **scVelo** and **CellRank**, with an immunological focus on T cell differentiation and exhaustion trajectories.
 
@@ -35,7 +35,7 @@ $$
 
 where $$u_i$$ is unspliced mRNA abundance, $$s_i$$ is spliced mRNA abundance, $$\alpha_i$$ is the transcription rate, $$\beta_i$$ is the splicing rate, and $$\gamma_i$$ is the degradation rate.
 
-At **steady state**, the ratio of unspliced to spliced mRNA is constant: $$u_i = \frac{\gamma_i}{\beta_i} s_i$$. Cells that deviate from this steady-state line are actively changing their expression of that gene. A cell with more unspliced mRNA than expected is *upregulating* the gene; a cell with less is *downregulating* it.
+At **steady state**, the ratio of unspliced to spliced mRNA is constant: $$u_i = \frac{\gamma_i}{\beta_i} s_i$$. Cells that deviate from this steady-state line are actively changing their expression of that gene. A cell with more unspliced mRNA than expected is _upregulating_ the gene; a cell with less is _downregulating_ it.
 
 The **velocity** of gene $$i$$ is defined as:
 
@@ -46,6 +46,7 @@ $$
 A positive velocity means the gene is being induced; a negative velocity means it is being repressed. By computing velocities across thousands of genes and projecting them onto a low-dimensional embedding, we can visualize the predicted future state of every cell.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/rna-velocity/figure1-splicing-kinetics.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 1. Splicing kinetics underlying RNA velocity. Unspliced mRNA is converted to spliced mRNA by the spliceosome, and the deviation from steady-state equilibrium reveals whether a gene is being induced or repressed.
 </div>
@@ -175,6 +176,7 @@ scv.pl.velocity_embedding_stream(
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/rna-velocity/figure2-stream-plot.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 2. RNA velocity stream plot on UMAP embedding showing predicted cell state transitions in a T cell dataset. Arrows indicate the direction of differentiation from naive T cells through effector states toward exhaustion.
 </div>
@@ -252,6 +254,7 @@ scv.pl.scatter(
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/rna-velocity/figure3-latent-time.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 3. Latent time inferred by the dynamical model. Cells are colored by their position along the inferred temporal axis, with dark colors representing early states (naive T cells) and bright colors representing late states (exhausted T cells).
 </div>
@@ -291,6 +294,7 @@ scv.pl.velocity(
 ```
 
 In a T cell exhaustion dataset, you would expect to see:
+
 - **TCF7** (TCF-1): high velocity in progenitor exhausted cells, decreasing as cells terminalize
 - **TOX**: positive velocity in transitioning cells as TOX drives the exhaustion program
 - **PDCD1** (PD-1), **HAVCR2** (TIM-3), **LAG3**: increasing velocity as inhibitory receptors accumulate
@@ -299,7 +303,7 @@ In a T cell exhaustion dataset, you would expect to see:
 
 ## 5. CellRank: Probabilistic Fate Mapping
 
-While scVelo tells us the *direction* of change, **CellRank** quantifies the *probability* that each cell will reach a particular terminal state. It combines RNA velocity with transcriptomic similarity to build a robust transition matrix.
+While scVelo tells us the _direction_ of change, **CellRank** quantifies the _probability_ that each cell will reach a particular terminal state. It combines RNA velocity with transcriptomic similarity to build a robust transition matrix.
 
 ### 5.1 Initializing CellRank with Velocity
 
@@ -349,6 +353,7 @@ g.set_terminal_states(
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/rna-velocity/figure4-terminal-states.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 4. CellRank-identified terminal states overlaid on the UMAP embedding. Terminal states correspond to biologically meaningful endpoints: terminally exhausted T cells, effector memory T cells, and progenitor exhausted T cells.
 </div>
@@ -389,6 +394,7 @@ cr.pl.gene_trends(
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/rna-velocity/figure5-gene-trends.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 5. Gene expression trends along the exhaustion trajectory computed by CellRank. TCF7 expression decreases as cells progress toward terminal exhaustion, while inhibitory receptors (PDCD1, HAVCR2, TIGIT) and the exhaustion driver TOX increase.
 </div>
@@ -501,6 +507,7 @@ sc.pl.umap(
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/rna-velocity/figure6-branching-entropy.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 6. Fate decision entropy across CD8+ T cells. Cells with high entropy (bright colors) sit at branching points where the trajectory diverges between progenitor exhausted (Tpex) and terminally exhausted (Tex) fates. These bifurcation points are candidate targets for therapeutic intervention.
 </div>
@@ -511,16 +518,16 @@ sc.pl.umap(
 
 Understanding when each model is appropriate is critical for correct biological interpretation:
 
-| Feature | Stochastic | Dynamical |
-|---------|-----------|-----------|
-| **Speed** | Fast (minutes) | Slow (hours for large datasets) |
-| **Steady-state assumption** | Yes (single steady state per gene) | No (models full induction/repression kinetics) |
-| **Latent time** | Not available | Yes |
-| **Rate parameters** | Only $$\gamma$$ (degradation) | $$\alpha$$, $$\beta$$, $$\gamma$$ per gene |
-| **Multi-lineage** | Limited accuracy | Better at branching trajectories |
-| **Best for** | Quick exploration, simple trajectories | Publication-quality analysis, complex differentiation |
+| Feature                     | Stochastic                             | Dynamical                                             |
+| --------------------------- | -------------------------------------- | ----------------------------------------------------- |
+| **Speed**                   | Fast (minutes)                         | Slow (hours for large datasets)                       |
+| **Steady-state assumption** | Yes (single steady state per gene)     | No (models full induction/repression kinetics)        |
+| **Latent time**             | Not available                          | Yes                                                   |
+| **Rate parameters**         | Only $$\gamma$$ (degradation)          | $$\alpha$$, $$\beta$$, $$\gamma$$ per gene            |
+| **Multi-lineage**           | Limited accuracy                       | Better at branching trajectories                      |
+| **Best for**                | Quick exploration, simple trajectories | Publication-quality analysis, complex differentiation |
 
-In practice, start with the stochastic model for quick exploration, then switch to the dynamical model if the results look reasonable. Compare velocity confidence between models using `scv.tl.velocity_confidence()`. One important caveat: both models assume that splicing dynamics reflect the *current* direction of transcriptional change. In systems with rapid transitions or strong post-transcriptional regulation (e.g., miRNA-mediated degradation in activated T cells), velocity estimates may be noisy. Always validate against known biology.
+In practice, start with the stochastic model for quick exploration, then switch to the dynamical model if the results look reasonable. Compare velocity confidence between models using `scv.tl.velocity_confidence()`. One important caveat: both models assume that splicing dynamics reflect the _current_ direction of transcriptional change. In systems with rapid transitions or strong post-transcriptional regulation (e.g., miRNA-mediated degradation in activated T cells), velocity estimates may be noisy. Always validate against known biology.
 
 ---
 

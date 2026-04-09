@@ -142,6 +142,7 @@ groupSize <- as.numeric(table(cellchat@idents))
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/cellchat/figure1-aggregated-network.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 1. Aggregated cell-cell communication network showing the number of interactions (left) and total interaction strength (right) between cell types in the tumor microenvironment.
 </div>
@@ -165,6 +166,7 @@ netVisual_aggregate(cellchat,
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/cellchat/figure2-hierarchy-plot.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 2. Hierarchy plot of PD-L1 signaling. Tumor cells and macrophages express PD-L1 that engages PD-1 on CD8+ T cells, representing a key immune checkpoint axis in the TME.
 </div>
@@ -192,6 +194,7 @@ netVisual_bubble(cellchat,
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/cellchat/figure3-bubble-plot.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 3. Bubble plot showing ligand-receptor interactions from myeloid cells (macrophages and DCs) to T cell subsets. Larger bubbles indicate higher communication probability; color encodes the signaling pathway.
 </div>
@@ -246,6 +249,7 @@ rankNet(cellchat_merged, mode = "comparison", stacked = TRUE, do.stat = TRUE)
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/cellchat/figure4-condition-comparison.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 4. Comparison of cell-cell communication between normal and tumor tissue. Red edges indicate increased interactions in tumor; blue edges indicate decreased interactions. Note the strong upregulation of immune checkpoint signaling in the tumor condition.
 </div>
@@ -399,6 +403,7 @@ plt.savefig("cpdb_dotplot.png", dpi=150, bbox_inches="tight")
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/cellchat/figure5-cellphonedb-dotplot.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 5. CellPhoneDB dot plot showing significant ligand-receptor interactions between immune cell types in the TME. Dot size represents statistical significance (-log10 p-value); color intensity indicates mean expression level.
 </div>
@@ -409,16 +414,16 @@ plt.savefig("cpdb_dotplot.png", dpi=150, bbox_inches="tight")
 
 Choosing between tools depends on your analysis goals. Here is a practical comparison:
 
-| Feature | CellChat | CellPhoneDB | LIANA |
-|---------|----------|-------------|-------|
-| **Language** | R | Python | R / Python |
-| **Database** | CellChatDB (secreted, ECM, cell-cell contact) | CellPhoneDB DB (multi-subunit complexes) | Consensus of multiple DBs |
-| **Statistical method** | Permutation test + triMean | Permutation test on means | Multiple methods (aggregate ranking) |
-| **Multi-subunit receptors** | Cofactor modeling | Explicit complex definition | Depends on method |
-| **Condition comparison** | Built-in (mergeCellChat) | Manual | Built-in |
-| **Visualization** | Extensive (hierarchy, circle, chord, bubble, heatmap) | Basic (dot plot, heatmap) | Standardized output |
-| **Spatial support** | CellChat v2 (spatial transcriptomics) | CellPhoneDB v5 (spatial) | Via spatialDM |
-| **Speed** | Moderate | Fast | Varies by method |
+| Feature                     | CellChat                                              | CellPhoneDB                              | LIANA                                |
+| --------------------------- | ----------------------------------------------------- | ---------------------------------------- | ------------------------------------ |
+| **Language**                | R                                                     | Python                                   | R / Python                           |
+| **Database**                | CellChatDB (secreted, ECM, cell-cell contact)         | CellPhoneDB DB (multi-subunit complexes) | Consensus of multiple DBs            |
+| **Statistical method**      | Permutation test + triMean                            | Permutation test on means                | Multiple methods (aggregate ranking) |
+| **Multi-subunit receptors** | Cofactor modeling                                     | Explicit complex definition              | Depends on method                    |
+| **Condition comparison**    | Built-in (mergeCellChat)                              | Manual                                   | Built-in                             |
+| **Visualization**           | Extensive (hierarchy, circle, chord, bubble, heatmap) | Basic (dot plot, heatmap)                | Standardized output                  |
+| **Spatial support**         | CellChat v2 (spatial transcriptomics)                 | CellPhoneDB v5 (spatial)                 | Via spatialDM                        |
+| **Speed**                   | Moderate                                              | Fast                                     | Varies by method                     |
 
 **CellChat** is best for comprehensive pathway-level analysis with rich visualizations and built-in condition comparison. **CellPhoneDB** excels at fast permutation-based statistics with careful handling of multi-subunit receptors, integrating well with Scanpy workflows. **LIANA** provides consensus rankings across multiple methods and databases, reducing method-specific biases.
 
@@ -496,6 +501,7 @@ netVisual_bubble(cellchat,
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/cellchat/figure6-costimulation-balance.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 6. Costimulatory (CD28) versus inhibitory (CTLA-4) signaling balance. DCs provide stronger CD28 costimulation to conventional T cells, while Tregs preferentially engage the CTLA-4 inhibitory pathway, reflecting their role in maintaining immune tolerance in the TME.
 </div>
@@ -550,7 +556,7 @@ for axis_name, interactions in [
 
 **2. The database matters as much as the method.** Each tool uses a different curated database of ligand-receptor interactions. Interactions missing from the database will never be detected. Consider supplementing with LIANA, which aggregates results across multiple databases and methods.
 
-**3. Communication analysis is hypothesis-generating, not definitive.** These tools infer *potential* communication based on co-expression of ligands and receptors. They cannot confirm that signaling actually occurs. Validation through protein-level assays (flow cytometry, imaging), functional experiments (co-culture, blocking antibodies), or spatial transcriptomics is essential.
+**3. Communication analysis is hypothesis-generating, not definitive.** These tools infer _potential_ communication based on co-expression of ligands and receptors. They cannot confirm that signaling actually occurs. Validation through protein-level assays (flow cytometry, imaging), functional experiments (co-culture, blocking antibodies), or spatial transcriptomics is essential.
 
 **4. For immunology, focus on biologically interpretable axes.** Rather than reporting hundreds of significant interactions, organize your results around known immunological circuits: checkpoint inhibition, costimulation, chemokine recruitment, and cytokine polarization. This makes the analysis actionable for downstream experiments.
 

@@ -31,7 +31,7 @@ $$
 
 where $\hat{\mathbf{X}}$ collects predicted coordinates, $\hat{\mathbf{x}}_{i,a}$ is the 3D position of atom $a$ in residue $i$, and $\mathbb{R}^3$ denotes ordinary 3D space.
 
-In 2021, Google DeepMind's **AlphaFold** shocked the world by *solving* much of it. Published in *Nature*, the model predicted protein shapes with almost experimental accuracy, earning headlines like "the greatest breakthrough in biology since the human genome."
+In 2021, Google DeepMind's **AlphaFold** shocked the world by _solving_ much of it. Published in _Nature_, the model predicted protein shapes with almost experimental accuracy, earning headlines like "the greatest breakthrough in biology since the human genome."
 
 Explore the full [Nature article](https://www.nature.com/articles/s41586-021-03819-2) and its [supplementary material (PDF)](https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-021-03819-2/MediaObjects/41586_2021_3819_MOESM1_ESM.pdf) for deeper technical details.
 
@@ -94,12 +94,13 @@ The authors outline seven novel contributions that distinguish the AlphaFold2 mo
    $$
 
    where:
+
    - $$\mathcal{L}_{\text{msa-mask}}$$ is the masked-token loss,
    - $$(s,i)$$ indexes MSA row and residue,
    - $$\mathcal{M}$$ is the masked set,
    - $$p_{\theta}$$ is the model's predicted distribution.
 
-6. **Self-distillation on unlabeled sequences.** A noisy-student self-training loop (inspired by the CVPR 2020 paper *Self-training with Noisy Student improves ImageNet classification*) lets AlphaFold learn from vast unlabeled protein sequences. A "teacher" AlphaFold model creates pseudo-labels (structures and distances), and a "student" model learns to match them under strong augmentations.
+6. **Self-distillation on unlabeled sequences.** A noisy-student self-training loop (inspired by the CVPR 2020 paper _Self-training with Noisy Student improves ImageNet classification_) lets AlphaFold learn from vast unlabeled protein sequences. A "teacher" AlphaFold model creates pseudo-labels (structures and distances), and a "student" model learns to match them under strong augmentations.
 
 7. **Self-estimated accuracy.** AlphaFold outputs per-residue pLDDT scores, giving scientists a built-in estimate of how trustworthy each part of the predicted structure is. Concretely, the network predicts a 50-bin distribution over "local distance difference test" (LDDT) scores; the expected value becomes pLDDT.
 
@@ -195,9 +196,9 @@ Before each Evoformer pass, AlphaFold adds three sources of information:
 
    - Distances between Cβ atoms:
 
-    $$
-    d^{\text{prev}}_{ij} = \|\mathbf{x}^{\text{prev}}_{i, C_\beta} - \mathbf{x}^{\text{prev}}_{j, C_\beta}\|_2,
-    $$
+   $$
+   d^{\text{prev}}_{ij} = \|\mathbf{x}^{\text{prev}}_{i, C_\beta} - \mathbf{x}^{\text{prev}}_{j, C_\beta}\|_2,
+   $$
 
    - Linear projections of previous $M$ and $Z$,
 
@@ -232,54 +233,54 @@ A single Evoformer block repeatedly applies:
 
 1. **MSA row attention**
 
-    For each MSA row $s$ and residue $i$,
+   For each MSA row $s$ and residue $i$,
 
-    $$
-      \mathrm{Attn}^{\text{row}}(M)_{s,i}
-      = \sum_{j} \alpha_{s,i,j} V_{s,j},
-    $$
+   $$
+     \mathrm{Attn}^{\text{row}}(M)_{s,i}
+     = \sum_{j} \alpha_{s,i,j} V_{s,j},
+   $$
 
-    where $$\mathrm{Attn}^{\text{row}}$$ aggregates row information for MSA row $$s$$ at residue $$i$$, using attention weights $$\alpha_{s,i,j}$$ over values $$V_{s,j}$$, and
+   where $$\mathrm{Attn}^{\text{row}}$$ aggregates row information for MSA row $$s$$ at residue $$i$$, using attention weights $$\alpha_{s,i,j}$$ over values $$V_{s,j}$$, and
 
-    $$
-      \alpha_{s,i,j}
-      = \mathrm{softmax}_j\!\big(
-          Q_{s,i}^\top K_{s,j} / \sqrt{d_m} + b_{ij}
-        \big),
-    $$
+   $$
+     \alpha_{s,i,j}
+     = \mathrm{softmax}_j\!\big(
+         Q_{s,i}^\top K_{s,j} / \sqrt{d_m} + b_{ij}
+       \big),
+   $$
 
-    where $$Q_{s,i}$$ and $$K_{s,j}$$ are query and key vectors, $$d_m$$ scales the dot product, $$b_{ij}$$ is a bias derived from the pair representation $$Z_{ij}$$ (allowing geometric context to modulate sequence attention), and the softmax normalizes across positions $$j$$.
+   where $$Q_{s,i}$$ and $$K_{s,j}$$ are query and key vectors, $$d_m$$ scales the dot product, $$b_{ij}$$ is a bias derived from the pair representation $$Z_{ij}$$ (allowing geometric context to modulate sequence attention), and the softmax normalizes across positions $$j$$.
 
-    <img src="/assets/img/alphafold/row-attention-block.png" alt="Row attention block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
-    *Figure 4. Row-wise attention mixes residues within a single MSA row while injecting pair-derived biases before writing the updates back into $$M$$.*
+   <img src="/assets/img/alphafold/row-attention-block.png" alt="Row attention block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
+   *Figure 4. Row-wise attention mixes residues within a single MSA row while injecting pair-derived biases before writing the updates back into $$M$$.*
 
 2. **MSA column attention** (attend along the MSA axis instead of the residue axis).
 
-    <img src="/assets/img/alphafold/column-attention-block.png" alt="Column attention block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
-    *Figure 5. Column-wise attention processes the stack of MSA rows for a single residue position, ensuring homologous sequences vote on residues $$i$$ consistently.*
+<img src="/assets/img/alphafold/column-attention-block.png" alt="Column attention block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
+*Figure 5. Column-wise attention processes the stack of MSA rows for a single residue position, ensuring homologous sequences vote on residues $$i$$ consistently.*
 
 3. **Outer-product mean** from MSA to pair:
 
-    $$
-    \mathrm{OP}_{ij}
-    =
-    \frac{1}{N_{\text{msa}}}
-    \sum_{s=1}^{N_{\text{msa}}}
-    (W_1 M_{s,i}) \otimes (W_2 M_{s,j}),
-    $$
+   $$
+   \mathrm{OP}_{ij}
+   =
+   \frac{1}{N_{\text{msa}}}
+   \sum_{s=1}^{N_{\text{msa}}}
+   (W_1 M_{s,i}) \otimes (W_2 M_{s,j}),
+   $$
 
-    where $$\mathrm{OP}_{ij}$$ captures correlations between residues $$i$$ and $$j$$, $$W_1$$ and $$W_2$$ are learned projections, and $$\otimes$$ denotes an outer product averaged over all $$N_{\text{msa}}$$ rows, which is added to the pair representation $$Z_{ij}$$.
+   where $$\mathrm{OP}_{ij}$$ captures correlations between residues $$i$$ and $$j$$, $$W_1$$ and $$W_2$$ are learned projections, and $$\otimes$$ denotes an outer product averaged over all $$N_{\text{msa}}$$ rows, which is added to the pair representation $$Z_{ij}$$.
 
 4. **Triangle multiplicative updates** and **triangle attention** on $$Z$$, which model interactions among triplets of residues.
-    Multiplicative paths treat the pair matrix as edges of a fully connected graph and pass messages around triangles $$(i,j,k)$$, while triangle attention aggregates those messages with dot-product attention across both "left" and "right" edges before projecting back to the $$ij$$ entry.
+   Multiplicative paths treat the pair matrix as edges of a fully connected graph and pass messages around triangles $$(i,j,k)$$, while triangle attention aggregates those messages with dot-product attention across both "left" and "right" edges before projecting back to the $$ij$$ entry.
 
-    <img src="/assets/img/alphafold/triangle-multiplicative-block.png" alt="Triangle multiplicative block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
-    *Figure 6. Triangle multiplicative updates gate information separately along left and right edges before normalizing and writing the result to the $$ij$$ slot of $$Z$$.*
+   <img src="/assets/img/alphafold/triangle-multiplicative-block.png" alt="Triangle multiplicative block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
+   *Figure 6. Triangle multiplicative updates gate information separately along left and right edges before normalizing and writing the result to the $$ij$$ slot of $$Z$$.*
 
-    <img src="/assets/img/alphafold/triangle-attention-block.png" alt="Triangle attention block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
-    *Figure 7. Triangle attention treats the triplet edges as attention keys/values so that each pair chooses which intermediate residue $$k$$ best explains its geometry.*
+   <img src="/assets/img/alphafold/triangle-attention-block.png" alt="Triangle attention block" class="zoomable" style="width:82%;max-width:900px;display:block;margin:0 auto;" />
+   *Figure 7. Triangle attention treats the triplet edges as attention keys/values so that each pair chooses which intermediate residue $$k$$ best explains its geometry.*
 
-    All sublayers live inside residual blocks with layer normalization and feed-forward networks.
+   All sublayers live inside residual blocks with layer normalization and feed-forward networks.
 
 ### Structure Module and FAPE Loss
 
@@ -297,7 +298,7 @@ $$
   = R_i^{\star\top}(\mathbf{x}^\star_{i,a} - \mathbf{t}_i^\star),
 $$
 
-  where $$\mathbf{y}_{i,a}$$ is the ground-truth atom $$a$$ from residue $$i$$ expressed in the supervising local frame $$(R_i^\star, \mathbf{t}_i^\star)$$.
+where $$\mathbf{y}_{i,a}$$ is the ground-truth atom $$a$$ from residue $$i$$ expressed in the supervising local frame $$(R_i^\star, \mathbf{t}_i^\star)$$.
 
 - Prediction in the same frame:
 
@@ -306,7 +307,7 @@ $$
   = R_i^{\star\top}(\hat{\mathbf{x}}_{i,a} - \mathbf{t}_i^\star),
 $$
 
-  where $$\hat{\mathbf{y}}_{i,a}$$ is the predicted atom positioned in that same local frame for comparison.
+where $$\hat{\mathbf{y}}_{i,a}$$ is the predicted atom positioned in that same local frame for comparison.
 
 The FAPE term is
 
@@ -340,7 +341,8 @@ The full training objective is a weighted sum of:
 AlphaFold has two main "brains," shown in the classic diagrams of colored blocks flowing from left to right:
 
 1. **Evoformer: The Relationship Builder**
-   - Reads a *multiple sequence alignment* (MSA), thousands of related sequences that reveal which amino acids evolve together.
+
+   - Reads a _multiple sequence alignment_ (MSA), thousands of related sequences that reveal which amino acids evolve together.
    - Maintains the two latent tensors $M$ (MSA) and $Z$ (pair).
    - Uses Transformer-style attention and geometric updates (triangle rules, outer-product mean) to learn which parts of a protein likely touch or move together.
 
@@ -359,13 +361,13 @@ In the international **CASP14** competition, AlphaFold stunned everyone: for man
 
 To help users judge trust in each prediction, AlphaFold reports:
 
-| Score | What It Means | Typical Use |
-|:------|:--------------|:------------|
-| **pLDDT > 90** | Nearly atomic accuracy | safe for detailed modeling |
-| **70 to 90** | Domain-level reliable | good for backbone tracing |
-| **< 70** | Uncertain or flexible | may indicate loops or motion |
+| Score          | What It Means          | Typical Use                  |
+| :------------- | :--------------------- | :--------------------------- |
+| **pLDDT > 90** | Nearly atomic accuracy | safe for detailed modeling   |
+| **70 to 90**   | Domain-level reliable  | good for backbone tracing    |
+| **< 70**       | Uncertain or flexible  | may indicate loops or motion |
 
-🖼️ *Visual idea:* imagine a rainbow-colored protein model, where bright blue regions are rock-solid while orange and red show where the AI isn't sure.
+🖼️ _Visual idea:_ imagine a rainbow-colored protein model, where bright blue regions are rock-solid while orange and red show where the AI isn't sure.
 
 ---
 
@@ -401,7 +403,7 @@ DeepMind and others have since expanded it: **AlphaFold-Multimer** for complexes
 
 ---
 
-*Reference: Jumper et al.,* **Nature 596**, 583–589 (2021). DOI: [10.1038/s41586-021-03819-2](https://doi.org/10.1038/s41586-021-03819-2)
+_Reference: Jumper et al.,_ **Nature 596**, 583–589 (2021). DOI: [10.1038/s41586-021-03819-2](https://doi.org/10.1038/s41586-021-03819-2)
 
 <style>
 .post-content img.zoomable {

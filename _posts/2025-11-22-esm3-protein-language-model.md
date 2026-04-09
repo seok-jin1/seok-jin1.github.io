@@ -101,18 +101,18 @@ The ESM-3 paper introduces several key innovations that distinguish it from prio
 
 The following table compares ESM-3 with AlphaFold2, ESMFold, and other representative protein language models across key dimensions.
 
-| Feature | AlphaFold2 | ESMFold | ProteinMPNN | ESM-3 |
-|---|---|---|---|---|
-| **Primary task** | Structure prediction | Structure prediction | Inverse folding (seq from struct) | Multimodal generation |
-| **Input** | Sequence + MSA + templates | Sequence only | Backbone structure | Any subset of seq/struct/func |
-| **Output** | 3D coordinates | 3D coordinates | Amino acid sequence | Seq + struct + func tokens |
-| **MSA required** | Yes | No | No | No |
-| **Generative** | No | No | Yes (sequence only) | Yes (all modalities) |
-| **Function awareness** | No | No | No | Yes |
-| **Model size** | ~93M params | Up to 15B (ESM-2) + folding trunk | ~1.7M params | 1.4B / 7B / 98B |
-| **Training data** | ~170K structures | ~65M sequences (ESM-2) | ~19K structures | 2.78B seq + 236M struct + 539M func |
-| **Speed** | Minutes per protein (with MSA) | Seconds per protein | Milliseconds | Seconds (per decoding iteration) |
-| **Structure representation** | Continuous (frames + torsions) | Continuous (frames + torsions) | Continuous (backbone coords) | Discrete (VQ-VAE tokens) |
+| Feature                      | AlphaFold2                     | ESMFold                           | ProteinMPNN                       | ESM-3                               |
+| ---------------------------- | ------------------------------ | --------------------------------- | --------------------------------- | ----------------------------------- |
+| **Primary task**             | Structure prediction           | Structure prediction              | Inverse folding (seq from struct) | Multimodal generation               |
+| **Input**                    | Sequence + MSA + templates     | Sequence only                     | Backbone structure                | Any subset of seq/struct/func       |
+| **Output**                   | 3D coordinates                 | 3D coordinates                    | Amino acid sequence               | Seq + struct + func tokens          |
+| **MSA required**             | Yes                            | No                                | No                                | No                                  |
+| **Generative**               | No                             | No                                | Yes (sequence only)               | Yes (all modalities)                |
+| **Function awareness**       | No                             | No                                | No                                | Yes                                 |
+| **Model size**               | ~93M params                    | Up to 15B (ESM-2) + folding trunk | ~1.7M params                      | 1.4B / 7B / 98B                     |
+| **Training data**            | ~170K structures               | ~65M sequences (ESM-2)            | ~19K structures                   | 2.78B seq + 236M struct + 539M func |
+| **Speed**                    | Minutes per protein (with MSA) | Seconds per protein               | Milliseconds                      | Seconds (per decoding iteration)    |
+| **Structure representation** | Continuous (frames + torsions) | Continuous (frames + torsions)    | Continuous (backbone coords)      | Discrete (VQ-VAE tokens)            |
 
 The most fundamental distinction is that ESM-3 treats protein design as a <span style="background-color: #fff3b0;">language generation problem across multiple modalities</span>, whereas AlphaFold2 and ESMFold are discriminative models focused on structure prediction, and ProteinMPNN is a conditional generative model limited to a single modality.
 
@@ -317,9 +317,10 @@ Perhaps the most striking result from the ESM-3 paper is the generation of <span
 
 ### Background
 
-Green fluorescent protein (GFP) is one of the most important tools in biology, earning the 2008 Nobel Prize in Chemistry. GFP enables researchers to visualize proteins and cellular processes under a microscope by fusing it to proteins of interest. The GFP chromophore -- the part of the protein that actually glows -- forms autocatalytically from three specific amino acids (Ser65-Tyr66-Gly67 in wild-type GFP from *Aequorea victoria*). This chromophore formation is exquisitely sensitive to the surrounding protein structure: the three residues must be precisely positioned within an 11-stranded beta-barrel, and even small perturbations to the barrel's hydrogen bonding network or interior packing can abolish fluorescence entirely.
+Green fluorescent protein (GFP) is one of the most important tools in biology, earning the 2008 Nobel Prize in Chemistry. GFP enables researchers to visualize proteins and cellular processes under a microscope by fusing it to proteins of interest. The GFP chromophore -- the part of the protein that actually glows -- forms autocatalytically from three specific amino acids (Ser65-Tyr66-Gly67 in wild-type GFP from _Aequorea victoria_). This chromophore formation is exquisitely sensitive to the surrounding protein structure: the three residues must be precisely positioned within an 11-stranded beta-barrel, and even small perturbations to the barrel's hydrogen bonding network or interior packing can abolish fluorescence entirely.
 
 This makes GFP an exceptionally demanding test case for protein design. The protein must simultaneously satisfy:
+
 - **Structural requirements:** A complete beta-barrel fold with correct strand topology
 - **Chemical requirements:** Precise positioning of the chromophore triad for autocatalytic cyclization
 - **Dynamic requirements:** The barrel must be rigid enough to exclude water from the chromophore environment (solvent exposure quenches fluorescence)
@@ -329,6 +330,7 @@ Prior protein engineering efforts on GFP have typically modified only a handful 
 ### How esmGFP Was Generated
 
 The authors used ESM-3 to generate new fluorescent proteins through a multi-step process. The generation was conditioned on:
+
 - The GFP functional annotation (fluorescence-related GO terms and InterPro annotations)
 - Key structural features of the beta-barrel fold (structure tokens encoding the 11-stranded barrel geometry)
 - The critical chromophore-forming residues (sequence constraints at the active site positions)
@@ -383,6 +385,7 @@ $$
 where $\mathcal{R}_i$ is the set of residues within a distance cutoff of residue $i$, $d_{ij}^{\text{pred}}$ and $d_{ij}^{\text{true}}$ are predicted and true inter-residue distances, and the indicator function checks whether the distance error is below the threshold. Scores above 70 generally indicate reliable predictions, while scores above 90 suggest near-experimental accuracy.
 
 Key performance characteristics of ESMFold:
+
 - **Speed:** Order-of-magnitude faster than AlphaFold2 due to eliminating MSA search. The MSA computation step, which involves searching large sequence databases (UniRef, BFD, MGnify), typically takes minutes to hours per protein and dominates AlphaFold2's total runtime. ESMFold replaces this with a single forward pass through the language model.
 - **Accuracy on well-studied proteins:** Near AlphaFold2 quality for proteins with many homologs in sequence databases
 - **Accuracy on orphan proteins:** Lower accuracy when few homologous sequences exist, since the language model has less implicit evolutionary information to draw on. This represents the fundamental trade-off: MSA-based methods can explicitly leverage evolutionary co-variation, while language models must have learned these patterns during pre-training.
@@ -493,10 +496,10 @@ While ESM-3 demonstrates function-conditioned generation, the degree of control 
 
 ---
 
-*References:*
+_References:_
 
-*Hayes, T. et al., "Simulating 500 million years of evolution with a language model," bioRxiv (2024). DOI: [10.1101/2024.07.01.600583](https://doi.org/10.1101/2024.07.01.600583)*
+_Hayes, T. et al., "Simulating 500 million years of evolution with a language model," bioRxiv (2024). DOI: [10.1101/2024.07.01.600583](https://doi.org/10.1101/2024.07.01.600583)_
 
-*Lin, Z. et al., "Evolutionary-scale prediction of atomic-level protein structure with a language model," Science 379, 1123--1130 (2023). DOI: [10.1126/science.ade2574](https://doi.org/10.1126/science.ade2574)*
+_Lin, Z. et al., "Evolutionary-scale prediction of atomic-level protein structure with a language model," Science 379, 1123--1130 (2023). DOI: [10.1126/science.ade2574](https://doi.org/10.1126/science.ade2574)_
 
-*Code and models: [ESM on GitHub](https://github.com/evolutionaryscale/esm)*
+_Code and models: [ESM on GitHub](https://github.com/evolutionaryscale/esm)_

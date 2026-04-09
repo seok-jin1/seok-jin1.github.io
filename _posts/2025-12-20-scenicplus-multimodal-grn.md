@@ -21,7 +21,7 @@ Gene regulatory networks (GRNs) describe how transcription factors (TFs) control
 
 This tutorial walks through the complete SCENIC+ pipeline: from preprocessing paired multimodal data with Scanpy and pycisTopic, through building enhancer-gene links and running motif enrichment, to constructing and visualizing eRegulons. Along the way, we compare results with RNA-only pySCENIC to illustrate what the chromatin layer adds.
 
-**Reference**: Bravo Gonzalez-Blas, C. et al. *SCENIC+: single-cell multiomic inference of enhancers and gene regulatory networks.* Nature Methods 20, 1355--1367 (2023).
+**Reference**: Bravo Gonzalez-Blas, C. et al. _SCENIC+: single-cell multiomic inference of enhancers and gene regulatory networks._ Nature Methods 20, 1355--1367 (2023).
 
 ---
 
@@ -30,15 +30,17 @@ This tutorial walks through the complete SCENIC+ pipeline: from preprocessing pa
 **pySCENIC (RNA-only)**: co-expression analysis (GRNBoost2) then promoter motif enrichment (cisTarget) then regulon scoring (AUCell).
 
 **SCENIC+** extends this with chromatin accessibility:
+
 1. Identify accessible regions per cell via **pycisTopic** (LDA topic modeling)
 2. Link enhancers to genes using accessibility-expression correlation
 3. Scan accessible regions for TF motifs via **cisTarget** databases
 4. Correlate TF expression with both enhancer accessibility and target gene expression
 5. Assemble **eRegulons** --- TF + enhancers + target genes with multi-layered evidence
 
-The key insight: eRegulons tell you *which enhancers* a TF uses to regulate *which genes* in *which cell states*.
+The key insight: eRegulons tell you _which enhancers_ a TF uses to regulate _which genes_ in _which cell states_.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/scenicplus/figure1-scenic-vs-scenicplus.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 1. pySCENIC (RNA-only) versus SCENIC+ (multimodal) workflows. SCENIC+ adds enhancer-gene links and TF-to-enhancer binding to produce eRegulons.
 </div>
@@ -117,6 +119,7 @@ adata_rna.obs["cell_type"] = adata_rna.obs["leiden"].map(cell_type_map).astype("
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/scenicplus/figure2-rna-umap.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 2. UMAP of scRNA-seq data colored by Leiden cluster (left) and annotated cell type (right).
 </div>
@@ -202,6 +205,7 @@ print(f"Unique genes: {positive_links['Gene'].nunique()}, "
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/scenicplus/figure3-enhancer-gene-links.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 3. Enhancer-to-gene link statistics. Left: distance distribution between linked regions and target gene TSSs. Right: correlation between region accessibility and gene expression for significant links.
 </div>
@@ -281,7 +285,7 @@ print(f"RNA-based eRegulon scores: {eregulon_auc_rna.shape}")
 print(f"ATAC-based eRegulon scores: {eregulon_auc_atac.shape}")
 ```
 
-The dual scoring is a major advantage of SCENIC+. When a TF's eRegulon shows high activity in both the RNA-based and ATAC-based scores for a given cell type, you can be confident that the TF is genuinely active: its target genes are expressed *and* its enhancers are accessible. Discordance between the two scores can also be informative --- it may indicate primed but not yet active regulatory states.
+The dual scoring is a major advantage of SCENIC+. When a TF's eRegulon shows high activity in both the RNA-based and ATAC-based scores for a given cell type, you can be confident that the TF is genuinely active: its target genes are expressed _and_ its enhancers are accessible. Discordance between the two scores can also be informative --- it may indicate primed but not yet active regulatory states.
 
 ---
 
@@ -313,6 +317,7 @@ plt.savefig(os.path.join(work_dir, "eregulon_heatmap.png"), dpi=300, bbox_inches
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/scenicplus/figure4-eregulon-heatmap.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 4. eRegulon activity heatmap. Left: scored from target gene expression. Right: scored from enhancer accessibility. Concordance between modalities strengthens regulatory assignments.
 </div>
@@ -368,6 +373,7 @@ plt.savefig(os.path.join(work_dir, "eregulon_network.png"), dpi=300, bbox_inches
 ```
 
 {% include figure.liquid loading="eager" path="assets/img/blog/scenicplus/figure5-eregulon-network.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 <div class="caption">
     Figure 5. SPI1 (PU.1) eRegulon network. Red: TF. Blue: enhancer regions with SPI1 motifs. Green: target genes linked to those enhancers.
 </div>

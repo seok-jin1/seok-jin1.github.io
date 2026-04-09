@@ -15,7 +15,7 @@ tags:
 
 Imagine discovering a single-letter typo in your DNA—just one amino acid swapped for another in a protein-coding gene. Is this harmless variation, or does it trigger disease? For decades, scientists have struggled to answer this question for the millions of <span style="background-color: #fff3b0;">missense variants</span> found in human genomes. While we know the genetic code for all ~20,000 human proteins, we've clinically interpreted only ~2% of the 4 million+ missense variants observed in human populations.
 
-In 2023, Google DeepMind's **AlphaMissense** transformed this landscape. Published in *Science*, the model predicted the pathogenicity of all 71 million possible human missense variants, classifying 89% of them with high confidence—32% likely pathogenic and 57% likely benign. By fine-tuning AlphaFold's protein structure prediction architecture on population frequency data, AlphaMissense achieved state-of-the-art accuracy across multiple clinical and experimental benchmarks.
+In 2023, Google DeepMind's **AlphaMissense** transformed this landscape. Published in _Science_, the model predicted the pathogenicity of all 71 million possible human missense variants, classifying 89% of them with high confidence—32% likely pathogenic and 57% likely benign. By fine-tuning AlphaFold's protein structure prediction architecture on population frequency data, AlphaMissense achieved state-of-the-art accuracy across multiple clinical and experimental benchmarks.
 
 This post breaks down the Science paper section by section, examining how AlphaMissense combines structural context, evolutionary patterns, and weak supervision to decode variant effects at genomic scale.
 
@@ -56,13 +56,13 @@ The authors outline seven key innovations that distinguish AlphaMissense from pr
 
 **_Training data and supervision._** Classical predictors like PolyPhen-2, SIFT, and CADD rely on conservation scores, structural features, and manually curated pathogenic/benign labels from ClinVar. These methods are limited by the small number of clinically annotated variants (~125,000 in ClinVar, covering <2% of observed human missense variants). Protein language models like EVE and ESM-1v learn evolutionary constraints from MSAs but ignore 3-D structure. AlphaMissense combines three data sources:
 
-| Feature | PolyPhen-2 / SIFT / CADD | EVE / ESM-1v | AlphaMissense |
-|:--------|:------------------------|:-------------|:--------------|
-| **Training labels** | ClinVar (curated) | None (unsupervised) | gnomAD frequency (weak labels) |
-| **Structural context** | Limited | None | Full 3-D (via AlphaFold) |
-| **Evolutionary patterns** | Conservation scores | Deep MSA embeddings | MSA + pair features (Evoformer) |
-| **Scale** | ~125K labeled variants | Unsupervised on UniRef | 71M predictions (all human missense) |
-| **Output** | Binary or rank score | Log-likelihood ratios | Calibrated probabilities |
+| Feature                   | PolyPhen-2 / SIFT / CADD | EVE / ESM-1v           | AlphaMissense                        |
+| :------------------------ | :----------------------- | :--------------------- | :----------------------------------- |
+| **Training labels**       | ClinVar (curated)        | None (unsupervised)    | gnomAD frequency (weak labels)       |
+| **Structural context**    | Limited                  | None                   | Full 3-D (via AlphaFold)             |
+| **Evolutionary patterns** | Conservation scores      | Deep MSA embeddings    | MSA + pair features (Evoformer)      |
+| **Scale**                 | ~125K labeled variants   | Unsupervised on UniRef | 71M predictions (all human missense) |
+| **Output**                | Binary or rank score     | Log-likelihood ratios  | Calibrated probabilities             |
 
 **_Architecture foundation._** AlphaMissense is the first variant effect predictor to directly leverage AlphaFold's Evoformer, which jointly embeds MSA rows and pairwise residue features through interleaved attention blocks. This allows the model to reason about which residues co-evolve (evolutionary couplings) while simultaneously considering their spatial proximity in the folded structure. Prior methods either used structure as static input features (PolyPhen-2) or ignored it entirely (EVE).
 
@@ -190,7 +190,7 @@ Patients with rare genetic diseases often carry **variants of uncertain signific
 
 Genome-wide association studies (GWAS) identify genetic loci linked to traits or diseases, but pinpointing the **causal variant** within a locus remains challenging (most significant SNPs are noncoding). When a GWAS signal overlaps a protein-coding gene, AlphaMissense scores can highlight which missense variants in linkage disequilibrium with the lead SNP are most likely functional.
 
-Example: A GWAS for inflammatory bowel disease (IBD) identified a signal near *NOD2*. AlphaMissense flagged the missense variant p.Arg702Trp as highly pathogenic (score 0.94), consistent with experimental evidence that this variant impairs NOD2's ability to sense bacterial peptidoglycans.
+Example: A GWAS for inflammatory bowel disease (IBD) identified a signal near _NOD2_. AlphaMissense flagged the missense variant p.Arg702Trp as highly pathogenic (score 0.94), consistent with experimental evidence that this variant impairs NOD2's ability to sense bacterial peptidoglycans.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -219,7 +219,7 @@ AlphaMissense scores correlate strongly with gene-level **missense constraint** 
 
 ### Experimental Validation: Deep Mutational Scanning
 
-AlphaMissense predictions match **multiplex assays of variant effect (MAVE)** experiments, where researchers systematically mutagenize a gene and measure the functional impact of each variant in high-throughput assays. Across MAVE datasets covering genes like *BRCA1*, *TP53*, and *PTEN*, AlphaMissense achieves higher Spearman correlation between predicted pathogenicity and experimental fitness scores than competing methods including EVE and ESM-1v.
+AlphaMissense predictions match **multiplex assays of variant effect (MAVE)** experiments, where researchers systematically mutagenize a gene and measure the functional impact of each variant in high-throughput assays. Across MAVE datasets covering genes like _BRCA1_, _TP53_, and _PTEN_, AlphaMissense achieves higher Spearman correlation between predicted pathogenicity and experimental fitness scores than competing methods including EVE and ESM-1v.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -249,10 +249,10 @@ AlphaMissense was evaluated on multiple independent test sets to assess generali
 
 ClinVar is the gold-standard database of clinically interpreted variants. Using a held-out test set of 36,632 missense variants (after removing ambiguous or conflicting annotations), AlphaMissense achieved:
 
-| Metric | AlphaMissense | EVE | ESM-1v | PolyPhen-2 | CADD |
-|:-------|:--------------|:----|:-------|:-----------|:-----|
-| **auROC** | **0.940** | 0.901 | 0.888 | 0.907 | 0.895 |
-| **auPRC** | **0.883** | 0.792 | 0.761 | 0.811 | 0.783 |
+| Metric    | AlphaMissense | EVE   | ESM-1v | PolyPhen-2 | CADD  |
+| :-------- | :------------ | :---- | :----- | :--------- | :---- |
+| **auROC** | **0.940**     | 0.901 | 0.888  | 0.907      | 0.895 |
+| **auPRC** | **0.883**     | 0.792 | 0.761  | 0.811      | 0.783 |
 
 AlphaMissense outperforms all prior methods by 3-4% in auROC. As shown in Figure 10 (Panel E), it also achieves substantially higher precision at all recall levels—important for clinical screening where missing true pathogenic variants is costly.
 
@@ -267,7 +267,7 @@ AlphaMissense outperforms all prior methods by 3-4% in auROC. As shown in Figure
 
 ### DDD (Developmental Disorders)
 
-The DDD (Deciphering Developmental Disorders) study sequenced thousands of children with severe developmental disorders and their parents, identifying *de novo* missense variants in known disease genes. These variants are highly enriched for pathogenicity. As shown in Figure 9 (Panel C), AlphaMissense achieves the highest auROC on DDD de novo variants among all tested methods, outperforming PolyPhen-2 and CADD.
+The DDD (Deciphering Developmental Disorders) study sequenced thousands of children with severe developmental disorders and their parents, identifying _de novo_ missense variants in known disease genes. These variants are highly enriched for pathogenicity. As shown in Figure 9 (Panel C), AlphaMissense achieves the highest auROC on DDD de novo variants among all tested methods, outperforming PolyPhen-2 and CADD.
 
 ### MAVE (Experimental Assays)
 
@@ -298,6 +298,7 @@ Despite its success, AlphaMissense inherits some limitations from AlphaFold and 
 ### 1. Dependence on Multiple Sequence Alignments
 
 AlphaMissense requires MSAs to infer evolutionary constraints. For **orphan proteins** (genes with few or no homologs), MSA depth is insufficient, degrading prediction accuracy. Future work could:
+
 - Integrate structure-only predictors for orphan genes
 - Leverage metagenomic databases to expand MSA coverage
 - Develop MSA-free variant scoring methods using protein language models alone
@@ -305,6 +306,7 @@ AlphaMissense requires MSAs to infer evolutionary constraints. For **orphan prot
 ### 2. Limited to Missense Variants
 
 AlphaMissense only predicts single amino acid substitutions. It does not handle:
+
 - **Insertions/deletions (indels):** Frameshift mutations or in-frame indels
 - **Structural variants:** Copy number variations, chromosomal rearrangements
 - **Synonymous variants:** Silent mutations that may affect splicing or RNA stability
@@ -319,6 +321,7 @@ Training labels from gnomAD are biased toward European ancestry populations, pot
 ### 4. Complex Genetic Interactions
 
 AlphaMissense scores variants in isolation, ignoring:
+
 - **Epistasis:** Interactions between multiple variants
 - **Compound heterozygosity:** Two different pathogenic variants in the same gene
 - **Modifier effects:** Variants that modulate the severity of other mutations
@@ -328,6 +331,7 @@ Modeling these interactions would require joint prediction of variant combinatio
 ### 5. Dynamic and Context-Dependent Effects
 
 Proteins function in diverse cellular contexts (pH, temperature, binding partners, post-translational modifications). A variant may be:
+
 - Benign in one tissue but pathogenic in another
 - Deleterious only under specific environmental conditions (e.g., drug-induced stress)
 
@@ -352,6 +356,6 @@ AlphaMissense provides a static, context-free pathogenicity score that may not c
 
 ---
 
-*Reference: Cheng et al.,* **Science 381**, eadg7492 (2023). DOI: [10.1126/science.adg7492](https://doi.org/10.1126/science.adg7492)
+_Reference: Cheng et al.,_ **Science 381**, eadg7492 (2023). DOI: [10.1126/science.adg7492](https://doi.org/10.1126/science.adg7492)
 
-*Data availability: [AlphaMissense predictions on GitHub](https://github.com/google-deepmind/alphamissense)*
+_Data availability: [AlphaMissense predictions on GitHub](https://github.com/google-deepmind/alphamissense)_

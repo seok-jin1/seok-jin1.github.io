@@ -15,7 +15,7 @@ tags:
 
 No single molecular measurement can fully capture the complexity of the immune system. Transcriptomics tells us what genes are being expressed, but not whether those transcripts become functional proteins. Proteomics reveals the effector molecules on the cell surface, but misses the regulatory logic encoded in chromatin accessibility. Epigenomics maps the landscape of gene regulation, but cannot directly tell us which genes are actively transcribed. Each modality offers a partial view -- like examining a sculpture from only one angle.
 
-Multi-omics integration aims to combine these complementary perspectives into a unified picture. For immunology, this is especially powerful: immune responses are orchestrated across multiple molecular layers. A T cell's decision to become exhausted, for example, involves coordinated changes in gene expression (upregulation of *PDCD1*, *LAG3*, *HAVCR2*), surface protein display (PD-1, LAG-3, TIM-3), and epigenetic remodeling (chromatin closing at effector gene loci). Understanding these processes -- and ultimately developing precision medicine strategies based on multi-omics profiling -- requires computational tools that can jointly analyze data from multiple modalities.
+Multi-omics integration aims to combine these complementary perspectives into a unified picture. For immunology, this is especially powerful: immune responses are orchestrated across multiple molecular layers. A T cell's decision to become exhausted, for example, involves coordinated changes in gene expression (upregulation of _PDCD1_, _LAG3_, _HAVCR2_), surface protein display (PD-1, LAG-3, TIM-3), and epigenetic remodeling (chromatin closing at effector gene loci). Understanding these processes -- and ultimately developing precision medicine strategies based on multi-omics profiling -- requires computational tools that can jointly analyze data from multiple modalities.
 
 In this tutorial, we will work through practical implementations of two major integration frameworks: **MOFA+** (Multi-Omics Factor Analysis) for latent factor discovery, and **scVI/totalVI** for deep generative modeling of single-cell multi-modal data. Along the way, we will discuss when to use each approach, walk through a realistic immunology case study, and compare the broader landscape of integration methods.
 
@@ -41,20 +41,20 @@ Before diving into code, it is worth understanding the taxonomy of multi-omics i
 
 **When to use which:**
 
-| Scenario | Recommended Approach |
-|---|---|
-| Small sample size (n < 50), bulk data | MOFA+ or late integration |
-| CITE-seq (RNA + protein) | totalVI |
-| scRNA-seq with batch effects | scVI |
-| RNA + ATAC (multiome) | MultiVI or MOFA+ |
-| Multiple bulk modalities, exploratory | MOFA+ |
-| Large atlas-scale single-cell | scVI family (GPU recommended) |
+| Scenario                              | Recommended Approach          |
+| ------------------------------------- | ----------------------------- |
+| Small sample size (n < 50), bulk data | MOFA+ or late integration     |
+| CITE-seq (RNA + protein)              | totalVI                       |
+| scRNA-seq with batch effects          | scVI                          |
+| RNA + ATAC (multiome)                 | MultiVI or MOFA+              |
+| Multiple bulk modalities, exploratory | MOFA+                         |
+| Large atlas-scale single-cell         | scVI family (GPU recommended) |
 
 ---
 
 ## Part 1: MOFA+ (Multi-Omics Factor Analysis)
 
-MOFA+ is a Bayesian factor analysis method that identifies latent factors of variation across multiple data modalities and, optionally, multiple sample groups. It decomposes multi-omics data into a set of factors, each with associated feature weights per modality, allowing you to ask: *which sources of variation are shared across modalities, and which are specific to one?*
+MOFA+ is a Bayesian factor analysis method that identifies latent factors of variation across multiple data modalities and, optionally, multiple sample groups. It decomposes multi-omics data into a set of factors, each with associated feature weights per modality, allowing you to ask: _which sources of variation are shared across modalities, and which are specific to one?_
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -515,9 +515,9 @@ To illustrate the power of multi-omics integration, let us walk through how it r
 
 T cell exhaustion is a progressive loss of effector function during chronic infection and in the tumor microenvironment -- a prime example of why multi-omics matters:
 
-- **Transcriptomics** detects *PDCD1*, *LAG3*, *HAVCR2*, *TOX* upregulation, but transcript levels do not always match surface protein abundance.
+- **Transcriptomics** detects _PDCD1_, _LAG3_, _HAVCR2_, _TOX_ upregulation, but transcript levels do not always match surface protein abundance.
 - **Surface proteomics** (CITE-seq) directly measures PD-1, LAG-3, TIM-3 protein -- what matters for checkpoint blockade -- but panels are limited to ~200 markers.
-- **Epigenomics** (scATAC-seq) reveals stable *PDCD1* locus accessibility, distinguishing truly exhausted T cells from transiently activated ones.
+- **Epigenomics** (scATAC-seq) reveals stable _PDCD1_ locus accessibility, distinguishing truly exhausted T cells from transiently activated ones.
 
 With multi-omics integration:
 
@@ -549,7 +549,7 @@ print(f"Both (truly exhausted): {adata.obs['exhausted'].sum()} cells")
 
 ### Myeloid Polarization and Treg Identification
 
-Macrophage M1/M2 polarization is another case where RNA markers (*TNF*, *IL1B* vs *MRC1*, *CD163*) combined with surface proteins (CD80, CD86 vs CD206) give cleaner separation than either modality alone.
+Macrophage M1/M2 polarization is another case where RNA markers (_TNF_, _IL1B_ vs _MRC1_, _CD163_) combined with surface proteins (CD80, CD86 vs CD206) give cleaner separation than either modality alone.
 
 Similarly, regulatory T cells (Tregs) are classically defined by a multi-modal triad:
 
@@ -582,15 +582,15 @@ print(f"Tregs identified: {adata.obs['Treg'].sum()} cells")
 
 The multi-omics integration field is growing rapidly. Here is a practical comparison of the major methods:
 
-| Method | Input Data | Approach | Batch Correction | GPU Required | Key Strength |
-|--------|-----------|----------|-------------------|--------------|--------------|
-| **MOFA+** | Any multi-omics | Bayesian factor model | Via groups | No | Interpretable factors |
-| **scVI** | scRNA-seq | VAE | Yes | Recommended | Scalable, probabilistic |
-| **totalVI** | RNA + protein | VAE | Yes | Recommended | Joint RNA-protein model |
-| **MultiVI** | RNA + ATAC | VAE | Yes | Recommended | Multiome integration |
-| **Seurat WNN** | Any paired | Weighted nearest neighbors | Separate step | No | Easy to use (R) |
-| **GLUE** | Any unpaired | Graph-linked VAE | Yes | Yes | Unpaired data integration |
-| **scGLUE** | RNA + ATAC (unpaired) | Knowledge-guided VAE | Yes | Yes | Uses regulatory knowledge |
+| Method         | Input Data            | Approach                   | Batch Correction | GPU Required | Key Strength              |
+| -------------- | --------------------- | -------------------------- | ---------------- | ------------ | ------------------------- |
+| **MOFA+**      | Any multi-omics       | Bayesian factor model      | Via groups       | No           | Interpretable factors     |
+| **scVI**       | scRNA-seq             | VAE                        | Yes              | Recommended  | Scalable, probabilistic   |
+| **totalVI**    | RNA + protein         | VAE                        | Yes              | Recommended  | Joint RNA-protein model   |
+| **MultiVI**    | RNA + ATAC            | VAE                        | Yes              | Recommended  | Multiome integration      |
+| **Seurat WNN** | Any paired            | Weighted nearest neighbors | Separate step    | No           | Easy to use (R)           |
+| **GLUE**       | Any unpaired          | Graph-linked VAE           | Yes              | Yes          | Unpaired data integration |
+| **scGLUE**     | RNA + ATAC (unpaired) | Knowledge-guided VAE       | Yes              | Yes          | Uses regulatory knowledge |
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -641,9 +641,9 @@ If you are new to multi-omics, start with totalVI on a CITE-seq dataset. The [sc
 **Resources:**
 
 - [scvi-tools docs](https://docs.scvi-tools.org) | [MOFA+ tutorial](https://biofam.github.io/MOFA2) | [muon docs](https://muon.readthedocs.io)
-- Argelaguet et al. (2020), *Genome Biology* -- MOFA+
-- Gayoso et al. (2021), *Nature Methods* -- totalVI
-- Hao et al. (2021), *Cell* -- Seurat v4 WNN
-- Cao & Gao (2022), *Nature Biotechnology* -- GLUE
+- Argelaguet et al. (2020), _Genome Biology_ -- MOFA+
+- Gayoso et al. (2021), _Nature Methods_ -- totalVI
+- Hao et al. (2021), _Cell_ -- Seurat v4 WNN
+- Cao & Gao (2022), _Nature Biotechnology_ -- GLUE
 
 Multi-omics integration is not just a computational exercise -- it is a lens through which we can see the immune system as it truly operates: a coordinated, multi-layered molecular machine. The methods described here are tools for building that understanding, one dataset at a time.
