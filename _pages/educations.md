@@ -20,7 +20,16 @@ Interdisciplinary science offers a unique framework to address the multifaceted 
 <div class="education-section" markdown="1">
 <img class="education-photo" src="{{ '/assets/img/education/postdoctoral-training.png' | relative_url }}" alt="Triangle showing Bioinformatics, AI, and Experiments working together">
 
-**Postdoctoral Fellow** (Mar 2025 - Present)<br>
+**Research Professor** (Mar 2026 - Present)<br>
+Immune Modulation Laboratory, Korea University<br>
+_PI: Taehoon Chun_<br>
+
+**Independent Research Programs:**
+
+- Anti-FAP nanobody–cytokine conjugate (IL-7/G-CSF) for bone marrow niche remodeling and immunotherapy sensitization
+- Yeast-displayed humanized VHH repertoire construction for therapeutic nanobody discovery
+
+**Postdoctoral Fellow** (Mar 2025 - Feb 2026)<br>
 Immune Modulation Laboratory, Korea University<br>
 _PI: Taehoon Chun_<br>
 
