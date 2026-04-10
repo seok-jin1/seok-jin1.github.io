@@ -11,7 +11,7 @@ github_repos:
   - repository: seok-jin1/RFantibody-gui
     title: RFantibody GUI
     description: Interactive GUI for RFantibody-oriented design and analysis workflows.
-    image: https://raw.githubusercontent.com/seok-jin1/RFantibody-gui/main/docs/screenshots/12_pdb_preview.png
+    image: /assets/img/repositories/rfantibody-gui-pdb-preview.png
     image_alt: RFantibody GUI PDB preview screenshot
     image_fit: contain
   - repository: seok-jin1/alphagenome-gui
