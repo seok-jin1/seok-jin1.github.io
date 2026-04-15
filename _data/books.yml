@@ -39,6 +39,17 @@ international:
         topic: "miRNA"
 
 domestic:
+  - title: "바이러스 벡터 기반 유전자치료제의 연구개발 동향 정보집"
+    subtitle: "R&D Trends in Virus Vector-Based Gene Therapy Products"
+    publisher: "식품의약품안전평가원"
+    publication_date: "2026년 3월"
+    url: "https://www.nifds.go.kr/brd/m_18/view.do?seq=12867"
+    cover: "/assets/img/book_covers/2026-nifds-virus-vector-gene-therapy.png"
+    chapters:
+      - author: "강석진"
+        topic: "바이러스 벡터 기반 유전자치료제 연구개발 동향 및 규제"
+        author_en: "Seok-Jin Kang"
+        topic_en: "R&D Trends and Regulation of Virus Vector-Based Gene Therapy"
   - title: "2026 생명과학트렌드"
     subtitle: "2026 Life Science Trends"
     publisher: "퍼플"
