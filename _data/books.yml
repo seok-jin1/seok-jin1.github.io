@@ -54,7 +54,7 @@ domestic:
     subtitle: "2026 Life Science Trends"
     publisher: "퍼플"
     isbn: "9788924169034"
-    publication_date: "2025년 8월 20일"
+    publication_date: "August 20, 2025"
     url: "https://product.kyobobook.co.kr/detail/S000217396009"
     cover: "/assets/img/book_covers/2026-kor-life-science-trends-multi-omics.png"
     chapters:
@@ -82,7 +82,7 @@ domestic:
     subtitle: "2026 Science Trends"
     publisher: "퍼플"
     isbn: "9788924169041"
-    publication_date: "2025년 8월 20일"
+    publication_date: "August 20, 2025"
     url: "https://product.kyobobook.co.kr/detail/S000217396010"
     cover: "/assets/img/book_covers/2026-kor-science-trends-personalized.png"
     chapters:
@@ -114,7 +114,7 @@ domestic:
     subtitle: "2025 Science Trends"
     publisher: "퍼플"
     isbn: "9788924143621"
-    publication_date: "2024년 12월 30일"
+    publication_date: "December 30, 2024"
     url: "https://product.kyobobook.co.kr/detail/S000215102870"
     cover: "/assets/img/book_covers/2025-kor-science-trends-ai.png"
     chapters:
