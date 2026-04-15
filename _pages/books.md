@@ -44,15 +44,15 @@ nav_order: 4
                   <div class="book-meta"><strong>Publisher:</strong> {{ book.publisher }}</div>
                 {% endif %}
               </div>
-              {% if book.authors %}
+              {% if book.chapters %}
                 <div class="book-chapters">
-                  <div class="book-meta"><strong>Author</strong></div>
+                  <div class="book-meta"><strong>Contents</strong></div>
                   <ul>
-                    {% for entry in book.authors %}
+                    {% for chapter in book.chapters %}
                       <li>
-                        <span class="chapter-author"><strong>{{ entry.author }}</strong></span>
-                        {% if entry.author_en %}
-                          <span class="chapter-translation">(<strong>{{ entry.author_en }}</strong>)</span>
+                        <span class="chapter-topic"><strong>{{ chapter.topic }}</strong></span>
+                        {% if chapter.topic_en %}
+                          <span class="chapter-translation">({{ chapter.topic_en }})</span>
                         {% endif %}
                       </li>
                     {% endfor %}

@@ -45,9 +45,27 @@ government_reports:
     publication_date: "March 2026"
     url: "https://www.nifds.go.kr/brd/m_18/view.do?seq=12867"
     cover: "/assets/img/book_covers/2026-nifds-virus-vector-gene-therapy.png"
-    authors:
+    chapters:
       - author: "강석진"
+        topic: "개요"
         author_en: "Seok-Jin Kang"
+        topic_en: "Overview"
+      - author: "강석진"
+        topic: "바이러스 벡터 기반 유전자치료제 연구개발의 최신 동향"
+        author_en: "Seok-Jin Kang"
+        topic_en: "Latest R&D Trends in Virus Vector-Based Gene Therapy"
+      - author: "강석진"
+        topic: "안전성 이슈 사례 분석"
+        author_en: "Seok-Jin Kang"
+        topic_en: "Safety Issue Case Analysis"
+      - author: "강석진"
+        topic: "규제 현황"
+        author_en: "Seok-Jin Kang"
+        topic_en: "Regulatory Landscape"
+      - author: "강석진"
+        topic: "맺음말"
+        author_en: "Seok-Jin Kang"
+        topic_en: "Conclusion"
 
 domestic:
   - title: "2026 생명과학트렌드"
