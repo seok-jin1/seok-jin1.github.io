@@ -41,7 +41,7 @@ international:
 government_reports:
   - title: "바이러스 벡터 기반 유전자치료제의 연구개발 동향 정보집"
     subtitle: "R&D Trends in Virus Vector-Based Gene Therapy Products"
-    publisher: "식품의약품안전평가원"
+    publisher: "National Institute of Food and Drug Safety Evaluation (식품의약품안전평가원)"
     publication_date: "2026년 3월"
     url: "https://www.nifds.go.kr/brd/m_18/view.do?seq=12867"
     cover: "/assets/img/book_covers/2026-nifds-virus-vector-gene-therapy.png"
