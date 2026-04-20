@@ -88,6 +88,20 @@ pagination:
         </div>
       </a>
     </div>
+    <div class="col mb-3">
+      <a href="https://github.com/seok-jin1/nanobody_humanization_library" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+        <div class="card hoverable">
+          <div class="card-body">
+            <div class="float-right">
+              <i class="fa-brands fa-github fa-lg"></i>
+            </div>
+            <h5 class="card-title">Humanized Nanobody Platform</h5>
+            <p class="card-text text-muted">Structure-guided humanization of an anti-FAP nanobody combining AlphaFold3, Rosetta Cartesian ΔΔG, and SAbDab-nano CDR library design.</p>
+            <p class="post-meta"><i class="fa-solid fa-code-branch fa-sm"></i> In progress</p>
+          </div>
+        </div>
+      </a>
+    </div>
   </div>
 </div>
 <hr>
