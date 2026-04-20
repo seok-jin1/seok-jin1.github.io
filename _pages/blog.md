@@ -89,7 +89,7 @@ pagination:
       </a>
     </div>
     <div class="col mb-3">
-      <a href="https://github.com/seok-jin1/nanobody_humanization_library" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+      <a href="https://github.com/seok-jin1/nanobody_humanization_library/blob/main/description.md" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
         <div class="card hoverable">
           <div class="card-body">
             <div class="float-right">
