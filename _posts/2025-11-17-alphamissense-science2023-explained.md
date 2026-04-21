@@ -11,6 +11,7 @@ tags:
   - genomics
   - deep-learning
   - medicine
+description: "A section-by-section walkthrough of DeepMind's AlphaMissense (Science 2023), explaining how a fine-tuned AlphaFold backbone predicts pathogenicity for all 71 million possible human missense variants."
 ---
 
 Imagine discovering a single-letter typo in your DNA—just one amino acid swapped for another in a protein-coding gene. Is this harmless variation, or does it trigger disease? For decades, scientists have struggled to answer this question for the millions of <span style="background-color: #fff3b0;">missense variants</span> found in human genomes. While we know the genetic code for all ~20,000 human proteins, we've clinically interpreted only ~2% of the 4 million+ missense variants observed in human populations.
@@ -203,7 +204,12 @@ Example: A GWAS for inflammatory bowel disease (IBD) identified a signal near _N
 
 ### Gene Essentiality and Mutation Intolerance
 
-AlphaMissense scores correlate strongly with gene-level **missense constraint** metrics like the probability of loss-of-function intolerance (pLI) from gnomAD. Genes depleted of missense variation in populations show higher average AlphaMissense scores, consistent with purifying selection against deleterious variants. This enables:
+AlphaMissense scores correlate strongly with gene-level constraint metrics from gnomAD. Two common examples:
+
+- **pLI** (probability of loss-of-function intolerance) — strictly a measure of **LoF / protein-truncating-variant intolerance**, not a direct missense metric. Genes with high pLI (≥ 0.9) are intolerant to complete loss of function.
+- **Missense-Z / missense o/e** — the proper gnomAD gene-level metrics for **missense constraint** (observed-vs-expected ratio of missense variants).
+
+Genes depleted of missense variation (low missense o/e, high missense-Z) show higher average AlphaMissense scores, consistent with purifying selection against deleterious missense variants; the pLI correlation mostly reflects a shared axis of overall gene essentiality rather than a direct missense signal. This enables:
 
 - **Drug target prioritization:** Genes intolerant to missense variation (high AlphaMissense scores) are more likely to be essential and thus promising therapeutic targets.
 - **Haploinsufficiency prediction:** Genes where even heterozygous pathogenic variants cause disease show higher missense intolerance.

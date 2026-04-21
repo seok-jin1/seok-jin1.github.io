@@ -11,11 +11,12 @@ tags:
   - bioinformatics
   - python
   - tutorial
+description: "A practical tutorial on TCR and BCR repertoire analysis with scRepertoire and Dandelion — from 10x V(D)J outputs to clonal expansion, diversity metrics, and integration with single-cell transcriptomes."
 ---
 
 ## Introduction: Why Repertoire Analysis Matters
 
-Every adaptive immune response begins with a molecular lottery. During V(D)J recombination, developing T cells and B cells randomly rearrange variable (V), diversity (D), and joining (J) gene segments to produce unique antigen receptors --- T cell receptors (TCRs) and B cell receptors (BCRs). The combinatorial diversity of segment selection, combined with junctional diversity from random nucleotide additions and deletions at the recombination junctions, generates an estimated 10^15 to 10^18 possible TCR sequences in humans. This extraordinary diversity is what allows the immune system to recognize virtually any pathogen it encounters.
+Every adaptive immune response begins with a molecular lottery. During V(D)J recombination, developing T cells and B cells randomly rearrange variable (V), diversity (D), and joining (J) gene segments to produce unique antigen receptors --- T cell receptors (TCRs) and B cell receptors (BCRs). Not every chain uses a D segment: **TCR β, TCR δ, and immunoglobulin heavy chains (IGH) undergo full V-D-J recombination**, whereas **TCR α, TCR γ, and immunoglobulin light chains (IGK/IGL) recombine only V and J segments (V-J recombination)**. The combinatorial diversity of segment selection, combined with junctional diversity from random nucleotide additions and deletions at the recombination junctions, generates an estimated 10^15 to 10^18 possible TCR sequences in humans. This extraordinary diversity is what allows the immune system to recognize virtually any pathogen it encounters.
 
 The **immune repertoire** --- the complete set of TCR and BCR sequences in an individual --- encodes the history and current state of adaptive immunity. A naive T cell carries a unique TCR. When that T cell encounters its cognate antigen, it proliferates, producing a **clonal expansion** --- a population of cells sharing the identical TCR sequence. By sequencing these receptors at single-cell resolution, we can:
 

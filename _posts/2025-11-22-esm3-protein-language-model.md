@@ -11,6 +11,7 @@ tags:
   - deep-learning
   - protein-design
   - language-model
+description: "A guide to Evolutionary Scale Modeling's ESM-3: a multimodal protein language model that reads and generates sequence, structure, and function tokens jointly, and the de novo esmGFP experiment that illustrates its generative capabilities."
 ---
 
 Imagine you could speak the language of proteins -- not just reading their amino acid sequences, but simultaneously understanding their three-dimensional shapes and biological functions. Now imagine you could use that language to write entirely new proteins that nature has never seen, as if fast-forwarding evolution by hundreds of millions of years. This is what ESM-3 attempts to do: a single AI model that reads and generates proteins across sequence, structure, and function all at once.

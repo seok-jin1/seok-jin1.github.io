@@ -11,6 +11,7 @@ tags:
   - deep-learning
   - protein-design
   - diffusion-model
+description: "A paper-review-style introduction to RFdiffusion — how denoising diffusion over SE(3) frames enables de novo protein backbone generation, binder design, and motif scaffolding from RoseTTAFold representations."
 ---
 
 Imagine you are a sculptor, but instead of chipping away at a block of marble, you start with a cloud of random dust particles and gradually coax them into a statue. With each gentle pass of your hands, the dust settles into more recognizable features -- first a rough outline, then limbs, then fine details. This is the essence of <span style="background-color: #fff3b0;">denoising diffusion</span>: you begin with pure noise and iteratively refine it into a structured, functional object. Now imagine that the statue you are sculpting is not marble but a protein -- a molecular machine whose three-dimensional shape determines whether it can fight a virus, catalyze a chemical reaction, or relay a cellular signal.

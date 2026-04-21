@@ -11,6 +11,7 @@ tags:
   - structural-biology
   - tutorial
   - immunology
+description: "An end-to-end antibody-design workflow combining AlphaFold / ColabFold structure prediction with ProteinMPNN inverse folding for CDR redesign, with notes on Chothia numbering and TCR-pMHC engineering."
 ---
 
 Computational protein design has entered a new era. With **AlphaFold2** providing near-experimental accuracy in structure prediction and **ProteinMPNN** enabling rapid inverse folding (sequence design from structure), researchers now have a powerful closed-loop workflow for engineering novel proteins. This tutorial walks through the complete pipeline---from structure prediction to sequence design to validation---with a focus on immunology applications such as TCR and antibody engineering.
@@ -123,8 +124,11 @@ protein_design/
 Create a FASTA file with the target sequence. For a multi-chain complex (e.g., antibody heavy + light chain), separate chains with a colon (`:`).
 
 ```bash
+# Note: the sequences below cover only the VH and VL (variable) domains, which
+# together form an Fv / scFv. A true Fab also requires the CH1 (heavy) and
+# CL (light) constant domains — we omit them here to keep the tutorial fast.
 cat > protein_design/inputs/antibody.fasta << 'EOF'
->anti_HER2_Fab
+>anti_HER2_Fv
 EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAYLQMNSLRAEDTAVYYCSRWGGDGFYAMDYWGQGTLVTVSS:DIQMTQSPSSLSASVGDRVTITCRASQDVNTAVAWYQQKPGKAPKLLIYSASFLYSGVPSRFSGSRSGTDFTLTISSLQPEDFATYYCQQHYTTPPTFGQGTKVEIK
 EOF
 ```
@@ -148,7 +152,7 @@ colabfold_batch \
 - `--amber`: Apply AMBER force field relaxation to reduce steric clashes.
 - `--use-gpu-relax`: Use GPU for the relaxation step (faster).
 
-> **GPU requirement**: A single Fab prediction with 5 models takes approximately 10--20 minutes on an A100. On a T4, expect 30--60 minutes.
+> **GPU requirement**: A single Fv prediction (VH + VL) with 5 models takes approximately 10--20 minutes on an A100. On a T4, expect 30--60 minutes.
 
 ### 3.3 Interpreting Outputs
 
@@ -283,12 +287,14 @@ get_chain_residues("protein_design/af2_predictions/anti_HER2_Fab_relaxed_rank_00
 
 ### 4.2 Define Designable vs. Fixed Positions
 
-For antibody design, we typically fix the framework regions and redesign the CDR loops. Here we define CDR positions using Chothia numbering:
+For antibody design, we typically fix the framework regions and redesign the CDR loops. Here we define CDR positions using **Chothia numbering**.
+
+> ⚠️ **Important caveat**: AF2 writes residues out using raw, sequential PDB numbering (1, 2, 3, ...) — **not** Chothia numbering. Before mapping any CDR range onto the predicted structure you must renumber the heavy and light chains with a dedicated tool such as [ANARCI](https://github.com/oxpig/ANARCI) or [AbNumber](https://github.com/prihoda/AbNumber). If you skip this step and apply the Chothia indices below to the raw AF2 PDB directly, you will freeze/design the **wrong** residues. The code below assumes `pdb_path` has already been renumbered into Chothia scheme (e.g., via `anarci -i input.pdb --scheme chothia -o renumbered.pdb`).
 
 ```python
 import json
 
-# CDR definitions (Chothia numbering)
+# CDR definitions (Chothia numbering; assumes the PDB has been renumbered)
 CDR_DEFINITIONS = {
     "H1": (26, 32),   # Heavy chain CDR1
     "H2": (52, 56),   # Heavy chain CDR2
@@ -346,48 +352,39 @@ fixed_pos = make_fixed_positions(
 )
 ```
 
-### 4.3 Create Chain ID and Tied Positions Files
+### 4.3 Build ProteinMPNN's JSONL Inputs with the Helper Scripts
 
-ProteinMPNN uses JSONL files to specify chain configurations:
-
-```python
-import json
-
-pdb_name = "anti_HER2_Fab_relaxed_rank_001_alphafold2_multimer_v3_model_1_seed_000"
-
-# Chain ID: which chains to design
-chain_id = {pdb_name: {"A": "A", "B": "B"}}
-with open("protein_design/inputs/chain_id.jsonl", "w") as f:
-    f.write(json.dumps(chain_id) + "\n")
-
-# Designed chain list: which chains get new sequences
-designed_chain_list = {pdb_name: ["A", "B"]}
-with open("protein_design/inputs/designed_chain_list.jsonl", "w") as f:
-    f.write(json.dumps(designed_chain_list) + "\n")
-```
-
-### 4.4 Alternative: Use the ProteinMPNN Helper Scripts
-
-ProteinMPNN includes helper scripts that simplify input preparation:
+ProteinMPNN's JSONL formats are finicky — the safest way to generate them is to use the helper scripts bundled with the repository. We first parse all predicted PDBs into a `parsed_pdbs.jsonl`, then layer on the "which chain is designed" and "which residues are fixed" assignments:
 
 ```bash
 cd ProteinMPNN/helper_scripts
 
-# Parse a PDB to extract chain and position info
+# (a) Parse every PDB in the input folder into ProteinMPNN's JSONL format.
+#     Output contains backbone coords + sequence + chain info for each structure.
 python parse_multiple_chains.py \
   --input_path ../../protein_design/af2_predictions/ \
   --output_path ../../protein_design/inputs/parsed_pdbs.jsonl
-```
 
-This generates a JSONL file with the backbone coordinates, sequence, and chain information extracted from each PDB.
-
-```bash
-# Assign fixed chains (optional: fix specific chains entirely)
+# (b) Tell ProteinMPNN which chains are designed and which are fixed.
+#     Here both VH (A) and VL (B) are designed; if you had an antigen chain
+#     (e.g. "C"), you would pass --chain_list "A B" and it would stay fixed.
 python assign_fixed_chains.py \
   --input_path ../../protein_design/inputs/parsed_pdbs.jsonl \
-  --output_path ../../protein_design/inputs/assigned_chains.jsonl \
+  --output_path ../../protein_design/inputs/assigned_pdbs.jsonl \
   --chain_list "A B"
+
+# (c) Lock every framework position and leave only the CDR ranges designable.
+#     `--position_list` / `--chain_list` use ProteinMPNN's own conventions —
+#     pass the CDR residue indices you generated in section 4.2 here.
+python make_fixed_positions_dict.py \
+  --input_path ../../protein_design/inputs/parsed_pdbs.jsonl \
+  --output_path ../../protein_design/inputs/fixed_pdbs.jsonl \
+  --chain_list "A B" \
+  --position_list "$CDR_H_POSITIONS $CDR_L_POSITIONS" \
+  --specify_non_fixed
 ```
+
+The three files `parsed_pdbs.jsonl`, `assigned_pdbs.jsonl`, `fixed_pdbs.jsonl` are the canonical inputs expected by `protein_mpnn_run.py` in section 5. Hand-crafted JSONL files (as in earlier versions of this tutorial) are easy to get subtly wrong and can silently misalign CDR positions — **always prefer the helper scripts**.
 
 ---
 
@@ -401,15 +398,17 @@ ProteinMPNN performs **inverse folding**: given a fixed backbone structure, it p
 cd ProteinMPNN
 
 python protein_mpnn_run.py \
-  --pdb_path ../protein_design/af2_predictions/anti_HER2_Fab_relaxed_rank_001_alphafold2_multimer_v3_model_1_seed_000.pdb \
-  --chain_id_jsonl ../protein_design/inputs/chain_id.jsonl \
-  --fixed_positions_jsonl ../protein_design/inputs/fixed_positions.jsonl \
+  --jsonl_path ../protein_design/inputs/parsed_pdbs.jsonl \
+  --chain_id_jsonl ../protein_design/inputs/assigned_pdbs.jsonl \
+  --fixed_positions_jsonl ../protein_design/inputs/fixed_pdbs.jsonl \
   --out_folder ../protein_design/mpnn_outputs/ \
   --num_seq_per_target 100 \
   --sampling_temp "0.1 0.2 0.3" \
   --seed 42 \
   --batch_size 1
 ```
+
+> The trio `--jsonl_path parsed_pdbs.jsonl`, `--chain_id_jsonl assigned_pdbs.jsonl`, `--fixed_positions_jsonl fixed_pdbs.jsonl` is the combination the official [ProteinMPNN examples](https://github.com/dauparas/ProteinMPNN/tree/main/examples) use. Mixing `--pdb_path` (single-PDB shortcut) with helper-script JSONLs will error out because the formats don't match.
 
 **Key parameters explained:**
 
@@ -781,11 +780,17 @@ pdb_path = "protein_design/af2_predictions/anti_HER2_Fab_relaxed_rank_001_alphaf
 parser = PDBParser(QUIET=True)
 structure = parser.get_structure("ab", pdb_path)
 
-# Extract CDR-H3 sequence (residues 95-102 on chain A)
+# Extract CDR-H3 sequence (residues 95-102 on chain A).
+# residue.get_resname() returns 3-letter codes (e.g. "ALA"), so concatenating
+# them gives "ALAGLYSER..." rather than a proper one-letter sequence — we
+# need to convert each 3-letter code to its one-letter equivalent first.
+from Bio.PDB.Polypeptide import protein_letters_3to1
+
 cdr_h3_seq = ""
 for residue in structure[0]["A"]:
     if residue.id[0] == " " and 95 <= residue.id[1] <= 102:
-        cdr_h3_seq += residue.get_resname()
+        three = residue.get_resname().upper()
+        cdr_h3_seq += protein_letters_3to1.get(three, "X")
 
 print(f"Original CDR-H3: {cdr_h3_seq}")
 ```
@@ -914,7 +919,7 @@ The same workflow applies directly to TCR engineering, an area of growing import
 
 T-cell receptors recognize short peptide fragments presented by MHC molecules on cell surfaces. Engineering TCRs with enhanced or altered specificity could improve:
 
-- **CAR-T cell therapy**: TCRs with higher affinity for tumor-associated peptide-MHC complexes.
+- **TCR-T cell therapy** (distinct from CAR-T): TCR-engineered T cells use a full αβ TCR that recognises peptide-MHC, so boosting pMHC affinity / specificity is exactly the inverse-folding problem addressed here. CAR-T cells, by contrast, use a synthetic scFv against a surface antigen and are **not** pMHC-restricted.
 - **Neoantigen targeting**: Design TCRs that recognize patient-specific mutation-derived peptides.
 - **Safety optimization**: Reduce cross-reactivity with self-peptides to minimize autoimmune toxicity.
 

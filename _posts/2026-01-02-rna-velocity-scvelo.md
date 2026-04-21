@@ -11,6 +11,7 @@ tags:
   - python
   - immunology
   - tutorial
+description: "A scVelo + CellRank tutorial for RNA velocity — dynamical modelling of unspliced/spliced counts, latent time inference, driver genes, and cell-fate probabilities on T-cell differentiation and exhaustion trajectories."
 ---
 
 Single-cell RNA sequencing captures a snapshot of gene expression in individual cells, but biology is not static. Cells are constantly transitioning between states --- differentiating, activating, or becoming exhausted. **RNA velocity** gives us a way to infer the _direction_ and _speed_ of these transitions from a single time point, effectively turning a snapshot into a movie.
@@ -74,6 +75,7 @@ import scvelo as scv
 import cellrank as cr
 import scanpy as sc
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 
 scv.settings.verbosity = 3
@@ -273,8 +275,8 @@ scv.tl.rank_velocity_genes(
     min_corr=0.3  # minimum correlation with velocity
 )
 
-# Extract results as a DataFrame
-df = scv.DataFrame(adata.uns["rank_velocity_genes"]["names"])
+# Extract results as a DataFrame (rank_velocity_genes stores names as a structured numpy array)
+df = pd.DataFrame(adata.uns["rank_velocity_genes"]["names"])
 print(df.head(10))
 ```
 

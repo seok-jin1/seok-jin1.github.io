@@ -11,6 +11,7 @@ tags:
   - deep-learning
   - transformer
   - biology
+description: "Technical notes on Google DeepMind's AlphaGenome — a hybrid CNN–Transformer model that predicts megabase-scale regulatory tracks at single-nucleotide resolution and scores noncoding variants across 11 modalities."
 ---
 
 Imagine you have a 3-billion-letter instruction manual for building a human, but 98% of it isn't written in the language of proteins—it's written in a mysterious regulatory code that controls when, where, and how much of each protein gets made. For decades, this "dark matter" of the genome has confounded scientists. How do distant DNA sequences turn genes on or off? How does a single mutation in a seemingly empty region cause disease?
@@ -33,9 +34,9 @@ $$
 
 where each $$y^{(k)} \in \mathbb{R}^L$$ represents a regulatory track (gene expression, chromatin accessibility, etc.) at single-nucleotide resolution, and $$K$$ can be 5,930 tracks for human genome.
 
-In doing so, AlphaGenome outperformed the best external models on 22 out of 24 genomic prediction tasks and recovered twice as many gene expression variants as previous state-of-the-art methods.
+In doing so, AlphaGenome outperformed the best external models on the large majority of genomic prediction tasks (see the updated benchmark table further down — 25 of 26 variant tasks in the peer-reviewed Nature version) and recovered twice as many gene expression variants as previous state-of-the-art methods.
 
-Explore the full [bioRxiv preprint](https://www.biorxiv.org/content/10.1101/2025.06.25.661532v1) and [supplementary material](https://www.biorxiv.org/content/biorxiv/early/2025/06/26/2025.06.25.661532/DC1/embed/media-1.pdf) for deeper technical details.
+AlphaGenome was originally posted as a [bioRxiv preprint](https://www.biorxiv.org/content/10.1101/2025.06.25.661532v1) in June 2025 and published in peer-reviewed form in **Nature** on 28 January 2026. The Nature paper is the definitive reference — the preprint's earlier figures (e.g., "22/24 tasks") were updated during review, so benchmark numbers below track the Nature version.
 
 ---
 
@@ -93,7 +94,7 @@ The authors outline seven novel contributions that distinguish the AlphaGenome m
 
    where $$g$$ is a learned function combining features from positions $$i$$ and $$j$$, producing a contact probability matrix $$C \in \mathbb{R}^{L \times L}$$.
 
-6. **Efficient knowledge distillation.** A teacher-student training framework enables deployment on consumer GPUs while maintaining accuracy.
+6. **Efficient knowledge distillation.** A teacher-student training framework shrinks the deployed model enough to run on a single high-memory research GPU (the public research repository currently recommends the hosted **API** for most users; local inference targets NVIDIA H100-class accelerators rather than consumer cards).
 
    The student model learns from a teacher ensemble:
 
@@ -532,7 +533,7 @@ AlphaGenome was evaluated against the best external models (Enformer, Borzoi, Se
 | Splice disruption | ClinVar      | auROC            | 0.88        | 0.82 (Pangolin)       |
 | Promoter variants | MPRA         | Spearman ρ       | 0.61        | 0.54 (Enformer)       |
 
-**Overall:** AlphaGenome wins **24 out of 26** variant tasks.
+**Overall:** AlphaGenome wins **25 out of 26** variant tasks in the peer-reviewed Nature benchmark (the original bioRxiv preprint reported "22 of 24" over a smaller task set).
 
 <img src="/assets/img/alphagenome/5.PNG" alt="Accessibility variant scoring and QTL benchmarks" class="zoomable" style="width:90%;max-width:1000px;display:block;margin:20px auto;" />
 *Figure 5. Comprehensive variant effect prediction performance. (a) Accessibility (ATAC/DNase) variant scoring methodology using center mask aggregation: (1) Apply center mask around variant, (2) SUM the masked predictions (REF: 0.4, ALT: 1.3 in example), (3) Log-transform, (4) Compute ALT - REF difference = 0.7. (b) Causality tasks: Average precision for chromatin accessibility QTLs (caQTL), DNase QTLs (dsQTL), and binding QTLs (bQTL) across multiple populations (African, European, Yoruba) and datasets (SPI1). AlphaGenome (distilled, blue) consistently outperforms Borzoi ensemble (yellow) and ChromBPNet (gray). (c) Coefficient tasks: Pearson correlation for predicting effect sizes across same QTL types and cell types (including SMC smooth muscle cells and microglia). AlphaGenome achieves highest or competitive performance on all tasks, demonstrating robust variant interpretation across diverse regulatory modalities and populations.*
@@ -671,19 +672,19 @@ Want a promoter that drives 10× higher expression in liver than brain? AlphaGen
 
 **Result:** Instead of testing 10,000 constructs in the lab, test only 10—saving months and millions of dollars.
 
-**Optimizing codon usage:**
+**Screening synonymous variants for splicing and expression effects:**
 
-AlphaGenome predicts how synonymous codon changes affect:
+AlphaGenome's official output tracks cover gene expression (RNA-seq, CAGE, PRO-cap), splicing (splice-site usage and junction probabilities), chromatin accessibility, histone modifications, TF binding, and Hi-C contact maps. This means synonymous codon changes can be screened for their impact on:
 
-- mRNA stability (via secondary structure)
-- Splicing (exonic splicing enhancers)
-- Translation efficiency (codon optimality)
+- Splicing (creation or disruption of exonic splicing enhancers / silencers, altered splice junction usage)
+- Regulatory activity embedded in the coding sequence (promoter/enhancer overlap, TF motif creation)
+- Predicted expression (RNA-seq / CAGE tracks)
 
-This enables multi-objective optimization:
+Translation-level effects such as **codon-usage optimality and ribosomal translation efficiency are not part of AlphaGenome's output set**, and mRNA secondary-structure stability is likewise outside its prediction scope — those still require dedicated tools (e.g., CAI/tAI calculators, RNAfold/ViennaRNA, or translation-efficiency models trained on ribosome profiling). A reasonable multi-objective design objective using AlphaGenome alone is therefore:
 
 $$
 \text{Maximize: } \text{Expression} \\
-\text{Subject to: } \text{No splice site creation}, \text{GC content} \in [40\%, 60\%]
+\text{Subject to: } \text{No aberrant splice site creation}, \text{GC content} \in [40\%, 60\%]
 $$
 
 ### 4. Evolutionary Biology

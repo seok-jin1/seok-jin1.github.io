@@ -11,6 +11,7 @@ tags:
   - immunology
   - python
   - tutorial
+description: "A practical guide to cell-cell communication inference with CellChat and CellPhoneDB — building ligand-receptor networks, visualising pathway activity, and comparing signalling between tumour and normal tissue in immune microenvironments."
 ---
 
 ## Introduction
@@ -196,7 +197,7 @@ netVisual_bubble(cellchat,
 {% include figure.liquid loading="eager" path="assets/img/blog/cellchat/figure3-bubble-plot.png" class="img-fluid rounded z-depth-1" zoomable=true %}
 
 <div class="caption">
-    Figure 3. Bubble plot showing ligand-receptor interactions from myeloid cells (macrophages and DCs) to T cell subsets. Larger bubbles indicate higher communication probability; color encodes the signaling pathway.
+    Figure 3. Bubble plot showing ligand-receptor interactions from myeloid cells (macrophages and DCs) to T cell subsets. Color encodes the communication probability (redder = stronger predicted signalling); dot size encodes the statistical significance (p-value) of the interaction.
 </div>
 
 ### 1.6 Comparing Conditions: Tumor vs Normal

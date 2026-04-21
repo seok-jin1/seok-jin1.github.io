@@ -11,6 +11,7 @@ tags:
   - python
   - tutorial
   - CADD
+description: "A walk-through of a full OpenMM molecular-dynamics pipeline — system setup with AMBER14 / TIP3P-FB, Langevin integration, production runs, and trajectory analysis (RMSD, RMSF, radius of gyration, hydrogen bonds)."
 ---
 
 Proteins are not static sculptures. They breathe, twist, and fluctuate on timescales ranging from femtoseconds to milliseconds, and these motions are often the key to understanding function. Molecular dynamics (MD) simulation lets us watch these motions unfold in atomistic detail by numerically integrating Newton's equations of motion for every atom in the system.
@@ -147,7 +148,7 @@ system = forcefield.createSystem(
     nonbondedMethod=PME,          # Particle Mesh Ewald for long-range electrostatics
     nonbondedCutoff=1.0 * unit.nanometers,  # Short-range cutoff
     constraints=HBonds,           # Constrain bonds involving hydrogen
-    hydrogenMass=1.5 * unit.amu   # Hydrogen mass repartitioning for 4 fs timestep
+    hydrogenMass=1.5 * unit.amu   # Modest hydrogen mass repartitioning — safe with a 2 fs timestep
 )
 print(f"System created: {system.getNumParticles()} particles, "
       f"{system.getNumForces()} force terms")
@@ -160,7 +161,7 @@ Key choices explained:
 | `nonbondedMethod` | PME     | Accurate long-range electrostatics for periodic systems                     |
 | `nonbondedCutoff` | 1.0 nm  | Standard cutoff; balances accuracy and speed                                |
 | `constraints`     | HBonds  | Allows 2 fs or larger timestep by freezing fast H-bond vibrations           |
-| `hydrogenMass`    | 1.5 amu | Hydrogen mass repartitioning enables 4 fs timestep without loss of accuracy |
+| `hydrogenMass`    | 1.5 amu | Modest hydrogen mass repartitioning; used together with `constraints=HBonds` it stabilises a 2 fs Langevin integrator. Pushing to a 4 fs timestep requires both heavier repartitioning (e.g., `hydrogenMass=4*unit.amu`) and explicit energy / stability validation for your system. |
 
 ### 3.2 Integrator and Barostat
 
@@ -580,11 +581,15 @@ Hydrogen bonds are critical for protein secondary structure stability. We can tr
 
 ```python
 # Hydrogen bond analysis
+# Important: hydrogens_sel must actually select hydrogen atoms, not the whole
+# protein (MDAnalysis takes these selections literally). We use element H, and
+# fall back to the common naming convention (atom names starting with H) when
+# element info is missing in the topology.
 hbond_analysis = HydrogenBondAnalysis(
     universe=u,
-    donors_sel='protein',
-    hydrogens_sel='protein',
-    acceptors_sel='protein',
+    donors_sel='protein and (name N* or name O* or name S*) and not name H*',
+    hydrogens_sel='protein and (element H or name H*)',
+    acceptors_sel='protein and (name N* or name O* or name S*) and not name H*',
     d_a_cutoff=3.0,          # Donor-acceptor distance cutoff (Angstroms)
     d_h_a_angle_cutoff=150   # D-H...A angle cutoff (degrees)
 )

@@ -11,6 +11,7 @@ tags:
   - python
   - deep-learning
   - tutorial
+description: "A side-by-side tutorial on molecular docking with AutoDock Vina and DiffDock — receptor / ligand preparation, pose generation, confidence interpretation, and comparison workflows on an SARS-CoV-2 Mpro example."
 ---
 
 Molecular docking is a cornerstone of computer-aided drug discovery (CADD). Given a protein target and a small molecule, docking predicts **where** and **how strongly** the ligand binds. This prediction guides medicinal chemists toward promising drug candidates before expensive wet-lab experiments begin.
@@ -445,43 +446,61 @@ else:
 
 ### 3.5 Comparing Vina and DiffDock Poses
 
+Vina writes its 10 poses into a single multi-model `aspirin_vina_out.pdbqt` file (section 2.4), so before we can compare against DiffDock we need to read pose 1 back in and convert it into an RDKit `Mol`. The cleanest route is Meeko's `PDBQTMolecule` reader, which gives us per-pose coordinates aligned to the original SMILES-derived RDKit molecule. We then compare against the DiffDock rank-1 SDF.
+
 ```python
 """
 compare_poses.py
-Compare poses from Vina and DiffDock by computing RMSD.
+Compare pose 1 from AutoDock Vina with rank-1 from DiffDock by computing a
+symmetry-corrected RMSD with spyrmsd (needed because aspirin has a symmetric
+carboxylate / aromatic ring, which rdMolAlign.GetBestRMS does not handle).
 """
 import numpy as np
 from rdkit import Chem
 from rdkit.Chem import AllChem, rdMolAlign
-from spyrmsd import rmsd as spyrmsd
+from meeko import PDBQTMolecule, RDKitMolCreate
+from spyrmsd import rmsd as spyrmsd, molecule as spymol
 
-# ── Load DiffDock top pose ──────────────────────────────────────────
-diffdock_mol = Chem.SDMolSupplier("diffdock_results/mpro_aspirin/rank1_confidence0.42.sdf")[0]
+# ── 1. Load DiffDock top pose (SDF, already an RDKit-friendly file) ────
+diffdock_mol = Chem.SDMolSupplier(
+    "diffdock_results/mpro_aspirin/rank1_confidence0.42.sdf",
+    removeHs=False,
+)[0]
 
-# ── Load Vina top pose (convert PDBQT -> SDF via RDKit) ────────────
-vina_mol = Chem.MolFromPDBFile("aspirin_vina_pose1.pdb", removeHs=False)
+# ── 2. Load pose 1 of the Vina output directly from the multi-model PDBQT
+vina_pdbqt = PDBQTMolecule.from_file("aspirin_vina_out.pdbqt", skip_typing=True)
+vina_mol_list = RDKitMolCreate.from_pdbqt_mol(vina_pdbqt)
+vina_mol = vina_mol_list[0]  # pose index 0 is the best-scoring one
 
-# ── Compute RMSD between the two poses ─────────────────────────────
-if diffdock_mol and vina_mol:
-    # Align by maximum common substructure
-    mcs = Chem.MolFromSmarts(
-        Chem.MolToSmarts(
-            AllChem.GetBestRMS(diffdock_mol, vina_mol)
-        )
-    )
-    rmsd_value = rdMolAlign.GetBestRMS(diffdock_mol, vina_mol)
-    print(f"RMSD between DiffDock (rank1) and Vina (pose1): {rmsd_value:.2f} A")
+if diffdock_mol is None or vina_mol is None:
+    raise RuntimeError("Failed to load one of the input poses")
 
-    # Symmetry-corrected RMSD using spyrmsd
-    coords_dd = diffdock_mol.GetConformer().GetPositions()
-    coords_vina = vina_mol.GetConformer().GetPositions()
-    symmrmsd = spyrmsd.symmrmsd(
-        coords_dd, [coords_vina],
-        diffdock_mol.GetNumAtoms(),
-        diffdock_mol.GetNumAtoms(),
-    )
-    print(f"Symmetry-corrected RMSD: {symmrmsd[0]:.2f} A")
+# ── 3. Simple RMSD after best alignment (ignores atom-label symmetry) ──
+simple_rmsd = rdMolAlign.GetBestRMS(diffdock_mol, vina_mol)
+print(f"rdMolAlign.GetBestRMS (no symmetry): {simple_rmsd:.2f} A")
+
+# ── 4. Symmetry-corrected RMSD with spyrmsd ────────────────────────────
+# spyrmsd takes element Z arrays plus adjacency matrices; the helper
+# molecule.Molecule.from_rdkit builds both from an RDKit Mol.
+ref = spymol.Molecule.from_rdkit(diffdock_mol)
+probe = spymol.Molecule.from_rdkit(vina_mol)
+
+sym_rmsd = spyrmsd.symmrmsd(
+    ref.coordinates,
+    probe.coordinates,
+    ref.atomicnums,
+    probe.atomicnums,
+    ref.adjacency_matrix,
+    probe.adjacency_matrix,
+)
+print(f"spyrmsd.symmrmsd (symmetry-corrected): {sym_rmsd:.2f} A")
 ```
+
+A few details worth keeping in mind:
+
+- **Meeko ≥ 0.5** is required for `PDBQTMolecule.from_file(...)`. Older versions used a slightly different API (`from_file` returned a list); check your installed version.
+- `RDKitMolCreate.from_pdbqt_mol(...)` returns one `Mol` per pose in the file — we pick pose 0 (the lowest-energy pose, which Vina writes first).
+- `spyrmsd.symmrmsd` expects, in order: reference coordinates, probe coordinates, reference atomic numbers, probe atomic numbers, reference adjacency matrix, probe adjacency matrix. Passing `GetNumAtoms()` (a scalar) in place of the atomic-number arrays, as earlier versions of this tutorial did, will raise a type error.
 
 {% include figure.liquid loading="eager" path="assets/img/blog/molecular-docking/figure4-vina-vs-diffdock.png" class="img-fluid rounded z-depth-1" zoomable=true %}
 

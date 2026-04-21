@@ -11,6 +11,7 @@ tags:
   - python
   - immunology
   - machine-learning
+description: "A practical guide to multi-omics integration in immunology — MOFA+ for factor models, scVI / totalVI for probabilistic latent spaces, WNN, and how to choose between paired and unpaired integration strategies."
 ---
 
 No single molecular measurement can fully capture the complexity of the immune system. Transcriptomics tells us what genes are being expressed, but not whether those transcripts become functional proteins. Proteomics reveals the effector molecules on the cell surface, but misses the regulatory logic encoded in chromatin accessibility. Epigenomics maps the landscape of gene regulation, but cannot directly tell us which genes are actively transcribed. Each modality offers a partial view -- like examining a sculpture from only one angle.

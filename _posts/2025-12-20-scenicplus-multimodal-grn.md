@@ -11,6 +11,7 @@ tags:
   - multi-omics
   - epigenomics
   - tutorial
+description: "A SCENIC+ walk-through — how scRNA-seq + scATAC-seq are combined with pycisTopic topic modelling, cisTarget motif scoring, and AUCell to build enhancer-aware eRegulons with both paired-multiome and bridge-integration inputs."
 ---
 
 ## Introduction
@@ -49,14 +50,14 @@ The key insight: eRegulons tell you _which enhancers_ a TF uses to regulate _whi
 
 ## Setup and Data Requirements
 
-SCENIC+ requires **paired** scRNA-seq and scATAC-seq from the same cells (e.g., 10x Multiome). You need:
+SCENIC+ works best with **paired** scRNA-seq and scATAC-seq from the same cells (e.g., 10x Multiome), but the official tutorials also document a **non-multiome / bridge** workflow in which scRNA-seq and scATAC-seq come from separate experiments and are integrated into a common cell-state space before running SCENIC+. You need:
 
 - A gene expression count matrix (cells x genes) from the RNA modality
-- An ATAC fragment file (`fragments.tsv.gz`) with cell barcodes matching the RNA data
+- An ATAC fragment file (`fragments.tsv.gz`) with cell barcodes matching the RNA data (paired mode) **or** a separate scATAC-seq object whose cells can be mapped onto the RNA embedding via bridge integration / label transfer (non-multiome mode)
 - A reference genome annotation (e.g., hg38 for human, mm10 for mouse)
 - cisTarget motif ranking databases for your genome assembly
 
-The paired requirement is critical: each cell barcode must appear in both the RNA and ATAC data, so that expression and accessibility measurements can be directly linked. If you have separate scRNA-seq and scATAC-seq experiments, you would need to first integrate them (e.g., via bridge integration or label transfer), but this introduces noise compared to true multiome data.
+Paired multiome is the cleanest option because each cell barcode carries both expression and accessibility readouts directly. The non-multiome route is fully supported — you align separate scRNA-seq and scATAC-seq datasets first (for example with Seurat bridge integration or Harmony-based label transfer), then feed the merged object into SCENIC+ — but expect noisier enhancer-gene links than with true multiome data.
 
 ### Installation
 
@@ -449,7 +450,7 @@ Before running SCENIC+ on your own data, keep these practical considerations in 
 
 5. **Dual scoring (RNA + ATAC) increases confidence.** Concordant eRegulon activity across both modalities strengthens regulatory assignments.
 
-6. **Paired multimodal data is required.** 10x Multiome is ideal; integrating separate scRNA-seq and scATAC-seq datasets is possible but noisier.
+6. **Paired multimodal data is preferred, but not strictly required.** 10x Multiome is ideal, and the official tutorials also ship a non-multiome / bridge workflow for separately generated scRNA-seq and scATAC-seq datasets — expect noisier enhancer-gene links in that mode.
 
 7. **Computational cost is substantial.** Plan for 32+ GB RAM and multiple CPU cores. LDA modeling and region-gene correlation are the bottlenecks.
 

@@ -10,6 +10,7 @@ tags:
   - visualization
   - python
   - tutorial
+description: "Script-driven PyMOL workflows for publication-quality protein figures — pymol2 context managers, reproducible views, ray-traced rendering, color schemes, and session export tips."
 ---
 
 Structural biology papers live and die by their figures. **PyMOL** remains the gold standard for molecular visualization, and its Python API turns it into a fully scriptable rendering engine. This tutorial walks through practical recipes for generating publication-quality figures entirely from Python scripts -- no GUI clicking required.
@@ -456,7 +457,7 @@ cmd.set("label_bg_transparency", 0.4)
 
 ```python
 cmd.save("figure_session.pse")  # Editable session for collaborators
-cmd.save("figure.wrl")          # VRML for vector rendering
+cmd.save("figure.wrl")          # VRML: a 3D scene file you can open in other 3D viewers / WebGL tools (not a 2D vector format; use .svg or .pdf for that)
 ```
 
 ## 9. Key Takeaways

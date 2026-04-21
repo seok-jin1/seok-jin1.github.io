@@ -11,6 +11,7 @@ tags:
   - python
   - immunology
   - tutorial
+description: "A pySCENIC tutorial for single-cell GRN inference — GRNBoost2 co-expression, cisTarget motif pruning, AUCell regulon scoring, and regulon-based immune cell-state annotation."
 ---
 
 Understanding how transcription factors (TFs) orchestrate gene expression programs in individual cells is one of the central questions in immunology. Which TFs drive a naive CD4+ T cell to become a Th1 effector versus a regulatory T cell? How do monocytes commit to becoming dendritic cells versus macrophages? **pySCENIC** (Single-Cell rEgulatory Network Inference and Clustering) provides a computational framework to answer these questions by reconstructing **gene regulatory networks (GRNs)** directly from single-cell RNA-seq data.

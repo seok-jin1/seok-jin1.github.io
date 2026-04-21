@@ -10,6 +10,7 @@ tags:
   - deep-learning
   - science
   - machine-learning
+description: "A technical deep dive into AlphaFold's Evoformer, Structure Module, Invariant Point Attention, and recycling — with plain-English intuition alongside the equations."
 ---
 
 Imagine you're given a long string of beads, each bead representing one of the twenty amino acids that make up life's proteins. Now, without touching it, you must predict exactly how that string twists and folds into a three dimensional shape that decides whether it becomes silk, muscle, or an enzyme. For decades this challenge, known as the **protein folding problem**, baffled scientists.
@@ -74,7 +75,7 @@ The authors outline seven novel contributions that distinguish the AlphaFold2 mo
    R_i \in \mathrm{SO}(3),\ \mathbf{t}_i \in \mathbb{R}^3,
    $$
 
-   where $$F_i$$ encodes residue $$i$$, $$R_i$$ is its rotation in $$\mathrm{SO}(3)$$ (the group of 3D rotations), and $$\mathbf{t}_i$$ is its translation vector in $$\mathbb{R}^3$$. Internal atom positions are defined via learned torsion angles (bond angles) relative to that frame. For example, the "carbonyl carbon" and "nitrogen" atoms of residue $i$ have fixed positions in the local frame, but where those atoms appear in global 3D space depends on the frame $(R_i, \mathbf{t}_i)$.
+   where $$F_i$$ encodes residue $$i$$, $$R_i$$ is its rotation in $$\mathrm{SO}(3)$$ (the group of 3D rotations), and $$\mathbf{t}_i$$ is its translation vector in $$\mathbb{R}^3$$. Internal atom positions are defined via learned **torsion (dihedral) angles** — the rotation around a bond, such as the φ/ψ/ω backbone torsions and the χ₁…χ₄ side-chain torsions — relative to that frame. (These are distinct from *bond angles*, which are the three-atom angles and are held fixed in AlphaFold's idealised geometry.) For example, the "carbonyl carbon" and "nitrogen" atoms of residue $i$ have fixed positions in the local frame, but where those atoms appear in global 3D space depends on the frame $(R_i, \mathbf{t}_i)$.
 
 3. **Invariant Point Attention (IPA).** The equivariant attention design lets AlphaFold consider 3-D distances between residues while ignoring global translations or rotations, so attention focuses on true spatial relationships.
 
@@ -231,7 +232,7 @@ AlphaFold doesn't just make one pass through the network. Instead, it **recycles
 
 2. **Extract 3D signals**: Compute structural features from the predicted frames:
 
-   - **Distance matrix**: Between Cβ atoms (backbone atoms),
+   - **Distance matrix**: Between Cβ atoms (the first side-chain carbon — for glycine, which has no Cβ, a virtual Cβ is placed from the backbone geometry),
 
    $$
    d^{(1)}_{ij} = \|\mathbf{x}^{(1)}_{i, C_\beta} - \mathbf{x}^{(1)}_{j, C_\beta}\|_2,

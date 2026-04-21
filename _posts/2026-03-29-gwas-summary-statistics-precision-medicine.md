@@ -280,7 +280,7 @@ If you have access to lambda GC or LDSC intercept estimates from the original st
 {% include figure.liquid loading="eager" path="assets/img/blog/gwas-summary/figure4-qq-plot.png" class="img-fluid rounded z-depth-1" zoomable=true %}
 
 <div class="caption">
-    Figure 4. QQ plot comparing observed versus expected p-value distributions. The diagonal line represents the null expectation. Deviation in the upper tail indicates genuine association signals. The genomic inflation factor (λ_GC) quantifies systematic inflation.
+    Figure 4. QQ plot comparing observed versus expected p-value distributions. The diagonal line represents the null expectation. Deviation in the upper tail may indicate genuine association signals, but polygenicity or confounding can produce similar inflation, so it should be interpreted together with λ_GC or the LDSC intercept. The genomic inflation factor (λ_GC) quantifies systematic inflation.
 </div>
 
 ---

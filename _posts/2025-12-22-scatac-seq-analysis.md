@@ -11,6 +11,7 @@ tags:
   - epigenomics
   - R
   - tutorial
+description: "A scATAC-seq analysis tutorial covering ArchR, Signac, pycisTopic, and SnapATAC2 — QC, LSI, gene-activity imputation, peak calling, TF motif enrichment, and chromVAR for immune-cell regulatory programs."
 ---
 
 Single-cell ATAC-seq (scATAC-seq) measures chromatin accessibility at single-cell resolution, revealing the regulatory landscape that governs gene expression. Unlike scRNA-seq, which captures transcriptional output, scATAC-seq captures the **potential** for transcription by identifying open chromatin regions where transcription factors can bind. This distinction is critical for understanding how cell identity is established and maintained through epigenetic regulation.
@@ -273,8 +274,7 @@ p_gene <- plotEmbedding(
   colorBy = "GeneScoreMatrix",
   name = markerGenes,
   embedding = "UMAP",
-  quantCut = c(0.01, 0.95),
-  imputeWeights = getImputeWeights(proj)
+  quantCut = c(0.01, 0.95)
 )
 
 # Arrange marker gene plots in a grid
@@ -902,10 +902,10 @@ snap.pp.select_features(data)
 # Spectral embedding (similar to LSI)
 snap.tl.spectral(data)
 
-# Clustering and UMAP
-snap.tl.umap(data)
+# Build the k-nearest-neighbour graph first, then cluster / embed on top of it
 snap.pp.knn(data)
 snap.tl.leiden(data)
+snap.tl.umap(data)
 
 # Visualization
 snap.pl.umap(data, color="leiden", interactive=False)

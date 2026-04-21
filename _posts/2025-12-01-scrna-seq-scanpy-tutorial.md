@@ -11,6 +11,7 @@ tags:
   - python
   - immunology
   - tutorial
+description: "An end-to-end Scanpy tutorial for single-cell RNA-seq — QC, normalization, PCA / neighbours / UMAP, clustering, marker genes, and a T-cell-oriented annotation walk-through."
 ---
 
 ## Introduction
@@ -245,7 +246,7 @@ sc.pl.umap(adata, color=["n_genes_by_counts", "total_counts", "pct_counts_mt"],
            save="_qc_umap.png")
 ```
 
-A note on UMAP interpretation: UMAP preserves local structure (nearby cells in UMAP space are truly similar), but distances between distant clusters and cluster sizes are not meaningful. Do not over-interpret the "gaps" between clusters or how spread out a cluster appears. Think of UMAP as a way to visualize neighborhoods, not geography.
+A note on UMAP interpretation: UMAP approximates the **local neighbourhood graph** of the high-dimensional data, so cells that land next to each other in UMAP space are usually near-neighbours in the original expression space — but this is an approximation, not a guarantee of biological similarity, and the method can distort small neighbourhoods. Distances between distant clusters and cluster sizes are not meaningful either. Do not over-interpret the "gaps" between clusters or how spread out a cluster appears. Think of UMAP as a way to visualize neighborhoods, not geography.
 
 t-SNE is an alternative that is better at preserving local structure but worse at preserving global relationships. In practice, UMAP has largely replaced t-SNE in the field due to better scalability and more interpretable global structure.
 
