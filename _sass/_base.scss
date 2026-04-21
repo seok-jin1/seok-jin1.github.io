@@ -1690,6 +1690,18 @@ figure.cover {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
+.education-photo-left {
+  float: left;
+  margin-left: 0;
+  margin-right: 1.5rem;
+}
+
+.education-photo-portrait {
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
 @media (max-width: 768px) {
   .education-photo {
     float: none;
@@ -1697,5 +1709,9 @@ figure.cover {
     width: 100%;
     max-width: 360px;
     margin: 1rem auto;
+  }
+
+  .education-photo-left {
+    margin-right: auto;
   }
 }

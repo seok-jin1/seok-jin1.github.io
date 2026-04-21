@@ -7,18 +7,23 @@ nav: true
 nav_order: 1
 ---
 
+<div class="education-section education-intro" markdown="1">
+<img class="education-photo education-photo-left" src="{{ '/assets/img/education/postdoctoral-training.png' | relative_url }}" alt="Triangle showing Bioinformatics, AI, and Experiments working together">
+
 Interdisciplinary science offers a unique framework to address the multifaceted challenges of modern biology that no single discipline can solve alone. My academic journey reflects this conviction: trained in wet-lab immunology and molecular techniques, I advanced into bioinformatics to interpret large-scale omics data, and now integrate AI and machine learning to predict, design, and engineer biological functions.
 
 **In the short term**, I am building computational and experimental expertise in TCR and antibody engineering, cell-cell interaction and communication networks, and single-cell-driven cellular dynamics. These are the tools needed to understand how immune systems make decisions at the molecular and cellular level.
 
 **In the long term**, my goal is to unify these threads into a precision medicine framework --- one that connects protein-level design (TCR, antibody), cellular-level dynamics (cell state transitions, intercellular signaling), and patient-level outcomes (biomarker-guided therapy, immunotherapy optimization). I aim to establish my own independent research group as a faculty member, leading a lab at the intersection of computational immunology, AI-driven protein design, and translational medicine.
 
+</div>
+
 ---
 
 ## Postdoctoral Training
 
 <div class="education-section" markdown="1">
-<img class="education-photo" src="{{ '/assets/img/education/postdoctoral-training.png' | relative_url }}" alt="Triangle showing Bioinformatics, AI, and Experiments working together">
+<img class="education-photo education-photo-portrait" src="{{ '/assets/img/education/postdoctoral-training-photo.jpg' | relative_url }}" alt="Postdoctoral training portrait">
 
 **Research Professor** (Mar 2026 - Present)<br>
 Immune Modulation Laboratory, Korea University<br>
