@@ -52,3 +52,55 @@ In the short term, his research aims to advance precision medicine through the d
 - Postdoctoral Fellow, Immune Modulation Laboratory, Korea University (Mar 2025 - Feb 2026)
 - Ph.D. and M.S. in Biotechnology, Korea University (Mar 2018 - Feb 2025)
 - B.S. in Biotechnology, Korea University (Mar 2014 - Feb 2018) _(QS ranking : 61<sup>st</sup>)_
+
+## <i class="fa-solid fa-flask fa-sm"></i> Active Research Projects
+
+<div class="container mt-3 mb-3">
+  <div class="row row-cols-1 row-cols-md-3">
+    <div class="col mb-3">
+      <a href="https://github.com/seok-jin1/nanobody_humanization_library/blob/main/description.md" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+        <div class="card hoverable h-100">
+          <img src="{{ '/assets/img/nanobody_humanization_library/platform-overview.png' | relative_url }}" class="card-img-top" style="height: 160px; object-fit: cover;" alt="Humanized Nanobody Platform">
+          <div class="card-body">
+            <div class="float-right">
+              <i class="fa-brands fa-github fa-lg"></i>
+            </div>
+            <h5 class="card-title">Humanized Nanobody Platform</h5>
+            <p class="card-text text-muted">Structure-guided humanization of an anti-FAP nanobody combining AlphaFold3, Rosetta Cartesian ΔΔG, and SAbDab-nano CDR library design.</p>
+            <p class="post-meta"><i class="fa-solid fa-code-branch fa-sm"></i> In progress</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col mb-3">
+      <a href="https://github.com/seok-jin1/tcr-pmhc-prediction" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+        <div class="card hoverable h-100">
+          <div class="card-img-top d-flex align-items-center justify-content-center text-muted" style="height: 160px; background-color: var(--global-bg-color, #f5f5f5); border-bottom: 1px solid rgba(0,0,0,0.08);"><i class="fa-solid fa-image fa-2x" style="opacity: 0.2;"></i></div>
+          <div class="card-body">
+            <div class="float-right">
+              <i class="fa-brands fa-github fa-lg"></i>
+            </div>
+            <h5 class="card-title">TCR-pMHC Binding Prediction Model</h5>
+            <p class="card-text text-muted">Deep learning model for predicting T-cell receptor and peptide-MHC binding specificity.</p>
+            <p class="post-meta"><i class="fa-solid fa-code-branch fa-sm"></i> In progress</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col mb-3">
+      <a href="https://github.com/seok-jin1/cellular_dynamics_perturbation/blob/main/description.md" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+        <div class="card hoverable h-100">
+          <img src="{{ '/assets/img/cellular_dynamics_perturbation/set-mmd-flow-architecture.png' | relative_url }}" class="card-img-top" style="height: 160px; object-fit: cover;" alt="Single-Cell Perturbation Dynamics">
+          <div class="card-body">
+            <div class="float-right">
+              <i class="fa-brands fa-github fa-lg"></i>
+            </div>
+            <h5 class="card-title">Single-Cell Perturbation Dynamics</h5>
+            <p class="card-text text-muted">Set-MMD Flow — distributional single-cell perturbation modeling via Conditional Flow Matching and cell-set attention.</p>
+            <p class="post-meta"><i class="fa-solid fa-code-branch fa-sm"></i> In progress</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
