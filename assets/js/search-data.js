@@ -84,7 +84,7 @@ ninja.data = [{
         
           title: "Molecular Docking: DiffDock vs AutoDock Vina for Drug Discovery",
         
-        description: "",
+        description: "A side-by-side tutorial on molecular docking with AutoDock Vina and DiffDock — receptor / ligand preparation, pose generation, confidence interpretation, and comparison workflows on an SARS-CoV-2 Mpro example.",
         section: "Posts",
         handler: () => {
           
@@ -95,7 +95,7 @@ ninja.data = [{
         
           title: "RNA Velocity with scVelo and CellRank: Predicting Cell State Transitions",
         
-        description: "",
+        description: "A scVelo + CellRank tutorial for RNA velocity — dynamical modelling of unspliced/spliced counts, latent time inference, driver genes, and cell-fate probabilities on T-cell differentiation and exhaustion trajectories.",
         section: "Posts",
         handler: () => {
           
@@ -106,7 +106,7 @@ ninja.data = [{
         
           title: "CellChat and CellPhoneDB: Decoding Cell-Cell Communication in the Immune Microenvironment",
         
-        description: "",
+        description: "A practical guide to cell-cell communication inference with CellChat and CellPhoneDB — building ligand-receptor networks, visualising pathway activity, and comparing signalling between tumour and normal tissue in immune microenvironments.",
         section: "Posts",
         handler: () => {
           
@@ -117,7 +117,7 @@ ninja.data = [{
         
           title: "TCR/BCR Repertoire Analysis: scRepertoire and Dandelion for Immune Profiling",
         
-        description: "",
+        description: "A practical tutorial on TCR and BCR repertoire analysis with scRepertoire and Dandelion — from 10x V(D)J outputs to clonal expansion, diversity metrics, and integration with single-cell transcriptomes.",
         section: "Posts",
         handler: () => {
           
@@ -128,7 +128,7 @@ ninja.data = [{
         
           title: "scATAC-seq Analysis: Chromatin Accessibility with ArchR and Signac",
         
-        description: "",
+        description: "A scATAC-seq analysis tutorial covering ArchR, Signac, pycisTopic, and SnapATAC2 — QC, LSI, gene-activity imputation, peak calling, TF motif enrichment, and chromVAR for immune-cell regulatory programs.",
         section: "Posts",
         handler: () => {
           
@@ -139,7 +139,7 @@ ninja.data = [{
         
           title: "SCENIC+: Multimodal Gene Regulatory Networks from RNA + ATAC",
         
-        description: "",
+        description: "A SCENIC+ walk-through — how scRNA-seq + scATAC-seq are combined with pycisTopic topic modelling, cisTarget motif scoring, and AUCell to build enhancer-aware eRegulons with both paired-multiome and bridge-integration inputs.",
         section: "Posts",
         handler: () => {
           
@@ -150,7 +150,7 @@ ninja.data = [{
         
           title: "pySCENIC: Inferring Gene Regulatory Networks from Single-Cell Data",
         
-        description: "",
+        description: "A pySCENIC tutorial for single-cell GRN inference — GRNBoost2 co-expression, cisTarget motif pruning, AUCell regulon scoring, and regulon-based immune cell-state annotation.",
         section: "Posts",
         handler: () => {
           
@@ -161,7 +161,7 @@ ninja.data = [{
         
           title: "Molecular Dynamics with OpenMM: From Setup to Analysis",
         
-        description: "",
+        description: "A walk-through of a full OpenMM molecular-dynamics pipeline — system setup with AMBER14 / TIP3P-FB, Langevin integration, production runs, and trajectory analysis (RMSD, RMSF, radius of gyration, hydrogen bonds).",
         section: "Posts",
         handler: () => {
           
@@ -172,7 +172,7 @@ ninja.data = [{
         
           title: "PyMOL + Python: Publication-Quality Protein Structure Visualization",
         
-        description: "",
+        description: "Script-driven PyMOL workflows for publication-quality protein figures — pymol2 context managers, reproducible views, ray-traced rendering, color schemes, and session export tips.",
         section: "Posts",
         handler: () => {
           
@@ -183,7 +183,7 @@ ninja.data = [{
         
           title: "Multi-Omics Integration for Immunology: MOFA+, scVI, and Beyond",
         
-        description: "",
+        description: "A practical guide to multi-omics integration in immunology — MOFA+ for factor models, scVI / totalVI for probabilistic latent spaces, WNN, and how to choose between paired and unpaired integration strategies.",
         section: "Posts",
         handler: () => {
           
@@ -194,7 +194,7 @@ ninja.data = [{
         
           title: "AlphaFold + ProteinMPNN: A Practical Protein Design Workflow",
         
-        description: "",
+        description: "An end-to-end antibody-design workflow combining AlphaFold / ColabFold structure prediction with ProteinMPNN inverse folding for CDR redesign, with notes on Chothia numbering and TCR-pMHC engineering.",
         section: "Posts",
         handler: () => {
           
@@ -205,7 +205,7 @@ ninja.data = [{
         
           title: "Single-Cell RNA-seq Analysis with Scanpy: A Practical Guide for Immunologists",
         
-        description: "",
+        description: "An end-to-end Scanpy tutorial for single-cell RNA-seq — QC, normalization, PCA / neighbours / UMAP, clustering, marker genes, and a T-cell-oriented annotation walk-through.",
         section: "Posts",
         handler: () => {
           
@@ -216,7 +216,7 @@ ninja.data = [{
         
           title: "RFdiffusion: De Novo Protein Design with Denoising Diffusion",
         
-        description: "",
+        description: "A paper-review-style introduction to RFdiffusion — how denoising diffusion over SE(3) frames enables de novo protein backbone generation, binder design, and motif scaffolding from RoseTTAFold representations.",
         section: "Posts",
         handler: () => {
           
@@ -227,7 +227,7 @@ ninja.data = [{
         
           title: "ESM-3: Simulating Evolution with Protein Language Models",
         
-        description: "",
+        description: "A guide to Evolutionary Scale Modeling&#39;s ESM-3: a multimodal protein language model that reads and generates sequence, structure, and function tokens jointly, and the de novo esmGFP experiment that illustrates its generative capabilities.",
         section: "Posts",
         handler: () => {
           
@@ -238,7 +238,7 @@ ninja.data = [{
         
           title: "AlphaFold 3: Predicting the Structure of All Life&#39;s Molecules",
         
-        description: "",
+        description: "A walk through the AlphaFold 3 Nature 2024 paper — the Pairformer trunk, the diffusion-based structure module, the unified token/atom representation, and how AF3 scores confidence across protein, DNA, RNA, ligand, and ion complexes.",
         section: "Posts",
         handler: () => {
           
@@ -249,7 +249,7 @@ ninja.data = [{
         
           title: "AlphaMissense: AI-Powered Prediction of Genetic Variant Pathogenicity",
         
-        description: "",
+        description: "A section-by-section walkthrough of DeepMind&#39;s AlphaMissense (Science 2023), explaining how a fine-tuned AlphaFold backbone predicts pathogenicity for all 71 million possible human missense variants.",
         section: "Posts",
         handler: () => {
           
@@ -260,7 +260,7 @@ ninja.data = [{
         
           title: "AlphaGenome: The AI That Reads DNA&#39;s Regulatory Code",
         
-        description: "",
+        description: "Technical notes on Google DeepMind&#39;s AlphaGenome — a hybrid CNN–Transformer model that predicts megabase-scale regulatory tracks at single-nucleotide resolution and scores noncoding variants across 11 modalities.",
         section: "Posts",
         handler: () => {
           
@@ -271,7 +271,7 @@ ninja.data = [{
         
           title: "AlphaFold: Technical Deep Dive with Intuitive Explanations",
         
-        description: "",
+        description: "A technical deep dive into AlphaFold&#39;s Evoformer, Structure Module, Invariant Point Attention, and recycling — with plain-English intuition alongside the equations.",
         section: "Posts",
         handler: () => {
           
