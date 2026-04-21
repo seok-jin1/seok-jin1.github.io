@@ -89,14 +89,14 @@ pagination:
       </a>
     </div>
     <div class="col mb-3">
-      <a href="{{ '/blog/tag/single-cell/' | relative_url }}" style="text-decoration: none;">
+      <a href="https://github.com/seok-jin1/cellular_dynamics_perturbation/blob/main/description.md" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
         <div class="card hoverable">
           <div class="card-body">
             <div class="float-right">
-              <i class="fa-solid fa-chart-line fa-lg"></i>
+              <i class="fa-brands fa-github fa-lg"></i>
             </div>
-            <h5 class="card-title">Immune Cell State Dynamics</h5>
-            <p class="card-text text-muted">Modeling differentiation, exhaustion, and treatment-responsive state transitions from single-cell and multi-omics data.</p>
+            <h5 class="card-title">Single-Cell Perturbation Dynamics</h5>
+            <p class="card-text text-muted">Set-MMD Flow — distributional single-cell perturbation modeling via Conditional Flow Matching and cell-set attention.</p>
             <p class="post-meta"><i class="fa-solid fa-code-branch fa-sm"></i> In progress</p>
           </div>
         </div>
