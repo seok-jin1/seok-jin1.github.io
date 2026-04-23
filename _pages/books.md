@@ -43,6 +43,9 @@ nav_order: 4
                 {% if book.publisher %}
                   <div class="book-meta"><strong>Publisher:</strong> {{ book.publisher }}</div>
                 {% endif %}
+                {% if book.contributions %}
+                  <div class="book-meta"><strong>Contributions:</strong> {{ book.contributions }}</div>
+                {% endif %}
               </div>
               {% if book.chapters %}
                 <div class="book-chapters">
