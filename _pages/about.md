@@ -37,7 +37,7 @@ He strategically pivoted from wet-lab immunology to computational biology to ove
 
 As Research Professor, he independently leads two translational programs: (1) development of an anti-FAP nanobody–cytokine conjugate co-delivering IL-7 and G-CSF to reprogram the bone marrow niche for hematopoietic recovery and immunotherapy sensitization, and (2) construction of a yeast-displayed humanized VHH repertoire to accelerate therapeutic nanobody discovery against immune-oncology targets.
 
-In the short term, his research aims to advance precision medicine through the development of multi-omicsbased computational models capable of predicting immune responses, guiding therapeutic design, and enabling personalized intervention strategies. Over the long term, he aspires to establish himself as an independent faculty member and contribute to extending human healthspan and wellbeing through integrative, AI-driven biomedical research that unites immunology, genomics, and computational modeling.
+In the short term, his research aims to advance precision medicine through the development of multi-omics based computational models capable of predicting immune responses, guiding therapeutic design, and enabling personalized intervention strategies. Over the long term, he aspires to establish himself as an independent faculty member and contribute to extending human healthspan and wellbeing through integrative, AI-driven biomedical research that unites immunology, genomics, and computational modeling.
 
 ## Research Focus
 
