@@ -60,7 +60,15 @@ In the short term, his research aims to advance precision medicine through the d
     <div class="col mb-3">
       <a href="https://github.com/seok-jin1/nanobody_humanization_library/blob/main/description.md" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
         <div class="card hoverable h-100">
-          <img src="{{ '/assets/img/nanobody_humanization_library/platform-overview.png' | relative_url }}" class="card-img-top" style="height: 160px; object-fit: cover;" alt="Humanized Nanobody Platform">
+          <img
+            id="nanobody-project-thumbnail"
+            src="{{ '/assets/img/nanobody_humanization_library/platform-overview.png' | relative_url }}"
+            data-static-src="{{ '/assets/img/nanobody_humanization_library/platform-overview.png' | relative_url }}"
+            data-gif-src="{{ '/assets/img/nanobody_humanization_library/fap_nanobody_binding.gif' | relative_url }}"
+            class="card-img-top"
+            style="height: 160px; object-fit: cover;"
+            alt="Humanized Nanobody Platform"
+          >
           <div class="card-body">
             <div class="float-right">
               <i class="fa-brands fa-github fa-lg"></i>
@@ -89,3 +97,23 @@ In the short term, his research aims to advance precision medicine through the d
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const thumbnail = document.getElementById("nanobody-project-thumbnail");
+    if (!thumbnail) return;
+
+    const staticSrc = thumbnail.dataset.staticSrc;
+    const gifSrc = thumbnail.dataset.gifSrc;
+    let showingGif = false;
+
+    const swapThumbnail = function () {
+      showingGif = !showingGif;
+      thumbnail.src = showingGif ? gifSrc : staticSrc;
+      thumbnail.alt = showingGif ? "Predicted anti-FAP nanobody binding FAP" : "Humanized Nanobody Platform";
+      window.setTimeout(swapThumbnail, showingGif ? 7200 : 2100);
+    };
+
+    window.setTimeout(swapThumbnail, 2100);
+  });
+</script>
