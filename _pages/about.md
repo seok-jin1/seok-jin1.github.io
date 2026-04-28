@@ -83,7 +83,15 @@ In the short term, his research aims to advance precision medicine through the d
     <div class="col mb-3">
       <a href="https://github.com/seok-jin1/cellular_dynamics_perturbation/blob/main/description.md" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
         <div class="card hoverable h-100">
-          <img src="{{ '/assets/img/cellular_dynamics_perturbation/set-mmd-flow-architecture.png' | relative_url }}" class="card-img-top" style="height: 160px; object-fit: cover;" alt="Single-Cell Perturbation Dynamics">
+          <img
+            id="cell-dynamics-project-thumbnail"
+            src="{{ '/assets/img/cellular_dynamics_perturbation/set-mmd-flow-architecture.png' | relative_url }}"
+            data-static-src="{{ '/assets/img/cellular_dynamics_perturbation/set-mmd-flow-architecture.png' | relative_url }}"
+            data-gif-src="{{ '/assets/img/cellular_dynamics_perturbation/set_mmd_flow_dynamics.gif' | relative_url }}"
+            class="card-img-top"
+            style="height: 160px; object-fit: cover;"
+            alt="Single-Cell Perturbation Dynamics"
+          >
           <div class="card-body">
             <div class="float-right">
               <i class="fa-brands fa-github fa-lg"></i>
@@ -100,20 +108,37 @@ In the short term, his research aims to advance precision medicine through the d
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const thumbnail = document.getElementById("nanobody-project-thumbnail");
-    if (!thumbnail) return;
+    const registerAlternatingThumbnail = function (id, gifAlt, staticAlt, staticDelay, gifDelay) {
+      const thumbnail = document.getElementById(id);
+      if (!thumbnail) return;
 
-    const staticSrc = thumbnail.dataset.staticSrc;
-    const gifSrc = thumbnail.dataset.gifSrc;
-    let showingGif = false;
+      const staticSrc = thumbnail.dataset.staticSrc;
+      const gifSrc = thumbnail.dataset.gifSrc;
+      let showingGif = false;
 
-    const swapThumbnail = function () {
-      showingGif = !showingGif;
-      thumbnail.src = showingGif ? gifSrc : staticSrc;
-      thumbnail.alt = showingGif ? "Predicted anti-FAP nanobody binding FAP" : "Humanized Nanobody Platform";
-      window.setTimeout(swapThumbnail, showingGif ? 7200 : 2100);
+      const swapThumbnail = function () {
+        showingGif = !showingGif;
+        thumbnail.src = showingGif ? gifSrc : staticSrc;
+        thumbnail.alt = showingGif ? gifAlt : staticAlt;
+        window.setTimeout(swapThumbnail, showingGif ? gifDelay : staticDelay);
+      };
+
+      window.setTimeout(swapThumbnail, staticDelay);
     };
 
-    window.setTimeout(swapThumbnail, 2100);
+    registerAlternatingThumbnail(
+      "nanobody-project-thumbnail",
+      "Predicted anti-FAP nanobody binding FAP",
+      "Humanized Nanobody Platform",
+      2100,
+      7200
+    );
+    registerAlternatingThumbnail(
+      "cell-dynamics-project-thumbnail",
+      "Population-aware perturbation prediction",
+      "Single-Cell Perturbation Dynamics",
+      2100,
+      6500
+    );
   });
 </script>
