@@ -12,7 +12,7 @@ profile:
     <p>Immune Modulation Laboratory<br />Korea University</p>
     <p>Seoul, Republic of Korea</p>
     <p><a href="mailto:laughingkang@korea.ac.kr">laughingkang@korea.ac.kr</a></p>
-    <p><a href="/assets/pdf/RenderCV_260720.pdf" target="_blank" rel="noopener noreferrer"><i class="fa-regular fa-file-pdf"></i> CV</a></p>
+    <p><a href="/assets/pdf/RenderCV_260803.pdf" target="_blank" rel="noopener noreferrer"><i class="fa-regular fa-file-pdf"></i> CV</a></p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 selected_papers_title: Featured publications
@@ -29,7 +29,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-<p><a href="/assets/pdf/RenderCV_260720.pdf" target="_blank" rel="noopener">Curriculum Vitae: the course of my life</a></p>
+<p><a href="/assets/pdf/RenderCV_260803.pdf" target="_blank" rel="noopener">Curriculum Vitae: the course of my life</a></p>
 
 Seok-Jin Kang, Ph.D. is an immunologist and computational biologist whose academic and research trajectory bridges traditional immunology and modern data-driven biology. During his M.S. and Ph.D. training in the Immune Modulation Laboratory (PI: Prof. Taehoon Chun) at Korea University, he investigated immune regulation, macrophage polarization, and the molecular mechanisms of host–pathogen interactions using both in vitro and in vivo models.
 
