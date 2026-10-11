@@ -15,3 +15,17 @@ AGENTS.md
 temporary_files/
 CoverLetters_ReferenceLetters/
 memo.md
+
+# --- Publisher PDFs: keep locally, never commit to this public repo ---
+# Journal PDFs (Nature/Science/etc.) are downloaded for reference while writing
+# posts. Redistributing them here would be a copyright violation.
+# Own/authored PDFs (CV, etc.) live in assets/pdf/ and stay tracked.
+*.pdf
+!assets/pdf/*.pdf
+
+# --- Local scratch: not part of the site build ---
+# Structure/dataset files used while writing posts. Readers fetch their own
+# copies (e.g. sc.datasets.pbmc3k(), RCSB), so these stay out of the repo.
+# Root-level only for .pdb, so a structure can still be published under assets/.
+/*.pdb
+data/
